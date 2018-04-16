@@ -1,18 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//mport {PopupModule} from 'ng2-opd-popup';
 
 
-import { AppComponent } from './app.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
+import { NavbarComponentComponent } from './navbar-component/navbar-component.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    LoginComponentComponent,
+    HomeComponentComponent,
+    NavbarComponentComponent,
+   
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+  //  PopupModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [LoginComponentComponent]
 })
 export class AppModule { }
