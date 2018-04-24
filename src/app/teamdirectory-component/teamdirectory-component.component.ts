@@ -8,6 +8,7 @@ import { UserService } from '../user.service';
   templateUrl: './teamdirectory-component.component.html',
   styleUrls: ['./teamdirectory-component.component.css']
 })
+
 export class TeamdirectoryComponentComponent implements OnInit {
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort:MatSort;
@@ -20,8 +21,6 @@ export class TeamdirectoryComponentComponent implements OnInit {
   onRowClicked(row) {
     console.log('Row clicked: ', row);
 }
-
-
 
 applyFilter(filterValue: string) {
   filterValue = filterValue.trim(); // Remove whitespace

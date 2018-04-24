@@ -1,29 +1,96 @@
-<div class="panel panel-default"> 
 <h3>My Expenses</h3>
-<form>
-  
-  <div class="form-group">
-    <label for="name">Employee Name:</label>
-    <input type="name" class="form-control" id="name">
-  </div>
-  <div class="form-group">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Expense Type
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right">
-        <li><a href="#">Travel</a></li>
-        <li><a href="#">Food</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="input-group date" data-provide="datepicker">
-    <label for="">Start Date :</label>
-    <input type="text" class="form-control">
-    <div class="input-group-addon">
-        <span class="glyphicon glyphicon-th"></span>
-    </div>
-</div>
-  <button type="submit" class="btn btn-default">Submit</button>
 
-</form>
+<div class="form-group">
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <input matInput #input placeholder="Username">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <mat-select placeholder="Expense Category">
+          <mat-option value="option1">Payroll</mat-option>
+          <mat-option value="option2">Non Payroll</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <mat-select placeholder="Expense Type">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <input matInput #input placeholder="Amount">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-xs-4 col-md-4 col-lg-4">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Start Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col col-xs-4 col-md-4 col-lg-4">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="End Date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+        <label for="exampleInputFile">Upload Image</label>
+        <input type="file" class="form-control-file" id="inputFile" aria-describedby="fileHelp">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-info">Submit</button>
+    </div>
+  </div>
 </div>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]='dataSource' matSort>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [length]="resultsLength" [pageSize]="5">
+      </mat-paginator>
+  </div>

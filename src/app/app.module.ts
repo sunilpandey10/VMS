@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import{  MatInputModule, MatPaginatorModule, MatProgressSpinnerModule ,MatTableModule, MatSortModule, MatButtonModule ,MatNativeDateModule,  MatDatepickerModule,}from '@angular/material'
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule ,MatTableModule, MatSortModule, MatButtonModule ,MatNativeDateModule,  MatDatepickerModule,}from '@angular/material'
 import 'hammerjs';
 
 import { MatSelectModule } from '@angular/material/select';
@@ -23,6 +23,7 @@ import { UserprofileComponentComponent } from './userprofile-component/userprofi
 import { HttpClient } from '@angular/common/http';
 import{UserService} from './user.service';
 import { TeamdirectoryComponentComponent } from './teamdirectory-component/teamdirectory-component.component';
+// import { CalenderComponentComponent } from './calender-component/calender-component.component';
 import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-component.component'
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalendarComponentComponent } from './calendar-component/calendar-component.component';
@@ -31,7 +32,7 @@ import { CalendarComponentComponent } from './calendar-component/calendar-compon
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponentComponent },
-  { path: 'calendar',component: CalendarComponentComponent },
+  // { path: 'Calendar',component: CalenderComponentComponent },
   { path: 'report',component: EditregisterComponentComponent },
   { path:'profile',component:UserprofileComponentComponent },
   { path:'setting',component:ExpensesComponentComponent },
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
     EditregisterComponentComponent,
     UserprofileComponentComponent,
     TeamdirectoryComponentComponent,
+    // CalenderComponentComponent,
     ApplyleaveComponentComponent,
     CalendarComponentComponent,
 
@@ -78,7 +80,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-  //  CalendarModule.forRoot(),
+    // CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes,
 
   )
