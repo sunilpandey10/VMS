@@ -3,11 +3,12 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 
 @Component({
-  selector: 'app-time-component',
-  templateUrl: './time-component.component.html',
-  styleUrls: ['./time-component.component.css']
+  selector: 'app-calendar-component',
+  templateUrl: './calendar-component.component.html',
+  styleUrls: ['./calendar-component.component.css']
 })
-export class TimeComponentComponent implements OnInit {
+export class CalendarComponentComponent implements OnInit {
+
   calendarOptions: Options;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
     constructor() {}
@@ -23,4 +24,5 @@ export class TimeComponentComponent implements OnInit {
           events: []
         };
     }
+
 }

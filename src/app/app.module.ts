@@ -23,21 +23,24 @@ import { UserprofileComponentComponent } from './userprofile-component/userprofi
 import { HttpClient } from '@angular/common/http';
 import{UserService} from './user.service';
 import { TeamdirectoryComponentComponent } from './teamdirectory-component/teamdirectory-component.component';
-import { CalenderComponentComponent } from './calender-component/calender-component.component';
 import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-component.component'
+import { FullCalendarModule } from 'ng-fullcalendar';
+import { CalendarComponentComponent } from './calendar-component/calendar-component.component';
+
 
 const appRoutes: Routes = [
-  
+
   { path: 'home', component: HomeComponentComponent },
-  { path: 'Calendar',component: CalenderComponentComponent },
+  { path: 'calendar',component: CalendarComponentComponent },
   { path: 'report',component: EditregisterComponentComponent },
   { path:'profile',component:UserprofileComponentComponent },
   { path:'setting',component:ExpensesComponentComponent },
+  { path:'timesheet',component: TimeComponentComponent },
   { path:'team',component:ApplyleaveComponentComponent},
   { path: '', redirectTo: '/home',pathMatch: 'full' },
   { path: '**', component: EditregisterComponentComponent }
-  
- 
+
+
 ];
 
 @NgModule({
@@ -51,9 +54,8 @@ const appRoutes: Routes = [
     EditregisterComponentComponent,
     UserprofileComponentComponent,
     TeamdirectoryComponentComponent,
-    CalenderComponentComponent,
     ApplyleaveComponentComponent,
-  
+    CalendarComponentComponent,
 
   ],
   imports: [
@@ -61,10 +63,11 @@ const appRoutes: Routes = [
     FormsModule,
     CommonModule,
     ChartsModule,
+    FullCalendarModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatSortModule, 
+    MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -75,9 +78,9 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-    CalendarModule.forRoot(),
+  //  CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes,
-    
+
   )
   ],
   providers: [UserService],
