@@ -1,25 +1,86 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//mport {PopupModule} from 'ng2-opd-popup';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'
+import { RouterModule, Routes } from '@angular/router';
+import { ChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import{  MatInputModule, MatPaginatorModule, MatProgressSpinnerModule ,MatTableModule, MatSortModule, MatButtonModule ,MatNativeDateModule,  MatDatepickerModule,}from '@angular/material'
+import 'hammerjs';
 
-
+import { MatSelectModule } from '@angular/material/select';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { NavbarComponentComponent } from './navbar-component/navbar-component.component';
+import { TimeComponentComponent } from './time-component/time-component.component';
+import { ExpensesComponentComponent } from './expenses-component/expenses-component.component';
+import { SettingComponentComponent } from './setting-component/setting-component.component';
+import { EditregisterComponentComponent } from './editregister-component/editregister-component.component';
+import { UserprofileComponentComponent } from './userprofile-component/userprofile-component.component';
+import { HttpClient } from '@angular/common/http';
+import{UserService} from './user.service';
+import { TeamdirectoryComponentComponent } from './teamdirectory-component/teamdirectory-component.component';
+import { CalenderComponentComponent } from './calender-component/calender-component.component';
+import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-component.component'
 
+const appRoutes: Routes = [
+  
+  { path: 'home', component: HomeComponentComponent },
+  { path: 'Calendar',component: CalenderComponentComponent },
+  { path: 'report',component: EditregisterComponentComponent },
+  { path:'profile',component:UserprofileComponentComponent },
+  { path:'setting',component:ExpensesComponentComponent },
+  { path:'team',component:ApplyleaveComponentComponent},
+  { path: '', redirectTo: '/home',pathMatch: 'full' },
+  { path: '**', component: EditregisterComponentComponent }
+  
+ 
+];
 
 @NgModule({
   declarations: [
     LoginComponentComponent,
     HomeComponentComponent,
     NavbarComponentComponent,
-   
+    TimeComponentComponent,
+    ExpensesComponentComponent,
+    SettingComponentComponent,
+    EditregisterComponentComponent,
+    UserprofileComponentComponent,
+    TeamdirectoryComponentComponent,
+    CalenderComponentComponent,
+    ApplyleaveComponentComponent,
+  
+
   ],
   imports: [
     BrowserModule,
-  //  PopupModule.forRoot(),
+    FormsModule,
+    CommonModule,
+    ChartsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    NgbModalModule.forRoot(),
+    CalendarModule.forRoot(),
+    RouterModule.forRoot(appRoutes,
+    
+  )
   ],
-  providers: [],
-  bootstrap: [LoginComponentComponent]
+  providers: [UserService],
+  bootstrap: [NavbarComponentComponent]
 })
 export class AppModule { }

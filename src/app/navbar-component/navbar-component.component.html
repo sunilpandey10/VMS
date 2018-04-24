@@ -1,3 +1,114 @@
-<p>
-  navbar-component works!
-</p>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img [src]="fullImagePath" class="img-circle" width=40px height="40px">
+            <h3 style="margin-top: 5px"> TestVagrant</h3>
+            <strong>TV</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a routerLink="/home" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a routerLink="/Calendar" routerLinkActive="active">
+                    <i class="glyphicon glyphicon glyphicon-calendar"></i>
+                    Calendar
+                </a>
+            </li>
+            <li>
+                <a routerLink="/report" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-link"></i>
+                    Report
+                </a>
+            </li>
+            <li>
+                <a routerLink="/setting" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-time"></i>
+                    Time Sheet
+                </a>
+            </li>
+            <li>
+                <a routerLink="/setting" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-usd"></i>
+                    Expeses
+                </a>
+            </li>
+            <li>
+                <a routerLink="/setting" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-cog"></i>
+                    Settings
+                </a>
+            </li>
+            <li>
+                <a routerLink="/profile" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a routerLink="/team" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-folder-open"></i>
+                    Team Directory
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+        <div class="navbar-outer">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-justify"></i>
+                        </button>
+                    </div>
+
+                    
+
+
+                <div class="dropdown">
+                    <img class=" img-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+                        height="60" width="60" />
+                    <div class="dropdown-container">
+                
+                        <ul class="dropdown-menu">
+                            <li align="left">
+                
+                                Signed in as
+                                <br>
+                                <strong>Sunil</strong>
+                
+                            </li>
+                            <li>
+                                <a href="#">Profile
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Logout
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                </nav>
+            <router-outlet></router-outlet>
+            <div class="container" style="margin-top: 25px;">
+                <div class="row">
+                    <legend></legend>
+                    <p style="text-align: center">© Copyright 2014 - 2017. TestVagrant Technologies. All Rights Reserved. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
