@@ -3,7 +3,10 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-
+.sty{
+    padding-right: 0;
+    padding-left: 0;
+}
 .round{
     border-radius: 15px 15px;
 
@@ -16,8 +19,7 @@ body {
 .navbar-outer{
     margin-left: auto;
     margin-right: auto;
-    
-    width: 990px;
+    width: auto;
 }
 
 p {
@@ -38,13 +40,13 @@ a, a:hover, a:focus {
     padding: 15px 10px;
     background: #fff;
     border: none;
-    border-radius: 0;
+    border-radius: 8px;
     margin-bottom: 0px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    width: 990px;
+    width: 1150px;
 }
 
 .navbar-btn {
@@ -62,6 +64,13 @@ a, a:hover, a:focus {
 
 i, span {
     display: inline-block;
+}
+
+.dropdown-menu{
+    padding: 5px;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 0);
 }
 
 /* ---------------------------------------------------
