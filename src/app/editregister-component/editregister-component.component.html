@@ -1,63 +1,60 @@
-<div class="container">
-    <h1 class="page-header">Edit Profile</h1>
-    <div class="row">
-      <!-- left column -->
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="text-center">
-          <img  class="avatar img-circle img-thumbnail" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          <input type="file" class="text-center center-block well well-sm">
-        </div>
+<h1>Edit Profile</h1>
+
+<div class="form-group">
+  <h3>Personal Info</h3>
+  <div class="row">
+    <div class="col col-7">
+      <div class="registercontainer">
+        <!-- FirstName -->
+        <mat-form-field>
+          <input matInput #input placeholder="FirstName">
+        </mat-form-field>
+        <br>
+        <!-- LastName -->
+        <mat-form-field>
+          <input matInput #input placeholder="LastName">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field>
+          <input matInput #input placeholder="Email">
+        </mat-form-field>
+
+        <!-- Username -->
+        <mat-form-field>
+          <input matInput #input placeholder="Username">
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field>
+          <input matInput #input placeholder="Password">
+        </mat-form-field>
+
+        <!-- Confirm Password -->
+        <mat-form-field>
+          <input matInput #input placeholder="Confirm Password">
+        </mat-form-field>
+
+        <!-- Save Button -->
+        <button type="button" class="btn btn-info">Save</button>
       </div>
-      <!-- edit form column -->
-      <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-        <h3>Personal info</h3>
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
-            <div class="col-lg-8">
-              <input class="form-control"  type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input class="form-control"  type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input class="btn btn-primary" value="Save Changes" type="button">
-              <span></span>
-              <input class="btn btn-default" value="Cancel" type="reset">
-            </div>
-          </div>
-        </form>
+    </div>
+
+    <div class="col right">
+      <div class="row row-7">
+        <img class="img-circle centerAlign" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+          width="200">
+      </div>
+      <br>
+      <div style="position:relative;" class="row">
+        <div class="centerAlign">
+          <a class='btn btn-info' width="50" href='javascript:;'>
+            Change Picture...
+            <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+              name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+          </a>
+        </div>
       </div>
     </div>
   </div>
+</div>

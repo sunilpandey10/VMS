@@ -27,6 +27,7 @@ import { TeamdirectoryComponentComponent } from './teamdirectory-component/teamd
 import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-component.component'
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalendarComponentComponent } from './calendar-component/calendar-component.component';
+import { FooterComponentComponent } from './footer-component/footer-component.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     // CalenderComponentComponent,
     ApplyleaveComponentComponent,
     CalendarComponentComponent,
+    FooterComponentComponent,
 
   ],
   imports: [

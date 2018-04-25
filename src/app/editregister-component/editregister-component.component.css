@@ -1,0 +1,9 @@
+.registercontainer > * {
+    width: 100%;
+  }
+
+  .centerAlign{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
