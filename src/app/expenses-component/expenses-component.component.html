@@ -40,8 +40,8 @@
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-        
-        <!-- End Date -->
+
+          <!-- End Date -->
           <div class="col">
             <mat-form-field>
               <input matInput [matDatepicker]="picker2" placeholder="End Date">
@@ -52,11 +52,28 @@
         </div>
 
         <!-- Upload File -->
-        <input type="file" class="text-center well well-sm" id="inputFile" aria-describedby="fileHelp">
+        <!-- <input type="file" class="text-center well well-sm" id="inputFile" aria-describedby="fileHelp"> -->
 
         <!-- Save -->
         <button type="button" class="btn btn-info">Submit</button>
-
+      </div>
+    </div>
+    <div class="col">
+      <br>
+      <br>
+      <div class="row">
+        <img class="img-rounded centerAlign" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+          width="200">
+      </div>
+      <br>
+      <div style="position:relative;" class="row">
+        <div class="centerAlign">
+          <a class='btn btn-info' width="50" href='javascript:;'>
+            Upload Expense Bill...
+            <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+              name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+          </a>
+        </div>
       </div>
     </div>
   </div>
