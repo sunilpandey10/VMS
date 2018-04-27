@@ -10,6 +10,12 @@ export class LoginComponentComponent implements OnInit {
   ngOnInit() {
   }
  
-  
+  name:any;
+  password:any;
+  onSubmit(name,password){
+
+    console.log("message logged");
+
+  }
 
 }
