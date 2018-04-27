@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import{ HttpClient } from '@angular/common/http'
 import { user } from './models/user.modal'
-import{ Observable } from 'rxjs/observable'
+import{ Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class UserService {
