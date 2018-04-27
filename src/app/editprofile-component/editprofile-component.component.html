@@ -1,0 +1,79 @@
+<div class="form-group">
+
+
+  <div class="row">
+    <div class="col">
+      <img class="img-rounded centerAlign" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+        width="200">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col centerAlign">
+      <br>
+      <a class='btn btn-info' width="30" href='javascript:;'>
+        Upload Expense Bill...
+        <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+          name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+      </a>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <!-- Username -->
+    <div class="expenseContainer col">
+      <mat-form-field>
+        <input matInput #input placeholder="Username" readonly>
+      </mat-form-field>
+      <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Expense Category -->
+    <div class="col">
+      <mat-form-field>
+        <mat-select placeholder="Expense Category">
+          <mat-option value="option1">Payroll</mat-option>
+          <mat-option value="option2">Non Payroll</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Expense Type -->
+    <div class="col">
+      <mat-form-field>
+        <mat-select placeholder="Expense Type">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Amount -->
+  <div class="row">
+    <div class="expenseContainer col">
+      <mat-form-field>
+        <input matInput #input placeholder="Amount">
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- Start Date -->
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Start Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- End Date -->
+    <div class="col">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="End Date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>

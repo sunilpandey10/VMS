@@ -1,0 +1,31 @@
+.expenseContainer > * {
+    width: 100%;
+  }
+
+  .centerAlign{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+
+.vertical-alignment-helper {
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }

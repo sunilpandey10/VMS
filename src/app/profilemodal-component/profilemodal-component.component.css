@@ -1,0 +1,20 @@
+.modal-dialog {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+    flex-grow: 1;
+}
+@media(max-width: 768px) {
+  .modal-dialog {
+    min-height: calc(100vh - 20px);
+  }
+}
+
+.modal-open .modal  .modal-body
+{
+    display: flex!important;
+    align-items: center!important;   
+}
+
