@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, } from '@angular/material'
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule } from '@angular/material'
 import 'hammerjs';
 
 import { MatSelectModule } from '@angular/material/select';
@@ -27,6 +27,9 @@ import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalendarComponentComponent } from './calendar-component/calendar-component.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
+import { ProfilemodalComponentComponent } from './profilemodal-component/profilemodal-component.component';
+import { EditprofileComponentComponent } from './editprofile-component/editprofile-component.component';
+// import { ReusablemodalComponentComponent } from './reusablemodal-component/reusablemodal-component.component';
 
 const appRoutes: Routes = [
 
@@ -37,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'setting', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
   { path: 'team', component: ApplyleaveComponentComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: EditregisterComponentComponent }
 
 ];
@@ -57,6 +60,9 @@ const appRoutes: Routes = [
     ApplyleaveComponentComponent,
     CalendarComponentComponent,
     FooterComponentComponent,
+    ProfilemodalComponentComponent,
+    EditprofileComponentComponent,
+    
 
   ],
   imports: [
@@ -73,7 +79,9 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatButtonModule,
+    MatIconModule,
     NgbDatepickerModule.forRoot(),
     NgbTimepickerModule.forRoot(),
     MatProgressSpinnerModule,
