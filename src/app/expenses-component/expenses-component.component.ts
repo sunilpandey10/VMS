@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import{ Observable } from 'rxjs/observable';
+import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
 import { UserService } from '../user.service';
 
