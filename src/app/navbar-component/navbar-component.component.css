@@ -21,6 +21,9 @@ body {
     margin-right: auto;
     width: auto;
 }
+.cont{
+    min-height: calc(100vh - 70px);
+}
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -36,8 +39,8 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
-.navbar {
-    padding: 15px 10px;
+  .navbar {  
+    padding: 9px 5px;
     background: #fff;
     border: none;
     border-radius: 8px;
@@ -64,6 +67,7 @@ a, a:hover, a:focus {
 
 i, span {
     display: inline-block;
+    /* color: white; */
 }
 
 .dropdown-menu{
@@ -81,6 +85,9 @@ i, span {
     align-items: stretch;
 }
 
+.nav > ul{
+    align-content: center;
+}
 #sidebar {
     min-width: 250px;
     max-width: 250px;

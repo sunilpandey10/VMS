@@ -29,13 +29,16 @@ import { CalendarComponentComponent } from './calendar-component/calendar-compon
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { ProfilemodalComponentComponent } from './profilemodal-component/profilemodal-component.component';
 import { EditprofileComponentComponent } from './editprofile-component/editprofile-component.component';
+//import { ReportComponentNgComponent } from './report-component-ng/report-component-ng.component';
+import { ReportComponentComponent } from './report-component/report-component.component';
+import { ApplyleavemodalComponentComponent } from './applyleavemodal-component/applyleavemodal-component.component';
 // import { ReusablemodalComponentComponent } from './reusablemodal-component/reusablemodal-component.component';
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponentComponent },
   { path: 'calendar', component: CalendarComponentComponent },
-  { path: 'report', component: EditregisterComponentComponent },
+  { path: 'report', component: ReportComponentComponent },
   { path: 'profile', component: UserprofileComponentComponent },
   { path: 'setting', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
@@ -62,6 +65,9 @@ const appRoutes: Routes = [
     FooterComponentComponent,
     ProfilemodalComponentComponent,
     EditprofileComponentComponent,
+    //ReportComponentNgComponent,
+    ReportComponentComponent,
+    ApplyleavemodalComponentComponent,
     
 
   ],
@@ -87,7 +93,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes,
+    RouterModule.forRoot(appRoutes,{useHash: true}
 
     )
   ],

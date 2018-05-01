@@ -13,8 +13,11 @@ export class NavbarComponentComponent implements OnInit {
 
   ngOnInit() {
     $('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
+      $('#sidebar').toggleClass('active');``
  
+  });
+  $(function() {
+    $('#sidebar').addClass('active');
   });
 
   }

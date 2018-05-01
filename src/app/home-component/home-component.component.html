@@ -10,7 +10,6 @@
                 <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
             </div>
-
         </div>
     </div>
     <div class="card cardsDesign mb-4">
@@ -23,7 +22,6 @@
                 <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
             </div>
-
         </div>
     </div>
     <div class="card cardsDesign mb-4">
@@ -35,12 +33,11 @@
                 <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
                     [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
             </div>
-
         </div>
     </div>
 </div>
 <br>
 <div>
-    <h3>Leaves</h3>
+    <h3>My Leaves</h3>
     <app-teamdirectory-component></app-teamdirectory-component>
 </div>
