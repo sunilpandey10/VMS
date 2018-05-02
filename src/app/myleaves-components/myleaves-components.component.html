@@ -1,0 +1,26 @@
+<h3>My Leaves</h3>
+<div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]='dataSource' matSort>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSize]="5">
+    </mat-paginator>
+  </div>

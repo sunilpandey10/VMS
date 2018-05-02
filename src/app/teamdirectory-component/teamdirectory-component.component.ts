@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
-import { UserService } from '../user.service';
+import { MyTeamService } from '../my-team.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-teamdirectory-component',
@@ -13,9 +14,9 @@ export class TeamdirectoryComponentComponent implements OnInit {
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort:MatSort;
   dataSource;
-  displayedCoulumns=['name','username','email'];
+  displayedCoulumns=['firstname','lastname','avtar'];
 
-  constructor(private userService:UserService) {
+  constructor(private teamService:MyTeamService) {
   }
 
   onRowClicked(row) {
@@ -28,11 +29,13 @@ applyFilter(filterValue: string) {
   this.dataSource.filterValue = filterValue;
 }
   ngOnInit() {
-    this.userService.getUser().subscribe(results=>{
+    this.teamService.getUser().subscribe(results=>{
+      let res=results["data"];
       if(!results){
         return;
       }
-      this.dataSource=new MatTableDataSource(results);
+      console.log(res);
+      this.dataSource=new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort=this.sort;
     });

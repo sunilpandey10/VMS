@@ -32,6 +32,8 @@ import { EditprofileComponentComponent } from './editprofile-component/editprofi
 //import { ReportComponentNgComponent } from './report-component-ng/report-component-ng.component';
 import { ReportComponentComponent } from './report-component/report-component.component';
 import { ApplyleavemodalComponentComponent } from './applyleavemodal-component/applyleavemodal-component.component';
+import { MyTeamService } from './my-team.service';
+import { MyleavesComponentsComponent } from './myleaves-components/myleaves-components.component';
 // import { ReusablemodalComponentComponent } from './reusablemodal-component/reusablemodal-component.component';
 
 const appRoutes: Routes = [
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: UserprofileComponentComponent },
   { path: 'expenses', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
-  { path: 'team', component: ApplyleaveComponentComponent },
+  { path: 'team', component: TeamdirectoryComponentComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: EditregisterComponentComponent }
 
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
     //ReportComponentNgComponent,
     ReportComponentComponent,
     ApplyleavemodalComponentComponent,
+    MyleavesComponentsComponent,
     
 
   ],
@@ -97,7 +100,7 @@ const appRoutes: Routes = [
 
     )
   ],
-  providers: [UserService],
+  providers: [UserService,MyTeamService],
   bootstrap: [NavbarComponentComponent]
 })
 export class AppModule { }
