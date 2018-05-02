@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'calendar', component: CalendarComponentComponent },
   { path: 'report', component: ReportComponentComponent },
   { path: 'profile', component: UserprofileComponentComponent },
-  { path: 'setting', component: ExpensesComponentComponent },
+  { path: 'expenses', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
   { path: 'team', component: ApplyleaveComponentComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

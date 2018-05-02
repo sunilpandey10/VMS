@@ -1,107 +1,113 @@
 <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <img style="float:left" style="vertical-align: middle;" [src]="fullImagePath" class="img-circle" width="45px" height="45px">
-                <span style="vertical-align: middle;">
-                    <h3>TestVagrant</h3>
-                </span>
-                <strong>TV</strong>
-            </div>
-    
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a routerLink="/home" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-home"></i>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/calendar" routerLinkActive="active">
-                        <i class="glyphicon glyphicon glyphicon-calendar"></i>
-                        Calendar
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/report" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-link"></i>
-                        Report
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/timesheet" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-time"></i>
-                        Time Sheet
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/setting" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-cog"></i>
-                        Settings
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/profile" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-user"></i>
-                        Expense
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/team" routerLinkActive="active">
-                        <i class="glyphicon glyphicon-folder-open"></i>
-                        Team Directory
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    
-        <!-- Page Content Holder -->
-        <div id="content" class="w-100">
-            <div class="navbar-outer">
-                <nav class="navbar bg-dark navbar-dark ">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                <i class="glyphicon glyphicon-align-justify"></i>
-                            </button>
-                            <button type="button"  class="btn btn-info navbar-btn" data-toggle="modal" data-target="#applyleaveModal">
-                                    <i class="glyphicon glyphicon-plus"></i> Apply Leave
-                            </button>
-                                <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#pwdModal">
-                                        <i class="glyphicon glyphicon-usd"></i> Expense Form
-                                </button>
-                        </div>
-                       
-                        <div class="dropdown">
-                        <span style="color:white;">Hello, Sunil  </span>
-                            <img class=" img-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
-                                height="60" width="60" />
-                            <div class="dropdown-container">
-    
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">Profile
-                                            <span class="glyphicon glyphicon-user"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Logout
-                                            <span class="glyphicon glyphicon-log-out"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img style="float:left" style="vertical-align: middle;" [src]="fullImagePath" class="img-circle" width="45px" height="45px">
+            <span style="vertical-align: middle;">
+                <h3>TestVagrant</h3>
+            </span>
+            <strong>TV</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a routerLink="/home" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a routerLink="/calendar" routerLinkActive="active">
+                    <i class="glyphicon glyphicon glyphicon-calendar"></i>
+                    Calendar
+                </a>
+            </li>
+            <li>
+                <a routerLink="/report" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-link"></i>
+                    Report
+                </a>
+            </li>
+            <li>
+                <a routerLink="/timesheet" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-time"></i>
+                    Time Sheet
+                </a>
+            </li>
+            <li>
+                <a routerLink="/expenses" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-usd"></i>
+                    Expenses
+                </a>
+            </li>
+            <li>
+                <a routerLink="/profile" routerLinkActive="active" class="hidden-lg">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a routerLink="/team" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-folder-open"></i>
+                    Team Directory
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content" class="w-100">
+        <div class="navbar-outer">
+            <nav class="navbar bg-dark navbar-dark ">
+                <div class="container-fluid">
+                    <div class="navbar-header hidden-lg">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-justify"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-header visible-lg">
+                        <button type="button" id="sidebarCollapselg" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-justify"></i>
+                        </button>
+                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#applyleaveModal">
+                            <i class="glyphicon glyphicon-plus"></i> Apply Leave
+                        </button>
+                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#pwdModal">
+                            <i class="glyphicon glyphicon-usd"></i> Expense Form
+                        </button>
+
+                    </div>
+
+                    <div class="dropdown visible-lg">
+                        <span style="color:white;">Hello, Sunil </span>
+                        <img class=" img-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+                            height="60" width="60" />
+                        <div class="dropdown-container">
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Profile
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Logout
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </nav>
-
-                <div class="cont">
-                        <router-outlet></router-outlet>      
                 </div>
-                <app-footer-component></app-footer-component>
+            </nav>
+
+            <div class="cont">
+                <router-outlet></router-outlet>
             </div>
+            <app-footer-component></app-footer-component>
         </div>
     </div>
+</div>
 
-    <app-profilemodal-component></app-profilemodal-component>
-    <app-applyleavemodal-component></app-applyleavemodal-component>
+<app-profilemodal-component></app-profilemodal-component>
+<app-applyleavemodal-component></app-applyleavemodal-component>
