@@ -2,8 +2,14 @@
     color: white;
     text-align: center;
     color: white;
-    line-height: 50px;
-    padding: 0 20px;
+    /* line-height: 30px; */
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 38px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 a {text-decoration: none; }
 
