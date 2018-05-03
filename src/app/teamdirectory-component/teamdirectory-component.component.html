@@ -3,20 +3,36 @@
   <mat-table [dataSource]='dataSource' matSort>
 
     <ng-container matColumnDef="firstname">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let Team"> {{Team.id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2 visible-lg"> ID </mat-header-cell>
+      <mat-cell *matCellDef="let Team" class="col-2 visible-lg"> 
+        {{Team.id}} 
+      </mat-cell>
     </ng-container>   
 
     <ng-container matColumnDef="lastname">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let Team"> {{Team.first_name}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef class="col-2"> Image </mat-header-cell>
+      <mat-cell *matCellDef="let Team" class="col-2"> 
+          <img align="left" [src]='Team.avatar' class="rounded-circle" height="70px" width="70px">
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="avtar">
-      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-     
-      <mat-cell *matCellDef="let Team">  <img [src]='Team.avatar' class="rounded-circle" height="70px" width="70px"></mat-cell>
+      <mat-header-cell *matHeaderCellDef class="col-4"> Details </mat-header-cell> 
+      <mat-cell *matCellDef="let Team" class="col-4">  
+         <h4> {{Team.first_name}} </h4>    
+    <span> Description Dummy  </span><br>
+        
+      </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef class="col-4"> Professional Details </mat-header-cell> 
+        <mat-cell *matCellDef="let Team" class="col-4">     
+           <span> Designation : Sr.SDET </span><br>
+           <span> Joined : 10th April 2017 </span><br>
+           <span>Skills : Web and Mobile automation </span>
+        </mat-cell>
+      </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>

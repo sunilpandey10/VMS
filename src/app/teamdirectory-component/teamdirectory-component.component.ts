@@ -14,13 +14,13 @@ export class TeamdirectoryComponentComponent implements OnInit {
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort:MatSort;
   dataSource;
-  displayedCoulumns=['firstname','lastname','avtar'];
+  displayedCoulumns=['firstname','lastname','avtar','id'];
 
   constructor(private teamService:MyTeamService) {
   }
 
   onRowClicked(row) {
-    console.log('Row clicked: ', row);
+   // console.log('Row clicked: ', row);
 }
 
 applyFilter(filterValue: string) {
@@ -34,7 +34,7 @@ applyFilter(filterValue: string) {
       if(!results){
         return;
       }
-      console.log(res);
+  
       this.dataSource=new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort=this.sort;
