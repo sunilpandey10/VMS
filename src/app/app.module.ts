@@ -34,6 +34,8 @@ import { ApplyleavemodalComponentComponent } from './applyleavemodal-component/a
 import { MyTeamService } from './my-team.service';
 import { LoginServiceService } from "./login-service.service"
 import { MyleavesComponentsComponent } from './myleaves-components/myleaves-components.component';
+import { ManageEmployeeComponentComponent } from './manage-employee-component/manage-employee-component.component';
+import { ClientDetailsComponentComponent } from './client-details-component/client-details-component.component';
 
 
 const appRoutes: Routes = [
@@ -45,10 +47,12 @@ const appRoutes: Routes = [
   { path: 'profile', component: UserprofileComponentComponent },
   { path: 'expenses', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
-  {path:'setting',component:SettingComponentComponent},
+  { path:  'setting',component:SettingComponentComponent},
   { path: 'team', component: TeamdirectoryComponentComponent }, 
+  { path: 'manageemp', component: ManageEmployeeComponentComponent },
+  { path: 'clientdetails', component: ClientDetailsComponentComponent },
   { path: '**', component: EditregisterComponentComponent }
-
+ 
 ];
 
 @NgModule({
@@ -72,6 +76,8 @@ const appRoutes: Routes = [
     ReportComponentComponent,
     ApplyleavemodalComponentComponent,
     MyleavesComponentsComponent,
+    ManageEmployeeComponentComponent,
+    ClientDetailsComponentComponent,
     
 
   ],
@@ -102,6 +108,6 @@ const appRoutes: Routes = [
     )
   ],
   providers: [LoginServiceService,UserService,MyTeamService],
-  bootstrap: [LoginComponentComponent]
+  bootstrap: [NavbarComponentComponent]
 })
 export class AppModule { }
