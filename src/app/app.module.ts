@@ -29,23 +29,24 @@ import { CalendarComponentComponent } from './calendar-component/calendar-compon
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { ProfilemodalComponentComponent } from './profilemodal-component/profilemodal-component.component';
 import { EditprofileComponentComponent } from './editprofile-component/editprofile-component.component';
-//import { ReportComponentNgComponent } from './report-component-ng/report-component-ng.component';
 import { ReportComponentComponent } from './report-component/report-component.component';
 import { ApplyleavemodalComponentComponent } from './applyleavemodal-component/applyleavemodal-component.component';
 import { MyTeamService } from './my-team.service';
+import { LoginServiceService } from "./login-service.service"
 import { MyleavesComponentsComponent } from './myleaves-components/myleaves-components.component';
-// import { ReusablemodalComponentComponent } from './reusablemodal-component/reusablemodal-component.component';
+
 
 const appRoutes: Routes = [
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component:LoginComponentComponent},
   { path: 'home', component: HomeComponentComponent },
   { path: 'calendar', component: CalendarComponentComponent },
   { path: 'report', component: ReportComponentComponent },
   { path: 'profile', component: UserprofileComponentComponent },
   { path: 'expenses', component: ExpensesComponentComponent },
   { path: 'timesheet', component: TimeComponentComponent },
-  { path: 'team', component: TeamdirectoryComponentComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path:'setting',component:SettingComponentComponent},
+  { path: 'team', component: TeamdirectoryComponentComponent }, 
   { path: '**', component: EditregisterComponentComponent }
 
 ];
@@ -67,7 +68,7 @@ const appRoutes: Routes = [
     FooterComponentComponent,
     ProfilemodalComponentComponent,
     EditprofileComponentComponent,
-    //ReportComponentNgComponent,
+
     ReportComponentComponent,
     ApplyleavemodalComponentComponent,
     MyleavesComponentsComponent,
@@ -100,7 +101,7 @@ const appRoutes: Routes = [
 
     )
   ],
-  providers: [UserService,MyTeamService],
-  bootstrap: [NavbarComponentComponent]
+  providers: [LoginServiceService,UserService,MyTeamService],
+  bootstrap: [LoginComponentComponent]
 })
 export class AppModule { }

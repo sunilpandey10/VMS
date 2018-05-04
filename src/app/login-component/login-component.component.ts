@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import{ LoginServiceService } from '../login-service.service'
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -9,18 +11,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponentComponent implements OnInit {
   hide=true;
+  
   ngOnInit() {
   }
   constructor (
     private router: Router,
-    private route:ActivatedRoute
+    private loginService: LoginServiceService
    ) {}
-  name: any;
-  password: any;
-  onSubmit(name, password) {
-    if (name != null && password != null) {
-      this.router.navigate(['/home'],{relativeTo:this.route});
-      console.log("message logged");
-    }
-  }
+
+  onSubmit(userName,password){
+   this.loginService.userAuthentication('example1@example.com','123456').subscribe((data : any)=>{
+    console.log(data.refresh_token);
+    localStorage.setItem('userToken',data.access_token);
+    localStorage.setItem('refreshToken',data.refresh_token);
+    this.router.navigate(['/home']);
+  },
+  (err : HttpErrorResponse)=>{
+   console.log("error " + err.message);
+  });
+}
 }
