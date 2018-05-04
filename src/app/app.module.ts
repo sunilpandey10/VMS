@@ -102,6 +102,6 @@ const appRoutes: Routes = [
     )
   ],
   providers: [LoginServiceService,UserService,MyTeamService],
-  bootstrap: [LoginComponentComponent]
+  bootstrap: [NavbarComponentComponent]
 })
 export class AppModule { }

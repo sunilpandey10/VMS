@@ -21,10 +21,14 @@ export class LoginComponentComponent implements OnInit {
 
   onSubmit(userName,password){
    this.loginService.userAuthentication('example1@example.com','123456').subscribe((data : any)=>{
-    console.log(data.refresh_token);
-    localStorage.setItem('userToken',data.access_token);
-    localStorage.setItem('refreshToken',data.refresh_token);
-    this.router.navigate(['/home']);
+
+    var items=[];
+    items.push(data.access_token);
+    items.push(data.refresh_token);
+    localStorage.setItem('Tokens',JSON.stringify(items));
+    var x=JSON.parse(localStorage.getItem("Tokens"));
+    console.log(x[0]);
+    this.router.navigate(['home']);
   },
   (err : HttpErrorResponse)=>{
    console.log("error " + err.message);
