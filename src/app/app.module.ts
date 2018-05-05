@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule } from '@angular/material'
-import 'hammerjs';
-
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule } from '@angular/material';
+import {AuthGuard} from './Auth/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
@@ -38,14 +37,14 @@ import { ManageEmployeeComponentComponent } from './manage-employee-component/ma
 import { ClientDetailsComponentComponent } from './client-details-component/client-details-component.component';
 import { AppComponentComponent } from './app-component/app-component.component';
 import { PagenotFoundcomponentComponent } from './pagenot-foundcomponent/pagenot-foundcomponent.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
-  { path: 'login', component: LoginComponentComponent },
+  { path: 'login', component: LoginComponentComponent},
   {
-    path: 'home', component: NavbarComponentComponent, children: [
+    path: 'home', component: NavbarComponentComponent,canActivate:[AuthGuard], children: [
       { path: 'dashboard', component: HomeComponentComponent },
       { path: 'calendar', component: CalendarComponentComponent },
       { path: 'report', component: ReportComponentComponent },
@@ -95,6 +94,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     ChartsModule,
     FullCalendarModule,
@@ -118,7 +118,8 @@ const appRoutes: Routes = [
 
     )
   ],
-  providers: [LoginServiceService,UserService,MyTeamService],
+  providers: [AuthGuard,LoginServiceService,CookieService,UserService,MyTeamService
+  ],
   bootstrap: [AppComponentComponent]
 })
 export class AppModule { }

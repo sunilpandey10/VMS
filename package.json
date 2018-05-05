@@ -17,9 +17,9 @@
     "@angular/animations": "^5.2.10",
     "@angular/cdk": "^5.2.5",
     "@angular/cli": "~1.7.3",
-    "@angular/compiler-cli": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
+    "@angular/compiler-cli": "^5.2.0",
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
@@ -45,6 +45,7 @@
     "ng-fullcalendar": "^1.5.5",
     "ng2-charts": "^1.6.0",
     "ng2-opd-popup": "^1.1.21",
+    "ngx-cookie-service": "^1.0.10",
     "rxjs": "^5.5.10",
     "zone.js": "^0.8.19"
   },

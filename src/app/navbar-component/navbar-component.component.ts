@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -9,7 +10,7 @@ declare var $:any;
 })
 export class NavbarComponentComponent implements OnInit {
   fullImagePath: string;
-  constructor() { this.fullImagePath = '../../assets/Images/Untitled.png'}
+  constructor(private route:Router) { this.fullImagePath = '../../assets/Images/Untitled.png'}
 
   ngOnInit() {
     $('#sidebarCollapse').on('click', function () {
@@ -22,6 +23,10 @@ export class NavbarComponentComponent implements OnInit {
     $('#sidebar').addClass('active');
   });
 
+  }
+  logOut(){
+    localStorage.removeItem('Tokens');
+    this.route.navigate(['/login']);
   }
 
 }

@@ -4,9 +4,10 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email Id" #Email ngModel required name="UserName">
-        </mat-form-field>
+        <mat-form-field class="example-full-width"> 
+            <input matInput #Email ngModel placeholder="User Name" [formControl]="email" id="emailText"name="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
       </div>
     </div>
 
@@ -14,10 +15,12 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">vpn_key</i>
         <mat-form-field class="example-full-width">
-          <input matInput #Password ngModel name="Password" placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+          <input matInput #Password ngModel [formControl]="password"  name="password"  placeholder="Password" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="password.invalid">{{getPasswordMessage()}}</mat-error>
         </mat-form-field>
       </div>
+      
     </div>
     <br>
     <div class="row">
@@ -30,7 +33,7 @@
     </div>
     <br>
     <div class="row">
-      <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </div>
   </form>
 </div>
