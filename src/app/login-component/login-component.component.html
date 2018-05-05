@@ -33,7 +33,7 @@
     </div>
     <br>
     <div class="row">
-      <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <button [disabled]="email.invalid || password.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </div>
   </form>
 </div>
