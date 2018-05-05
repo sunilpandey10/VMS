@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute , Route} from '@angular/router';
 import{ LoginServiceService } from '../login-service.service'
 import { HttpErrorResponse } from '@angular/common/http';
 
-
+var isError=false;
+var errorMessage='';
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -11,27 +12,37 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponentComponent implements OnInit {
   hide=true;
+ 
   
   ngOnInit() {
   }
   constructor (
     private router: Router,
-    private loginService: LoginServiceService
+    private loginService: LoginServiceService,
+    
    ) {}
 
-  onSubmit(userName,password){
-   this.loginService.userAuthentication('example1@example.com','123456').subscribe((data : any)=>{
-
-    var items=[];
-    items.push(data.access_token);
-    items.push(data.refresh_token);
-    localStorage.setItem('Tokens',JSON.stringify(items));
-    var x=JSON.parse(localStorage.getItem("Tokens"));
-    console.log(x[0]);
-    this.router.navigate(['home']);
+  onSubmit(email,password){
+    this.loginService.userAuthentication(email, password).subscribe((data: any) => {
+      console.log('username is ' + email + 'and password is ' + password);
+      if (!data.message) {
+        var items = [];
+        items.push(data.access_token);
+        items.push(data.refresh_token);
+        localStorage.setItem('Tokens', JSON.stringify(items));
+        console.log(data.message);
+        this.router.navigate(['/home/dashboard']);
+      } 
+      else
+      {
+        console.log('Error Occured');
+      }
+   
   },
-  (err : HttpErrorResponse)=>{
-   console.log("error " + err.message);
+  (err:any)=>{
+    isError=true;
+    errorMessage=err.statusText;
+   console.log("error " +errorMessage);
   });
 }
 }

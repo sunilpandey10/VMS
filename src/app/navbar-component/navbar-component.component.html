@@ -1,5 +1,5 @@
+
 <div class="wrapper">
-    <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
             <img style="float:left" style="vertical-align: middle;" [src]="fullImagePath" class="img-circle" width="45px" height="45px">
@@ -11,49 +11,49 @@
 
         <ul class="list-unstyled components">
             <li class="active">
-                <a routerLink="/home" routerLinkActive="active">
+                <a [routerLink]="['/home/dashboard']" routerLinkActive="active">
                     <i class="glyphicon glyphicon-home"></i>
                     Home
                 </a>
             </li>
             <li>
-                <a routerLink="/calendar" routerLinkActive="active">
+                <a [routerLink]="['/home/calendar']" routerLinkActive="active">
                     <i class="glyphicon glyphicon glyphicon-calendar"></i>
                     Calendar
                 </a>
             </li>
             <li>
-                <a routerLink="/report" routerLinkActive="active">
+                <a routerLink="/home/report" routerLinkActive="active">
                     <i class="glyphicon glyphicon-link"></i>
                     Report
                 </a>
             </li>
             <li>
-                <a routerLink="/timesheet" routerLinkActive="active">
+                <a routerLink="/home/timesheet" routerLinkActive="active">
                     <i class="glyphicon glyphicon-time"></i>
                     Time Sheet
                 </a>
             </li>
             <li>
-                <a routerLink="/expenses" routerLinkActive="active">
+                <a routerLink="/home/expenses" routerLinkActive="active">
                     <i class="glyphicon glyphicon-usd"></i>
                     Expenses
                 </a>
             </li>
             <li>
-                <a routerLink="/profile" routerLinkActive="active" class="hidden-lg">
+                <a routerLink="/home/profile" routerLinkActive="active" class="hidden-lg">
                     <i class="glyphicon glyphicon-user"></i>
                     Profile
                 </a>
             </li>
             <li>
-              <a routerLink="/setting" routerLinkActive="active">
-                  <i class="glyphicon glyphicon-cog"></i>
-                        Setting
-                    </a>
-                </li>
+                <a routerLink="/home/setting" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-cog"></i>
+                    Setting
+                </a>
+            </li>
             <li>
-                <a routerLink="/team" routerLinkActive="active">
+                <a routerLink="/home/team" routerLinkActive="active">
                     <i class="glyphicon glyphicon-folder-open"></i>
                     Team Directory
                 </a>
@@ -106,9 +106,9 @@
                     </div>
                 </div>
             </nav>
-
             <div class="cont">
                 <router-outlet></router-outlet>
+                <!-- <app-home-component></app-home-component> -->
             </div>
             <app-footer-component></app-footer-component>
         </div>

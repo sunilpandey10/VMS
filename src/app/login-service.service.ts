@@ -9,8 +9,7 @@ export class LoginServiceService {
 
   userAuthentication(userName, password) {
     var data = "email=" + userName + "&password=" + password;
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded','No-Auth':'True'});
-    console.log(reqHeader);
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
     return this.httpclient.post(this.baseUrl+"/login" , data, { headers: reqHeader });
   }
 

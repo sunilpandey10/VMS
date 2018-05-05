@@ -36,23 +36,33 @@ import { LoginServiceService } from "./login-service.service"
 import { MyleavesComponentsComponent } from './myleaves-components/myleaves-components.component';
 import { ManageEmployeeComponentComponent } from './manage-employee-component/manage-employee-component.component';
 import { ClientDetailsComponentComponent } from './client-details-component/client-details-component.component';
+import { AppComponentComponent } from './app-component/app-component.component';
+import { PagenotFoundcomponentComponent } from './pagenot-foundcomponent/pagenot-foundcomponent.component';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component:LoginComponentComponent},
-  { path: 'home', component: HomeComponentComponent },
-  { path: 'calendar', component: CalendarComponentComponent },
-  { path: 'report', component: ReportComponentComponent },
-  { path: 'profile', component: UserprofileComponentComponent },
-  { path: 'expenses', component: ExpensesComponentComponent },
-  { path: 'timesheet', component: TimeComponentComponent },
-  { path:  'setting',component:SettingComponentComponent},
-  { path: 'team', component: TeamdirectoryComponentComponent }, 
-  { path: 'manageemp', component: ManageEmployeeComponentComponent },
-  { path: 'clientdetails', component: ClientDetailsComponentComponent },
-  { path: '**', component: EditregisterComponentComponent }
+
+  { path: 'login', component: LoginComponentComponent },
+  {
+    path: 'home', component: NavbarComponentComponent, children: [
+      { path: 'dashboard', component: HomeComponentComponent },
+      { path: 'calendar', component: CalendarComponentComponent },
+      { path: 'report', component: ReportComponentComponent },
+      { path: 'profile', component: UserprofileComponentComponent },
+      { path: 'expenses', component: ExpensesComponentComponent },
+      { path: 'timesheet', component: TimeComponentComponent },
+      { path: 'setting', component: SettingComponentComponent,children:[
+        { path: 'manageemp', component: ManageEmployeeComponentComponent },
+        { path: 'clientdetails', component: ClientDetailsComponentComponent },
+      ]},
+
+      { path: 'team', component: TeamdirectoryComponentComponent }, 
  
+]},
+
+  { path: '**', component: PagenotFoundcomponentComponent }
+
 ];
 
 @NgModule({
@@ -72,12 +82,13 @@ const appRoutes: Routes = [
     FooterComponentComponent,
     ProfilemodalComponentComponent,
     EditprofileComponentComponent,
-
     ReportComponentComponent,
     ApplyleavemodalComponentComponent,
     MyleavesComponentsComponent,
     ManageEmployeeComponentComponent,
     ClientDetailsComponentComponent,
+    AppComponentComponent,
+    PagenotFoundcomponentComponent,
     
 
   ],
@@ -108,6 +119,6 @@ const appRoutes: Routes = [
     )
   ],
   providers: [LoginServiceService,UserService,MyTeamService],
-  bootstrap: [NavbarComponentComponent]
+  bootstrap: [AppComponentComponent]
 })
 export class AppModule { }
