@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import{ LoginServiceService } from '../login-service.service'
+import { CookieService } from 'ngx-cookie-service';
 
 declare var $:any;
 
@@ -10,11 +12,13 @@ declare var $:any;
 })
 export class NavbarComponentComponent implements OnInit {
   fullImagePath: string;
-  constructor(private route:Router) { this.fullImagePath = '../../assets/Images/Untitled.png'}
+  constructor(private route:Router, 
+    private cookieService: CookieService,
+    private loginservice: LoginServiceService ) { this.fullImagePath = '../../assets/Images/Untitled.png'}
 
   ngOnInit() {
     $('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');``
+      $('#sidebar').toggleClass('active');
   });
   $('#sidebarCollapselg').on('click', function () {
     $('#sidebar').toggleClass('active');``
@@ -25,8 +29,15 @@ export class NavbarComponentComponent implements OnInit {
 
   }
   logOut(){
-    localStorage.removeItem('Tokens');
-    this.route.navigate(['/login']);
+
+    //this.loginservice.logout().subscribe((access :any)=>{
+    //   this.loginservice.refreshToken().subscribe((refresh:any)=>{
+      localStorage.removeItem('Tokens');
+      this.route.navigate(['/login']);
+      //this.cookieService.deleteAll();
+     //  });
+   // });
+
   }
 
 }

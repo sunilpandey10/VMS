@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{ HttpClient } from '@angular/common/http'
+import{ HttpClient, HttpHeaders } from '@angular/common/http'
 import { user } from './models/user.modal'
 import{ Observable } from 'rxjs/Observable'
 
@@ -11,7 +11,11 @@ private serviceUrl='https://jsonplaceholder.typicode.com/users';
 
   getUser():Observable<user[]>{
     return this.http.get<user[]>(this.serviceUrl);
-
+  }
+  getSingleUser(id){
+      var data = "id=" +id;
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
+      return this.http.post<user>(this.serviceUrl,data,{headers:reqHeader});
   }
 
 }

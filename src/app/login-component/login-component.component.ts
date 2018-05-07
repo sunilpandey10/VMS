@@ -5,8 +5,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 
-var isError=false;
+
+
 var errorMessage='';
+declare var $:any;
 
 
 @Component({
@@ -14,15 +16,25 @@ var errorMessage='';
   templateUrl: './login-component.component.html',
   styleUrls: ['./login-component.component.css']
 })
-export class LoginComponentComponent {
+export class LoginComponentComponent implements OnInit  {
+
+  rememberMe:boolean=false;
+  emailText:String='';
+
+  ngOnInit() {
+    if (this.cookieService.get('_query2') != null) {
+      this.emailText =this.cookieService.get('_query1').toString();
+    }
+  }
   hide=true;
+  isError:boolean =false;
   email = new FormControl('', [Validators.required, Validators.email]);
-  password=new FormControl('', [Validators.required]);
+  password=new FormControl('', [Validators.required,Validators.minLength(4)]);
   contentEditable:boolean;
   constructor (
     private router: Router,
     private loginService: LoginServiceService,
-    
+    private cookieService: CookieService
    ) {}
    getErrorMessage() {
     return this.email.hasError('required') ? 'Email is required' :
@@ -34,27 +46,35 @@ export class LoginComponentComponent {
    }
   onSubmit(email,password){
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
-      console.log('username is ' + email + 'and password is ' + password);
-      if (!data.message) {
+      if (this.rememberMe && this.email!=null) {    
+        this.cookieService.set('_query1',this.email.value);
+        this.cookieService.set('_query2',this.rememberMe.toString());  
+      }
+      else {
+        this.rememberMe=false;
+        this.cookieService.delete('_query1');
+        this.cookieService.delete('_query2');
+      }
+        this.isError=false;
         var items = [];
         items.push(data.access_token);
         items.push(data.refresh_token);
         localStorage.setItem('Tokens', JSON.stringify(items));
-        console.log(data.message);
         this.router.navigate(['/home/dashboard']);
-      } 
-      else
-      {
-        console.log('Error Occured');
-      } 
+      
   },
   (err:any)=>{
-    isError=true;
+    this.isError=true;
     errorMessage=err.statusText;
    console.log("error " +errorMessage);
   });
 }
+  rememberchk(event) {
+    this.rememberMe=event.target.checked;
+  }
 }
+
+ 
 
 
 

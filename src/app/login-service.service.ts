@@ -13,5 +13,19 @@ export class LoginServiceService {
     return this.httpclient.post(this.baseUrl+"/login" , data, { headers: reqHeader });
   }
 
+  logout(){
+    var access_Token=JSON.parse(localStorage.getItem('Tokens'));
+    var data ='Bearer '+ access_Token[0];
+    console.log(data);
+    var header=new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    return this.httpclient.post(this.baseUrl+"/logout/access" , data, { headers: header });
+  }
+ refreshToken(){
+  var refresh_Token=JSON.parse(localStorage.getItem('Tokens'));
+  var data ='Bearer '+ refresh_Token[1];
+  console.log(data);
+  var header=new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+  return this.httpclient.post(this.baseUrl+"/token/refresh" , data, { headers: header });
+}
 
 }

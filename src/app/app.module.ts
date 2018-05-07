@@ -38,6 +38,8 @@ import { ClientDetailsComponentComponent } from './client-details-component/clie
 import { AppComponentComponent } from './app-component/app-component.component';
 import { PagenotFoundcomponentComponent } from './pagenot-foundcomponent/pagenot-foundcomponent.component';
 import { CookieService } from 'ngx-cookie-service';
+import { AlertcomponentComponent } from './alertcomponent/alertcomponent.component';
+import { AlertServiceService } from './alert-service.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -88,6 +90,7 @@ const appRoutes: Routes = [
     ClientDetailsComponentComponent,
     AppComponentComponent,
     PagenotFoundcomponentComponent,
+    AlertcomponentComponent,
     
 
   ],
@@ -118,7 +121,7 @@ const appRoutes: Routes = [
 
     )
   ],
-  providers: [AuthGuard,LoginServiceService,CookieService,UserService,MyTeamService
+  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
   ],
   bootstrap: [AppComponentComponent]
 })
