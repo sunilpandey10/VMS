@@ -9,8 +9,9 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
       if(!(isDevMode())&& (location.protocol !== 'https:'))
-      {
-       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+     {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      console.log(location.href);
       if (localStorage.getItem('Tokens') != null)
       return true;
       this.router.navigate(['/login']);

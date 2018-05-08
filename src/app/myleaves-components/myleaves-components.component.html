@@ -19,7 +19,7 @@
 
       <ng-container matColumnDef="num_of_days">
         <mat-header-cell *matHeaderCellDef> From date </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.num_of_days}} </mat-cell>
+        <mat-cell *matCellDef="let leaves"> {{(leaves.from_date).valueOf()-(leaves.to_date).valueOf()}} </mat-cell>
       </ng-container>
       
       <ng-container matColumnDef="from_date">
@@ -27,10 +27,10 @@
         <mat-cell *matCellDef="let leaves"> {{leaves.from_date}} </mat-cell>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="to_date">
+      <ng-container matColumnDef="to_date">
         <mat-header-cell *matHeaderCellDef> No Of days </mat-header-cell>
         <mat-cell *matCellDef="let leaves"> {{leaves.to_date}} </mat-cell>
-      </ng-container> -->
+      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
       <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
