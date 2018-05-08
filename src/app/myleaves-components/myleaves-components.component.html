@@ -2,21 +2,36 @@
 <div class="example-container mat-elevation-z8">
     <mat-table [dataSource]='dataSource' matSort>
   
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.id}} </mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      <ng-container matColumnDef="leave_type">
+        <mat-header-cell *matHeaderCellDef> Leave type </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.leave_type}} </mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.description}} </mat-cell>
       </ng-container>
-  
+
+      <ng-container matColumnDef="num_of_days">
+        <mat-header-cell *matHeaderCellDef> From date </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.num_of_days}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="from_date">
+        <mat-header-cell *matHeaderCellDef> To date </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.from_date}} </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="to_date">
+        <mat-header-cell *matHeaderCellDef> No Of days </mat-header-cell>
+        <mat-cell *matCellDef="let leaves"> {{leaves.to_date}} </mat-cell>
+      </ng-container> -->
+
       <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
       <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
     </mat-table>

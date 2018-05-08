@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
-import { UserService } from '../user.service';
+import { LeaveService } from '../leave.service';
 
 @Component({
   selector: 'app-myleaves-components',
@@ -9,11 +9,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./myleaves-components.component.css']
 })
 export class MyleavesComponentsComponent implements OnInit {
+
+  id :string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
     dataSource;
-    displayedCoulumns=['name','username','email'];
-  constructor(private userService:UserService) { }
+    displayedCoulumns=['id','leave_type','description','num_of_days','from_date'];
+ constructor(private leaveService:LeaveService) { }
   onRowClicked(row) {
     console.log('Row clicked: ', row);
 }
@@ -24,7 +26,7 @@ applyFilter(filterValue: string) {
   this.dataSource.filterValue = filterValue;
 }
   ngOnInit() {
-    this.userService.getUser().subscribe(results=>{
+    this.leaveService.getMyleaves().subscribe((results:any)=>{
       if(!results){
         return;
       }

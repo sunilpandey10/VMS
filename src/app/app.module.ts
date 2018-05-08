@@ -40,6 +40,8 @@ import { PagenotFoundcomponentComponent } from './pagenot-foundcomponent/pagenot
 import { CookieService } from 'ngx-cookie-service';
 import { AlertcomponentComponent } from './alertcomponent/alertcomponent.component';
 import { AlertServiceService } from './alert-service.service';
+import { ChangepasswordcomponentComponent } from './changepasswordcomponent/changepasswordcomponent.component';
+import { LeaveService } from './leave.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -61,7 +63,7 @@ const appRoutes: Routes = [
       { path: 'team', component: TeamdirectoryComponentComponent }, 
  
 ]},
-
+  { path: 'changepassword', component: ChangepasswordcomponentComponent },
   { path: '**', component: PagenotFoundcomponentComponent }
 
 ];
@@ -91,8 +93,7 @@ const appRoutes: Routes = [
     AppComponentComponent,
     PagenotFoundcomponentComponent,
     AlertcomponentComponent,
-    
-
+    ChangepasswordcomponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +123,7 @@ const appRoutes: Routes = [
     )
   ],
   providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
-  ],
+    ,LeaveService],
   bootstrap: [AppComponentComponent]
 })
 export class AppModule { }

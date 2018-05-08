@@ -44,33 +44,34 @@ export class LoginComponentComponent implements OnInit  {
    getPasswordMessage(){
     return this.password.hasError('required') ? 'Password is Required' :'';
    }
-  onSubmit(email,password){
+  onSubmit(email, password) {
+
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
-      if (this.rememberMe && this.email!=null) {    
-        this.cookieService.set('_query1',this.email.value);
-        this.cookieService.set('_query2',this.rememberMe.toString());  
+      if (this.rememberMe && this.email != null) {
+        this.cookieService.set('_query1', this.email.value);
+        this.cookieService.set('_query2', this.rememberMe.toString());
       }
       else {
-        this.rememberMe=false;
+        this.rememberMe = false;
         this.cookieService.delete('_query1');
         this.cookieService.delete('_query2');
       }
-        this.isError=false;
-        var items = [];
-        items.push(data.access_token);
-        items.push(data.refresh_token);
-        localStorage.setItem('Tokens', JSON.stringify(items));
-        this.router.navigate(['/home/dashboard']);
-      
-  },
-  (err:any)=>{
-    this.isError=true;
-    errorMessage=err.statusText;
-   console.log("error " +errorMessage);
-  });
-}
+      this.isError = false;
+      var items = [];
+      items.push(data.access_token);
+      items.push(data.refresh_token);
+      localStorage.setItem('Tokens', JSON.stringify(items));
+      this.router.navigate(['/home/dashboard']);
+
+    },
+      (err: any) => {
+        this.isError = true;
+        errorMessage = err.statusText;
+        console.log("error " + errorMessage);
+      });
+  }
   rememberchk(event) {
-    this.rememberMe=event.target.checked;
+    this.rememberMe = event.target.checked;
   }
 }
 
