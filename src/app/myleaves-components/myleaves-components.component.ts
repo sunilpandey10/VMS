@@ -14,7 +14,7 @@ export class MyleavesComponentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
     dataSource;
-    displayedCoulumns=['id','leave_type','description','num_of_days','from_date'];
+    displayedCoulumns=['id','leave_type','description','from_date','to_date','num_of_days'];
  constructor(private leaveService:LeaveService) { }
   onRowClicked(row) {
     console.log('Row clicked: ', row);

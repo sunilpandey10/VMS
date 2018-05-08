@@ -3,33 +3,33 @@
     <mat-table [dataSource]='dataSource' matSort>
   
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Id </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.id}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="leave_type">
-        <mat-header-cell *matHeaderCellDef> Leave type </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.leave_type}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="col-2"> Leave type </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.description}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="num_of_days">
-        <mat-header-cell *matHeaderCellDef> From date </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{(leaves.from_date).valueOf()-(leaves.to_date).valueOf()}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="col-2"> Description </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.description}} </mat-cell>
       </ng-container>
       
       <ng-container matColumnDef="from_date">
-        <mat-header-cell *matHeaderCellDef> To date </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.from_date}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="col-2"> From date </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.from_date}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="to_date">
-        <mat-header-cell *matHeaderCellDef> No Of days </mat-header-cell>
-        <mat-cell *matCellDef="let leaves"> {{leaves.to_date}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="col-2"> To date </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.to_date}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="num_of_days">
+        <mat-header-cell *matHeaderCellDef class="col-2"> No Of days </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.to_date}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>

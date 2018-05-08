@@ -17,5 +17,5 @@ export class ApplyleaveComponentComponent implements OnInit {
 
   onSubmit() {
     alert("Thanks for submitting! Data: ");
-}
+  }
 }
