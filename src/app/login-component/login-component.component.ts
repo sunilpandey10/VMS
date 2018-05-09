@@ -47,6 +47,7 @@ export class LoginComponentComponent implements OnInit  {
   onSubmit(email, password) {
 
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
+      debugger;
       if (this.rememberMe && this.email != null) {
         this.cookieService.set('_query1', this.email.value);
         this.cookieService.set('_query2', this.rememberMe.toString());
@@ -67,7 +68,7 @@ export class LoginComponentComponent implements OnInit  {
       (err: any) => {
         this.isError = true;
         errorMessage = err.statusText;
-        console.log("error " + errorMessage);
+        console.log("error cdfdfdf " + errorMessage);
       });
   }
   rememberchk(event) {

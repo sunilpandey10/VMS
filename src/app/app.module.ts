@@ -59,6 +59,7 @@ const appRoutes: Routes = [
         { path: 'manageemp', component: ManageEmployeeComponentComponent },
         { path: 'clientdetails', component: ClientDetailsComponentComponent },
       ]},
+      { path: 'profile', component: UserprofileComponentComponent },
 
       { path: 'team', component: TeamdirectoryComponentComponent }, 
  
