@@ -25,6 +25,7 @@ export class ApplyleaveComponentComponent implements OnInit {
   selectedValueLeavetype:string;
   startDate:any;
   endDate:any;
+  types:any[];
 
 
   myFilter = (d: Date): boolean => {
