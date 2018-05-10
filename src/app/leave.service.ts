@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import{ Observable } from 'rxjs/Observable'
 import { LeaveTypes } from './models/myLeavesType';
-import {GetType} from './models/leaveEnum'
+import { GetType } from './models/type'
 
 @Injectable()
 export class LeaveService {
