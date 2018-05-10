@@ -3,7 +3,7 @@
         <div class="col">
             <mat-form-field class="full-width">
                 <mat-select placeholder="Select Leave Type" (change)="onEventsChange($event.value)">
-                    <mat-option *ngFor="let leaves of leavesType?.types" [value]="leaves.id">
+                    <mat-option *ngFor ="let leaves of leavesType?.typedata" [value]="leaves.id">
                         {{leaves.leave_type}}
                     </mat-option>
                 </mat-select>

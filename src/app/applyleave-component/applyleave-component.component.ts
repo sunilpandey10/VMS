@@ -25,7 +25,7 @@ export class ApplyleaveComponentComponent implements OnInit {
   selectedValueLeavetype:string;
   startDate:any;
   endDate:any;
-  types:any[];
+  
 
 
   myFilter = (d: Date): boolean => {
@@ -46,9 +46,11 @@ export class ApplyleaveComponentComponent implements OnInit {
   ngOnInit() {
   
     this.leaveService.getTypeLeaves().subscribe((data:any[])=>{
-      if (data) {
-       this.leavesType = data;
+      debugger;
+      if (!data) {
+      return;
       }
+      this.leavesType = data;
     });
   }
   /* This event help To Reduce Task in apply Leave modal pop up */
