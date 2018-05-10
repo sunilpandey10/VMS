@@ -29,7 +29,7 @@ export class LoginComponentComponent implements OnInit  {
   hide=true;
   isError:boolean =false;
   email = new FormControl('', [Validators.required, Validators.email]);
-  password=new FormControl('', [Validators.required,Validators.minLength(4)]);
+  password=new FormControl('', [Validators.required]);
   contentEditable:boolean;
   constructor (
     private router: Router,
@@ -47,7 +47,6 @@ export class LoginComponentComponent implements OnInit  {
   onSubmit(email, password) {
 
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
-      debugger;
       if (this.rememberMe && this.email != null) {
         this.cookieService.set('_query1', this.email.value);
         this.cookieService.set('_query2', this.rememberMe.toString());

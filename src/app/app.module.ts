@@ -47,6 +47,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
   { path: 'login', component: LoginComponentComponent},
+
   {
     path: 'home', component: NavbarComponentComponent,canActivate:[AuthGuard], children: [
       { path: 'dashboard', component: HomeComponentComponent },
