@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import{ Observable } from 'rxjs/Observable'
 import { LeaveTypes } from './models/myLeavesType';
+import {GetType} from './models/leaveEnum'
 
 @Injectable()
 export class LeaveService {
@@ -24,9 +25,9 @@ export class LeaveService {
     return this.http.get(this.baseUrl+"/leaves/"+id,{headers: reqleaveHeader}); 
   }
 
-  getTypeLeaves(){
+  getTypeLeaves():Observable<GetType>{
     var x=JSON.parse(localStorage.getItem('Tokens'));
     var reqHeader1 = new HttpHeaders({'Authorization':'Bearer '+x[0]});
-    return this.http.get(this.baseUrl+"/leaves/getTypes",{headers: reqHeader1}); 
+    return this.http.get<GetType>(this.baseUrl+"/leaves/getTypes",{headers: reqHeader1}); 
   } 
 }

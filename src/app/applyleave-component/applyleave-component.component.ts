@@ -5,6 +5,7 @@ import{LeaveTypes} from '../models/myLeavesType'
 import { MatSelect } from '@angular/material';
 import {Leaves} from '../models/leaveEnum'
 import {FormControl} from '@angular/forms';
+import {GetType } from '../models/leaveEnum'
 
 
 
@@ -45,12 +46,12 @@ export class ApplyleaveComponentComponent implements OnInit {
 
   ngOnInit() {
   
-    this.leaveService.getTypeLeaves().subscribe((data:any[])=>{
+    this.leaveService.getTypeLeaves().subscribe((data:GetType)=>{
       debugger;
       if (!data) {
       return;
       }
-      this.leavesType = data;
+      this.leavesType = data.types;
     });
   }
   /* This event help To Reduce Task in apply Leave modal pop up */
