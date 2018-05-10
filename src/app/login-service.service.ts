@@ -4,8 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class LoginServiceService {
-  baseUrl="http://localhost:5000";
-  //"https://kaala-api.herokuapp.com";
+  baseUrl="https://kaala-api.herokuapp.com";
   constructor(private httpclient:HttpClient) { }
 
   userAuthentication(userName, password) {
