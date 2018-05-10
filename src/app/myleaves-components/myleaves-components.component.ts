@@ -26,16 +26,16 @@ applyFilter(filterValue: string) {
   this.dataSource.filterValue = filterValue;
 }
   ngOnInit() {
-    // this.leaveService.getUpdateleaves().subscribe((results:any)=>{
-    //   debugger;
-    //   if(!results){
-    //     console.log(results);
-    //     return;
-    //   }
-    //   this.dataSource=new MatTableDataSource(results);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort=this.sort;
-    // });
+    this.leaveService.getLeaves(1).subscribe((results:any)=>{
+      debugger;
+      if(!results){
+        console.log(results);
+        return;
+      }
+      this.dataSource=new MatTableDataSource(results.Aways);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort=this.sort;
+    });
   }
 
 }
