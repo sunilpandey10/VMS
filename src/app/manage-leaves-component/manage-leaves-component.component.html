@@ -15,12 +15,12 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h3>Manage Clients & Projects</h3>
+            <h3>Manage Leaves</h3>
           </div>
           <div class="col-sm-6">
             <a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal">
               <i class="material-icons">&#xE147;</i>
-              <span>Add New Client</span>
+              <span>Add New Leave</span>
             </a>
           </div>
         </div>
@@ -34,12 +34,10 @@
                 <label for="selectAll"></label>
               </span>
             </th>
-            <th>Client</th>
-            <th>Team/Sub-Client</th>
-            <th>Domain</th>
-            <th>People</th>
-            <th>Location</th>
-            <th>Actions</th>
+            <th>Leave Type</th>
+            <th>NoOfDays</th>
+            <th>Validity</th>
+            <th>Carry Forward</th>
           </tr>
         </thead>
         <tbody>
@@ -50,11 +48,90 @@
                 <label for="checkbox1"></label>
               </span>
             </td>
-            <td>GoJek</td>
-            <td>GoPay</td>
-            <td>API & Mobile Automation</td>
-            <td>User1, User2</td>
-            <td>IndiraNagar, Bangalore</td>            
+            <td>Annual Leaves</td>
+            <td>22</td>
+            <td>Jan - Dec</td>
+            <td>10</td>        
+            <td>
+              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+              </a>
+              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                <label for="checkbox1"></label>
+              </span>
+            </td>
+            <td>Sick Leaves</td>
+            <td>Unlimited</td>
+            <td>NA</td>
+            <td>NA</td>        
+            <td>
+              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+              </a>
+              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                <label for="checkbox1"></label>
+              </span>
+            </td>
+            <td>Public Holidays</td>
+            <td>12</td>
+            <td>Jan - Dec</td>
+            <td>NA</td>        
+            <td>
+              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+              </a>
+              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                <label for="checkbox1"></label>
+              </span>
+            </td>
+            <td>Maternity</td>
+            <td>6 Months</td>
+            <td>Once</td>
+            <td>NA</td>        
+            <td>
+              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+              </a>
+              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                <label for="checkbox1"></label>
+              </span>
+            </td>
+            <td>Paternity</td>
+            <td>2 Weeks</td>
+            <td>Once</td>
+            <td>NA</td>        
             <td>
               <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -66,34 +143,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="clearfix">
-        <div class="hint-text">Showing
-          <b>5</b> out of
-          <b>25</b> entries</div>
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a href="#">Previous</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">2</a>
-          </li>
-          <li class="page-item active">
-            <a href="#" class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">4</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">5</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">Next</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
   <!-- Edit Modal HTML -->
@@ -102,24 +151,24 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Add Employee</h4>
+            <h4 class="modal-title">Add Leave</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Name</label>
+              <label>LeaveType</label>
               <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Email</label>
+              <label>NoOfDays</label>
               <input type="email" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Address</label>
-              <textarea class="form-control" required></textarea>
+              <label>Validity</label>
+              <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Phone</label>
+              <label>Carry Forward</label>
               <input type="text" class="form-control" required>
             </div>
           </div>

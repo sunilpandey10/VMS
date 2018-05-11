@@ -42,6 +42,7 @@ import { AlertcomponentComponent } from './alertcomponent/alertcomponent.compone
 import { AlertServiceService } from './alert-service.service';
 import { ChangepasswordcomponentComponent } from './changepasswordcomponent/changepasswordcomponent.component';
 import { LeaveService } from './leave.service';
+import { ManageLeavesComponentComponent } from './manage-leaves-component/manage-leaves-component.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -59,6 +60,7 @@ const appRoutes: Routes = [
       { path: 'setting', component: SettingComponentComponent,children:[
         { path: 'manageemp', component: ManageEmployeeComponentComponent },
         { path: 'clientdetails', component: ClientDetailsComponentComponent },
+        { path: 'manageleaves', component: ManageLeavesComponentComponent },
       ]},
       { path: 'profile', component: UserprofileComponentComponent },
 
@@ -96,6 +98,7 @@ const appRoutes: Routes = [
     PagenotFoundcomponentComponent,
     AlertcomponentComponent,
     ChangepasswordcomponentComponent,
+    ManageLeavesComponentComponent,
   ],
   imports: [
     BrowserModule,
