@@ -5,16 +5,6 @@
         width="200">
     </div>
   </div>
-  <div class="row">
-    <div class="col centerAlign">
-      <br>
-      <a class='btn btn-info' width="30" href='javascript:;'>
-        Upload Expense Bill...
-        <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
-          name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
-      </a>
-    </div>
-  </div>
   <br>
   <br>
   <div class="row">
@@ -73,5 +63,15 @@
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <br>
+      <div class='btn btn-info centerAlign' width="30" href='javascript:;'>
+        Upload Expense Bill...
+        <input type="file" class='input' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+      </div>
     </div>
   </div>
