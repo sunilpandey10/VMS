@@ -1,43 +1,28 @@
 <h3>My Team</h3>
-<div class="example-container mat-elevation-z8">
-  <mat-table [dataSource]='dataSource' matSort>
+<div class="card">
 
-    <ng-container matColumnDef="firstname">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2 visible-lg"> ID </mat-header-cell>
-      <mat-cell *matCellDef="let Team" class="col-2 visible-lg"> 
-        {{Team.id}} 
-      </mat-cell>
-    </ng-container>   
+  <div class="center">
+    <br>
+    <img align="middle" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&s=120" class="img-circle image"
+      height="140px" width="140px">
+  </div>
+  
+  
+  <div class="my-header">
+      <h4>John Doe</h4><span>SDET</span>
+  </div>
 
-    <ng-container matColumnDef="lastname">
-      <mat-header-cell *matHeaderCellDef class="col-2"> Image </mat-header-cell>
-      <mat-cell *matCellDef="let Team" class="col-2"> 
-          <img align="left" [src]='Team.avatar' class="rounded-circle" height="70px" width="70px">
-      </mat-cell>
-    </ng-container>
+  <!-- <h4>John Doe</h4>
+  <p class="title">CEO & Founder, Example</p>
+  <p>Harvard University</p> -->
+  
+  <div style="margin: 24px 0;">
+    <a href="#">
+      <i class="fa fa-linkedin"></i>
+    </a>
+    <a href="#">
+      <i class="fa fa-github"></i>
+    </a>
+  </div>
 
-    <ng-container matColumnDef="avtar">
-      <mat-header-cell *matHeaderCellDef class="col-4"> Details </mat-header-cell> 
-      <mat-cell *matCellDef="let Team" class="col-4">  
-         <h4> {{Team.first_name}} </h4>    
-    <span> Description Dummy  </span><br>
-        
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef class="col-4"> Professional Details </mat-header-cell> 
-        <mat-cell *matCellDef="let Team" class="col-4">     
-           <span> Designation : Sr.SDET </span><br>
-           <span> Joined : 10th April 2017 </span><br>
-           <span>Skills : Web and Mobile automation </span>
-        </mat-cell>
-      </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
-    <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
-  </mat-table>
-
-  <mat-paginator [pageSize]="10">
-    </mat-paginator>
 </div>
