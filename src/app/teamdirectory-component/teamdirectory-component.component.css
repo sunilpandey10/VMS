@@ -3,6 +3,7 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
     background: #eee !important;
+    border-radius: 8px;
 }
 
 .btn-primary:hover,
@@ -110,20 +111,37 @@ section .section-title {
 .frontside .card,
 .backside .card {
     min-height: 312px;
+    border-radius: 8px;
 }
 
 .backside .card a {
     font-size: 18px;
-    color: #007b5e !important;
+    color:black !important;
 }
 
 .frontside .card .card-title,
 .backside .card .card-title {
-    color: #007b5e !important;
+    color:black !important;
 }
 
 .frontside .card .card-body img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
+}
+
+.profile-info-row {
+    display: table-row
+}
+
+.profile-info-name,
+.profile-info-value {
+    display: table-cell;
+    border-top: 1px dotted #D5E4F1
+}
+
+.profile-info-name {
+    padding: 6px 10px 6px 4px;
+    color: #667E99;
+    width: 110px;
 }
