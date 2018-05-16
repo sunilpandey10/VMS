@@ -85,6 +85,10 @@ i, span {
     align-items: stretch;
 }
 
+.mobileView{
+    border-radius: 8px;
+}
+
 .nav > ul{
     align-content: center;
 }
