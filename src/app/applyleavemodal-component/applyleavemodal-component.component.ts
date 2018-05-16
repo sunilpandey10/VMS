@@ -83,11 +83,11 @@ export class ApplyleavemodalComponentComponent implements OnInit {
 }
 
   clickSave(events) {
-    debugger;
-    console.log(this.endDate.value);
-    console.log(this.startDate.value);
-    this.leaveService.applyleaves(this.leavesType,this.desc,this.noOfdays,this.startDate,this.endDate,this.status).subscribe(data=>{
-    console.log(data);
-    });
+    // debugger;
+    // console.log(this.endDate.value);
+    // console.log(this.startDate.value);
+    // this.leaveService.applyleaves(this.leavesType,this.desc,this.noOfdays,this.startDate,this.endDate,this.status).subscribe(data=>{
+    // console.log(data);
+    // });
   }
 }
