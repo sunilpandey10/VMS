@@ -22,7 +22,6 @@
     <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
   </mat-table>
-
-  <mat-paginator [pageSize]="10">
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 </div>

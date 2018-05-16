@@ -16,18 +16,63 @@
 
 <!-- Content Panel -->
 <div id="clothing-nav-content" class="tab-content">
-
     <div role="tabpanel" class="tab-pane fade show active" id="home" aria-labelledby="home-tab">
         <br>
-        <p>Vacation Report</p>
-    </div>
-
-    <div role="tabpanel" class="tab-pane fade" id="hats" aria-labelledby="hats-tab">
         <br>
-        <p>Time Report</p>
+        <div class="row">
+            <div class="col-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">My Report
+                            <span class="text-right dropdown-toggle" style="text-align: center" data-toggle="dropdown">Action</span>
+                            <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> -->
+                            <!-- </button> -->
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Get PPT</a>
+                                </li>
+                                <li>
+                                    <a href="#">Get PDF</a>
+                                </li>
+                            </ul>                          
+                    </div>
+                    <div class="panel-body">
+                        <div style="display: block">
+                            <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
+                                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Total Leaves</div>
+                    <div class="panel-body">
+                        <div style="display: block">
+                            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Applied Leves</div>
+                <div class="panel-body">
+                    <app-expenses-component></app-expenses-component>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
-    <div role="tabpanel" class="tab-pane fade" id="hats1" aria-labelledby="hats-tab">
+    <div role="tabpanel" class="tab-pane fade" id="hats" aria-labelledby="hats-tab">
+            <br>
+            <p>Time Report</p>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="hats1" aria-labelledby="hats-tab">
             <br>
             <p>Expense Report</p>
         </div>
 </div>
+
