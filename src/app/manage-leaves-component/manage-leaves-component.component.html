@@ -38,72 +38,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td>Annual Leaves</td>
-            <td>22</td>
-            <td>Jan - Dec</td>
-            <td>10</td>        
-            <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-              </a>
-              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Sick Leaves</td>
-            <td>Unlimited</td>
-            <td>NA</td>
-            <td>NA</td>        
-            <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-              </a>
-              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-              <td></td>
-            <td>Public Holidays</td>
-            <td>12</td>
-            <td>Jan - Dec</td>
-            <td>NA</td>        
-            <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-              </a>
-              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-              <td></td>
-            <td>Maternity</td>
-            <td>6 Months</td>
-            <td>Once</td>
-            <td>NA</td>        
-            <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-              </a>
-              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-              <td></td>
-            <td>Paternity</td>
-            <td>2 Weeks</td>
-            <td>Once</td>
-            <td>NA</td>        
+          <tr *ngFor="let leves of datasource; let count = index">
+            <td>{{count+1}}</td>
+            <td>{{leves.leave_type}}</td>
+            <td>{{leves.num_of_days}}</td>
+            <td>{{leves.validity}}</td>
+            <td>{{leves.carry_forward}}</td>        
             <td>
               <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
