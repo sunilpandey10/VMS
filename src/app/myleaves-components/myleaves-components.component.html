@@ -2,13 +2,13 @@
 <div class="example-container mat-elevation-z8">
     <mat-table [dataSource]='dataSource' matSort>
   
-      <ng-container matColumnDef="id">
+      <!-- <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Id </mat-header-cell>
         <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.id}} </mat-cell>
-      </ng-container>
+      </ng-container> -->
   
       <ng-container matColumnDef="leave_type">
-        <mat-header-cell *matHeaderCellDef class="col-2"> Leave type </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Leave type </mat-header-cell>
         <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
       </ng-container>
   
@@ -35,7 +35,7 @@
       <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
       <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
     </mat-table>
-  
-    <mat-paginator [pageSize]="5">
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
     </mat-paginator>
   </div>

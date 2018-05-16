@@ -14,7 +14,7 @@ export class MyleavesComponentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
     dataSource;
-    displayedCoulumns=['id','leave_type','description','from_date','to_date','num_of_days'];
+    displayedCoulumns=['leave_type','description','from_date','to_date','num_of_days'];
  constructor(private leaveService:LeaveService) { }
   onRowClicked(row) {
     console.log('Row clicked: ', row);
@@ -27,9 +27,7 @@ applyFilter(filterValue: string) {
 }
   ngOnInit() {
     this.leaveService.getLeaves(1).subscribe((results:any)=>{
-      debugger;
       if(!results){
-        console.log(results);
         return;
       }
       this.dataSource=new MatTableDataSource(results.Aways);
@@ -37,5 +35,6 @@ applyFilter(filterValue: string) {
       this.dataSource.sort=this.sort;
     });
   }
+ 
 
 }

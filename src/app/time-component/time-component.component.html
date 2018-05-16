@@ -1,1 +1,57 @@
 <h3>My TimeSheet</h3>
+<br>
+<br>
+<table class="table">
+    <thead>
+        <tr class="header">
+            <th class="col-sm-2">
+                <b>Project</b>
+            </th>
+            <th *ngFor="let date of getDAteMondaytoFriday">
+                <span>{{date}}</span>
+            </th>
+            <th>
+                <b>Total hrs</b>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select class="form-control input-sm" placeholder="projects">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px"   />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px"  />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px"  />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px"  />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
+            </td>
+            <td class="hours">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
+            </td>
+            <td class="">
+                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+             <a class="clickable" title="Add Row" (click)="onAddTimesheetProjectClick()"><i class="fa fa-plus-circle"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

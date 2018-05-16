@@ -10,11 +10,12 @@ export class LeaveService {
   constructor(private http:HttpClient) {}
   baseUrl="https://kaala-api.herokuapp.com";
 
-   getUpdateleaves(leaveType,desc,noOfdays,fromDate,toDate,status){
-   
+   applyleaves(leaveType,desc,noOfdays,fromDate,toDate,status){
+   debugger;
     var data = "leave_type"+leaveType+"&description"+desc+"&num_of_days"+noOfdays+"&from_date"+fromDate+"&to_date"+toDate+"&status"+status;
     var x=JSON.parse(localStorage.getItem('Tokens'));
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded','Authorization':x[0]});
+
     return this.http.post(this.baseUrl+"/leaves" , data, { headers: reqHeader });
   }
 

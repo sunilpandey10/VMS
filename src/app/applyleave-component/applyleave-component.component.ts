@@ -31,10 +31,6 @@ export class ApplyleaveComponentComponent implements OnInit {
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    //if()
-    debugger;
-    console.log(d);
     return day !== 0 && day !== 6;
   }
 
@@ -47,7 +43,6 @@ export class ApplyleaveComponentComponent implements OnInit {
   ngOnInit() {
   
     this.leaveService.getTypeLeaves().subscribe((data:GetType)=>{
-      debugger;
       if (!data) {
       return;
       }
@@ -95,7 +90,8 @@ addMonth(){
 
 }
   onSubmit() {
-    this.leaveService.getUpdateleaves(this.selectedValueLeavetype,this.desc,this.noOfdays,this.fromDate,this.toDate,this.status).subscribe(data=>{
+    debugger;
+    this.leaveService.applyleaves(this.selectedValueLeavetype,this.desc,this.noOfdays,this.fromDate,this.toDate,this.status).subscribe(data=>{
     console.log(data);
     });
   }
