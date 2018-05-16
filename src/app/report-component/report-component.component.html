@@ -23,21 +23,21 @@
             <div class="col-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">My Report
-                            <span class="text-right dropdown-toggle" style="text-align: center" data-toggle="dropdown">Action</span>
-                            <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> -->
-                            <!-- </button> -->
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="#">Get PPT</a>
-                                </li>
-                                <li>
-                                    <a href="#">Get PDF</a>
-                                </li>
-                            </ul>                          
+                        <span class="text-right dropdown-toggle" style="text-align: center" data-toggle="dropdown">Action</span>
+                        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> -->
+                        <!-- </button> -->
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Get PPT</a>
+                            </li>
+                            <li>
+                                <a href="#">Get PDF</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="panel-body">
                         <div style="display: block">
-                            <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
+                            <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"
                                 (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                         </div>
                     </div>
