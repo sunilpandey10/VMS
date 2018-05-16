@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <mat-select placeholder="Select Leave Type" (change)="onEventsChange($event.value)" [(ngModel)]="selectedValueLeavetype">
+                <mat-select placeholder="Select Leave Type" (change)="onEventsChange($event.value)">
                   <mat-option *ngFor="let leaves of leavesType" [value]="leaves.id">
                     {{leaves.leave_type}}
                   </mat-option>
@@ -53,7 +53,7 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-info" (click)="clickSave($event.value)">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 
     </div>
