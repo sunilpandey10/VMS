@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Headers} from '@angular/http'
 
 
 @Injectable()
@@ -8,6 +9,7 @@ export class LoginServiceService {
   constructor(private httpclient:HttpClient) { }
 
   userAuthentication(userName, password) {
+    debugger;
     var data = "email=" + userName + "&password=" + password;
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
     return this.httpclient.post(this.baseUrl+"/login" , data, { headers: reqHeader });

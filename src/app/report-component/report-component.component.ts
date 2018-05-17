@@ -7,20 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponentComponent implements OnInit {
  // lineChart
- public lineChartData:Array<any> = [
-  [65, 59, 80, 81, 56, 55, 40],
-  [28, 48, 40, 19, 86, 27, 90]
+ public barChartOptions:any = {
+  scaleShowVerticalLines: false,
+  responsive: true
+};
+public barChartLabels:string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul','Aug','Sep','Oct','Nov','Dec'];
+public barChartType:string = 'bar';
+public barChartLegend:boolean = true;
+
+public barChartData:any[] = [
+  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Annual Leave'},
+  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Sick Leave'}
 ];
-public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-public lineChartType:string = 'line';
-public pieChartType:string = 'pie';
 
   constructor() { }
 
   ngOnInit() {
   }
   public doughnutChartLabels:string[] = ['Annual', 'Sick', 'Others'];
-  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartData:number[] = [22, 12, 5];
   public doughnutChartType:string = 'doughnut';
  
   // events

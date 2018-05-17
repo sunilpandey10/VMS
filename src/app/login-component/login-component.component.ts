@@ -50,6 +50,7 @@ export class LoginComponentComponent implements OnInit  {
       if (this.rememberMe && this.email != null) {
         this.cookieService.set('_query1', this.email.value);
         this.cookieService.set('_query2', this.rememberMe.toString());
+        console.log(this.router.url);
       }
       else {
         this.rememberMe = false;

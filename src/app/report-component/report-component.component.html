@@ -22,10 +22,11 @@
         <div class="row">
             <div class="col-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My Report
-                        <span class="text-right dropdown-toggle" style="text-align: center" data-toggle="dropdown">Action</span>
+                    <div class="panel-heading">
+                        Leave Report
+                        <!-- <span class="text-right dropdown-toggle" style="text-align:right" data-toggle="dropdown">Action</span> -->
                         <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> -->
-                        <!-- </button> -->
+                        <!-- </button> -->                       
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="#">Get PPT</a>
@@ -37,8 +38,8 @@
                     </div>
                     <div class="panel-body">
                         <div style="display: block">
-                            <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"
-                                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                                [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
         <div class="row">
             <div class="col-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Applied Leves</div>
+                <div class="panel-heading">Applied Leaves</div>
                 <div class="panel-body">
                     <app-expenses-component></app-expenses-component>
                 </div>

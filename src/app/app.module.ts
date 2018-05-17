@@ -19,7 +19,7 @@ import { ExpensesComponentComponent } from './expenses-component/expenses-compon
 import { SettingComponentComponent } from './setting-component/setting-component.component';
 import { EditregisterComponentComponent } from './editregister-component/editregister-component.component';
 import { UserprofileComponentComponent } from './userprofile-component/userprofile-component.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './user.service';
 import { TeamdirectoryComponentComponent } from './teamdirectory-component/teamdirectory-component.component';
 import { ApplyleaveComponentComponent } from './applyleave-component/applyleave-component.component'
@@ -43,6 +43,7 @@ import { AlertServiceService } from './alert-service.service';
 import { ChangepasswordcomponentComponent } from './changepasswordcomponent/changepasswordcomponent.component';
 import { LeaveService } from './leave.service';
 import { ManageLeavesComponentComponent } from './manage-leaves-component/manage-leaves-component.component';
+import { httpInterceptor } from './http-interceptor';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -128,7 +129,13 @@ const appRoutes: Routes = [
     )
   ],
   providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
-    ,LeaveService],
+    ,LeaveService
+  ,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: httpInterceptor,
+    multi: true
+  }
+],
   bootstrap: [AppComponentComponent]
 })
 export class AppModule { }
