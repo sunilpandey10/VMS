@@ -5,7 +5,7 @@
         <div class="panel-body">
           <div style="display: block">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              [chartType]="barChartType"  (chartClick)="chartClicked($event)"></canvas>
           </div>
             </div>
           </div>
@@ -15,4 +15,5 @@
     <div class="col">
       <app-expenses-component></app-expenses-component>
     </div>
+  
   </div>
