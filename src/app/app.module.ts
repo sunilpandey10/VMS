@@ -44,6 +44,8 @@ import { ChangepasswordcomponentComponent } from './changepasswordcomponent/chan
 import { LeaveService } from './leave.service';
 import { ManageLeavesComponentComponent } from './manage-leaves-component/manage-leaves-component.component';
 import { httpInterceptor } from './http-interceptor';
+import { MyexpensescomponentsComponent } from './myexpensescomponents/myexpensescomponents.component';
+import { MytimereportcomponentComponent } from './mytimereportcomponent/mytimereportcomponent.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -100,6 +102,8 @@ const appRoutes: Routes = [
     AlertcomponentComponent,
     ChangepasswordcomponentComponent,
     ManageLeavesComponentComponent,
+    MyexpensescomponentsComponent,
+    MytimereportcomponentComponent,
   ],
   imports: [
     BrowserModule,
