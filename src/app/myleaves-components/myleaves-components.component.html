@@ -1,41 +1,120 @@
 <h3>My Leaves</h3>
 <div class="example-container mat-elevation-z8">
-    <mat-table [dataSource]='dataSource' matSort>
-  
-      <!-- <ng-container matColumnDef="id">
+  <!-- <mat-table [dataSource]='dataSource' > -->
+      <mat-table #table [dataSource]="dataSource"matSort>
+    <!-- <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Id </mat-header-cell>
         <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.id}} </mat-cell>
       </ng-container> -->
+
+    <ng-container matColumnDef="leave_type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Leave type </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef class="col-2"> Description </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.description}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="from_date">
+      <mat-header-cell *matHeaderCellDef class="col-2"> From date </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.from_date | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="to_date">
+      <mat-header-cell *matHeaderCellDef class="col-2"> To date </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.to_date | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="num_of_days">
+      <mat-header-cell *matHeaderCellDef class="col-2"> No Of days </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.num_of_days}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="col-2"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let leaves" class="col-2">
+          <span *ngIf="leaves.status == 1" >
+           Submitted<i></i>
+          </span>
+          <a href="#editEmployeeModal" *ngIf="leaves.status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
+            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+          </a>
+          <a href="#deleteEmployeeModal" *ngIf="leaves.status == 0" class="delete" data-toggle="modal">
+            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+          </a>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
+
+<!--Modal Popup-->
+
+<div class="modal fade" id="saveLeaveModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
   
-      <ng-container matColumnDef="leave_type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Leave type </mat-header-cell>
-        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
-      </ng-container>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            Submit Leave
+          </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
   
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef class="col-2"> Description </mat-header-cell>
-        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.description}} </mat-cell>
-      </ng-container>
-      
-      <ng-container matColumnDef="from_date">
-        <mat-header-cell *matHeaderCellDef class="col-2"> From date </mat-header-cell>
-        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.from_date | date}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="to_date">
-        <mat-header-cell *matHeaderCellDef class="col-2"> To date </mat-header-cell>
-        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.to_date | date}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="num_of_days">
-        <mat-header-cell *matHeaderCellDef class="col-2"> No Of days </mat-header-cell>
-        <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.num_of_days}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
-      <mat-row *matRowDef="let myRowData; columns: displayedCoulumns" (click)="onRowClicked(row)"></mat-row>
-    </mat-table>
-
-    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-    </mat-paginator>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group form">
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Leave Type" ng-selected="saveDataSource.leave_type">
+                    <mat-option *ngFor="let leaves of leavesTypeDatasource" [(value)]="saveDataSource.leave_type">
+                      {{leaves.leave_type}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                  
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-12">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Description" value="{{saveDataSource.description}}"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" placeholder="Start Date"  value="saveDataSource.from_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field>
+                  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2" placeholder="End date" value="{{saveDataSource.to_date | date :'MM/dd/yyyy'}}">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="clickSave()">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
   </div>

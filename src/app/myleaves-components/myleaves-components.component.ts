@@ -2,6 +2,10 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
 import { LeaveService } from '../leave.service';
+import { GetType } from '../models/type';
+import {MatTableModule} from '@angular/material/table';
+import { FormControl } from '@angular/forms';
+import {saveDataSource} from '../models/saveLeavebind'
 
 @Component({
   selector: 'app-myleaves-components',
@@ -11,21 +15,23 @@ import { LeaveService } from '../leave.service';
 export class MyleavesComponentsComponent implements OnInit {
 
   id :string;
+  saveDataSource=[];
+  leavesTypeDatasource=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
     dataSource;
-    displayedCoulumns=['leave_type','description','from_date','to_date','num_of_days'];
+    displayedCoulumns=['leave_type','description','from_date','to_date','num_of_days','action'];
+    
  constructor(private leaveService:LeaveService) { }
-  onRowClicked(row) {
-    console.log('Row clicked: ', row);
-}
+
 
 applyFilter(filterValue: string) {
-  filterValue = filterValue.trim(); // Remove whitespace
-  filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  filterValue = filterValue.trim(); 
+  filterValue = filterValue.toLowerCase(); 
   this.dataSource.filterValue = filterValue;
 }
   ngOnInit() {
+ 
     this.leaveService.getLeaves(1).subscribe((results:any)=>{
       if(!results){
         return;
@@ -34,7 +40,17 @@ applyFilter(filterValue: string) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort=this.sort;
     });
+    this.leaveService.getTypeLeaves().subscribe((data: GetType) => {
+      if (!data) {
+        return;
+      }
+      this.leavesTypeDatasource = data.types;
+    });
   }
- 
+  getData(id){
+  this.saveDataSource=this.dataSource.filteredData.find(x=>x.id==id);
+  }
+  clickSave(){
 
+  }
 }

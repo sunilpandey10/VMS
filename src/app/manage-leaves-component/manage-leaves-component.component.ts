@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LeaveService } from '../leave.service'
-import{ Observable } from 'rxjs/Observable';
+import { LeaveService } from '../leave.service'
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-manage-leaves-component',
@@ -8,17 +8,29 @@ import{ Observable } from 'rxjs/Observable';
   styleUrls: ['./manage-leaves-component.component.css']
 })
 export class ManageLeavesComponentComponent implements OnInit {
-datasource=[];
-  constructor(private leaveService : LeaveService) { }
+  datasource = [];
+  abc = [];
+  constructor(private leaveService: LeaveService) { }
 
   ngOnInit() {
     this.leaveService.getTypeLeaves().subscribe(data => {
       if (!data) {
         return;
       }
-     this.datasource=data.types;
-     console.log(this.datasource)
-    })
+      this.datasource = data.types;
+    });
+
+  }
+  getData(id) {
+    debugger;
+    this.abc = this.datasource.filter(x => x.id == id);
+  }
+  addLeaveRecord(LeaveTypes, noOfdays, validity, carryforward) {
+    this.leaveService.addLeaves(LeaveTypes, noOfdays, validity, carryforward).subscribe(data => {
+      if (!data) {
+        return;
+      }
+    });
   }
 
 }

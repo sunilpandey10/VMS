@@ -1,93 +1,111 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LeaveService} from '../leave.service'
-import{ Observable } from 'rxjs/Observable';
-import{LeaveTypes} from '../models/myLeavesType'
-import { MatSelect } from '@angular/material';
-import {Leaves} from '../models/leaveEnum'
-import {FormControl} from '@angular/forms';
-import { GetType } from '../models/type'
+import { LeaveService } from '../leave.service'
+import { Observable } from 'rxjs/Observable';
+import { LeaveTypes } from '../models/myLeavesType'
+import { MatSelect, MatTableDataSource } from '@angular/material';
+import { Leaves } from '../models/leaveEnum'
+import { FormControl } from '@angular/forms';
+import { GetType  } from '../models/type'
+declare var $:any;
 
 @Component({
   selector: 'app-applyleavemodal-component',
   templateUrl: './applyleavemodal-component.component.html',
   styleUrls: ['./applyleavemodal-component.component.css']
 })
+
 export class ApplyleavemodalComponentComponent implements OnInit {
-  leavesType:any[];
-  desc:any;
-  noOfdays:number;
-  toDate:Date;
-  fromDate:Date;
-  status:number=0;
-  //selectedValueLeavetype:object={};
-  startDate:any;
-  endDate:any;
+  leavesTypeDatasource: any[];
+  desc: any;
+  noOfdays: number;
+  toDate: Date;
+  fromDate: Date;
+  status: number = 0;
+  startDate: any;
+  endDate: any;
+  leaveType:any;
+  dataSource=[];
+
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
-    return day !== 0 && day !== 6;
+    return day !== 0 && day !== 6 && d >= new Date();
   }
-  constructor(private leaveService : LeaveService) { 
-    this.startDate = new FormControl(new Date());
-    this.endDate=new FormControl();
-    this.desc=new FormControl();
-    this.desc='';
+  constructor(private leaveService: LeaveService) {
+    this.startDate = new FormControl();
+    this.endDate = new FormControl();
+    this.desc = new FormControl();
+    this.desc = '';
   }
 
   ngOnInit() {
-    this.leaveService.getTypeLeaves().subscribe((data:GetType)=>{
+    this.leaveService.getTypeLeaves().subscribe((data: GetType) => {
       if (!data) {
-      return;
+        return;
       }
-      this.leavesType = data.types;
+      this.leavesTypeDatasource = data.types;
     });
   }
-  onEventsChange(event){
-    this.endDate='';
-    switch(event) { 
-      case Leaves.ANNUAL: { 
-        this.desc='Annual Leave';
-         
-         break; 
-      } 
-      case Leaves.MATERNITY: {  
-        debugger;  
-        this.endDate=new Date();
-        // this.endDate.setValue(this.endDate.setHours(4320));
-         this.desc="Maternity Leave";
-         break; 
-      } 
+  onEventsChange(event) {
+    debugger;
+    this.leaveType=event;
+    switch (event) {
+      case Leaves.ANNUAL: {
+        this.desc = 'Annual Leave';
+        break;
+      }
+      case Leaves.MATERNITY: {
+        this.desc = "Maternity Leave";
+        break;
+      }
       case Leaves.OPTIONAL: {
-         this.desc='Optional Leave'
-         break;    
-      } 
-      case Leaves.OTHERS: {  
-         this.desc='Others Leaves';
-         break; 
-      }  
-      case Leaves.PATERNITY: { 
-        this.endDate=new Date();
-        // this.endDate.setValue(this.endDate.setHours(336));
-        this.desc="Paternity Leave";
-        break; 
-     }  
-     case Leaves.SICK: { 
-       debugger;
-       this.endDate=new Date();
-      //  this.endDate.setValue(this.endDate.setHours(24));
-      this.desc='Sick Leave'
-      break; 
-   }  
-
+        this.desc = 'Optional Leave'
+        break;
+      }
+      case Leaves.OTHERS: {
+        this.desc = 'Others Leaves';
+        break;
+      }
+      case Leaves.PATERNITY: {
+        this.desc = "Paternity Leave";
+        break;
+      }
+      case Leaves.SICK: {
+        this.desc = 'Sick Leave'
+        break;
+      }
+    }
   }
-}
 
   clickSave(events) {
-    // debugger;
-    // console.log(this.endDate.value);
-    // console.log(this.startDate.value);
-    // this.leaveService.applyleaves(this.leavesType,this.desc,this.noOfdays,this.startDate,this.endDate,this.status).subscribe(data=>{
-    // console.log(data);
-    // });
+    debugger;
+    // var stDate= Date.parse(this.startDate).toString();
+    var stDate=this.startDate.toISOString().split('T');
+    var eDate=this.endDate.toISOString().split('T');
+    this.noOfdays = this.diffDays(this.startDate,this.endDate)
+    this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate[0], eDate[0], this.status).subscribe(data => {
+      this.closeModal();
+    });
   }
+
+  diffDays(startDate, endDate) {
+    var ONEDAY = 1000 * 60 * 60 * 24;
+    var date1_ms = startDate.getTime();
+    var date2_ms = endDate.getTime();
+    var difference_ms = Math.abs(date1_ms - date2_ms);
+    return Math.round(difference_ms/ONEDAY);
+  }
+  closeModal(){
+    debugger;
+    $('#applyleaveModal').on('click',function(e){
+     e.preventDefault();
+    });
+    this.desc='';
+    this.startDate='';
+    this.endDate='';
+    this.leaveType='';
+  }
+  // private updateTableData(data: any[]) {
+  //   this.dataSource = data && data.length ? new MatTableDataSource(data) : new MatTableDataSource([]);
+  // }
 }

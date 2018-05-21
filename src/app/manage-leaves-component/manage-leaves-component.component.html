@@ -45,7 +45,7 @@
             <td>{{leves.validity}}</td>
             <td>{{leves.carry_forward}}</td>        
             <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+              <a href="#editEmployeeModal" class="edit" data-toggle="modal" (click)="getData(leves.id)">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
               </a>
               <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
@@ -66,7 +66,7 @@
             <h4 class="modal-title">Add Leave</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" >
             <div class="form-group">
               <label>LeaveType</label>
               <input type="text" class="form-control" required>
@@ -86,7 +86,7 @@
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-success" value="Add">
+            <input type="submit" class="btn btn-info" value="Add" (click)="addLeaveRecord()">
           </div>
         </form>
       </div>
@@ -101,27 +101,27 @@
             <h4 class="modal-title">Edit Leave</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" *ngFor="let x of abc">
               <div class="form-group">
                   <label>LeaveType</label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" class="form-control" value="{{x.leave_type}}" required>
                 </div>
                 <div class="form-group">
                   <label>NoOfDays</label>
-                  <input type="email" class="form-control" required>
+                  <input type="email" class="form-control" value="{{x.num_of_days}}" required>
                 </div>
                 <div class="form-group">
                   <label>Validity</label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" class="form-control" value="{{x.validity}}" required>
                 </div>
                 <div class="form-group">
                   <label>Carry Forward</label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" class="form-control" required value="{{x.carry_forward}}">
                 </div>
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-info" value="Save">
+            <input type="submit" class="btn btn-info" value="Save" >
           </div>
         </form>
       </div>

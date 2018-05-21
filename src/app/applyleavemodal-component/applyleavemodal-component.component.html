@@ -17,7 +17,7 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-select placeholder="Select Leave Type" (change)="onEventsChange($event.value)">
-                  <mat-option *ngFor="let leaves of leavesType" [value]="leaves.id">
+                  <mat-option *ngFor="let leaves of leavesTypeDatasource" [value]="leaves.id">
                     {{leaves.leave_type}}
                   </mat-option>
                 </mat-select>
@@ -41,18 +41,19 @@
             </div>
             <div class="col">
               <mat-form-field>
-                <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2" placeholder="End date" [value]="endDate">
+                <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2" placeholder="End date" [(ngModel)]="endDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
             </div>
           </div>
+          <div>{{noOfdays}}</div>
         </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" (click)="clickSave($event.value)">Submit</button>
+        <button type="button" class="btn btn-info" (click)="clickSave($event)">Submit</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 
