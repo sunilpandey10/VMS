@@ -17,6 +17,9 @@ export class MyleavesComponentsComponent implements OnInit {
   id :string;
   saveDataSource=[];
   leavesTypeDatasource=[];
+  description:any;
+  from_date:any;
+  to_date:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
     dataSource;
