@@ -22,6 +22,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   from_date:any;
   to_date:any;
   date:any;
+  leave:any;
   status:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -59,6 +60,7 @@ applyFilter(filterValue: string) {
   this.from_date=new Date(this.dataSource.filteredData.find(x=>x.id==id).from_date);
   this.to_date=new Date(this.dataSource.filteredData.find(x=>x.id==id).to_date);
   this.description=this.dataSource.filteredData.find(x=>x.id==id).description;
+  this.leave=this.dataSource.filteredData.find(x=>x.id==id).leave_type;
   } 
   clickSave(){
 

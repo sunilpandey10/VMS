@@ -66,7 +66,7 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <mat-select placeholder="Leave Type" [(ngModel)]="saveDataSource.leave_type">
+                <mat-select placeholder="Leave Type" [(ngModel)]="leave">
                   <mat-option *ngFor="let leaves of leavesTypeDatasource" [value]="leaves.leave_type">
                     {{leaves.leave_type}}
                   </mat-option>
