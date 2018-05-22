@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-userprofile-component',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserprofileComponentComponent implements OnInit {
 
-  constructor() { }
+  tools = new FormControl();
+  clients = new FormControl();
+
+  toolsList = ['Appium', 'RESTAssured', 'Selenium', 'Protractor', 'JMeter', 'Postman'];
+  clientsList = ['GoJek', 'ThoughtWorks', 'Fabacus', 'BCG', 'In-House'];
+
+  constructor() { 
+  }
 
   ngOnInit() {
   }
