@@ -25,7 +25,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   endDate: any;
   leaveType:any;
   dataSource=[];
-
+  flag:any=false;
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
@@ -79,12 +79,23 @@ export class ApplyleavemodalComponentComponent implements OnInit {
 
   clickSave(events) {
     debugger;
+    this.flag='';
     // var stDate= Date.parse(this.startDate).toString();
     var stDate=this.startDate.toISOString().split('T');
     var eDate=this.endDate.toISOString().split('T');
     this.noOfdays = this.diffDays(this.startDate,this.endDate)
     this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate[0], eDate[0], this.status).subscribe(data => {
-      this.closeModal();
+      this.flag=true;
+      console.log(this.flag);
+      window.setTimeout(function() {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+            $(this).remove(); 
+            this.flag=false;
+            console.log(this.flag);
+            $("#applyleaveModal .close").click()
+        });
+    }, 5000);
+     
     });
   }
 

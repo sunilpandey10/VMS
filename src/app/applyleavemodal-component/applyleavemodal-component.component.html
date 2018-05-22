@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="applyleaveModal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -13,6 +14,13 @@
       <!-- Modal body -->
       <div class="modal-body">
         <div class="form-group form">
+          <div class="row">
+            <div class="col" *ngIf="flag">
+              <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                <strong>Success!</strong> kindly go and Submit your Leave from Dashboard.
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
