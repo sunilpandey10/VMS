@@ -46,7 +46,6 @@ import { ManageLeavesComponentComponent } from './manage-leaves-component/manage
 import { httpInterceptor } from './http-interceptor';
 import { MyexpensescomponentsComponent } from './myexpensescomponents/myexpensescomponents.component';
 import { MytimereportcomponentComponent } from './mytimereportcomponent/mytimereportcomponent.component';
-import { RegisterUserComponentComponent } from './register-user-component/register-user-component.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -56,7 +55,6 @@ const appRoutes: Routes = [
   {
     path: 'home', component: NavbarComponentComponent,canActivate:[AuthGuard], children: [
       { path: 'dashboard', component: HomeComponentComponent },
-      { path: 'register', component: RegisterUserComponentComponent },
       { path: 'calendar', component: CalendarComponentComponent },
       { path: 'report', component: ReportComponentComponent },
       { path: 'profile', component: UserprofileComponentComponent },
@@ -106,7 +104,6 @@ const appRoutes: Routes = [
     ManageLeavesComponentComponent,
     MyexpensescomponentsComponent,
     MytimereportcomponentComponent,
-    RegisterUserComponentComponent,
   ],
   imports: [
     BrowserModule,
