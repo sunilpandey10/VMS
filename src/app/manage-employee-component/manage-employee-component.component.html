@@ -1,4 +1,5 @@
-<br><br>
+<br>
+<br>
 <ul class="nav nav-tabs">
   <li class="active">
     <a data-toggle="tab" routerLink="/home/setting/manageemp" routerLinkActive="active">Manage Employees</a>
@@ -9,18 +10,18 @@
   <li>
     <a data-toggle="tab" routerLink="/home/setting/manageleaves" routerLinkActive="active">Manage Leaves</a>
   </li>
-<div class="w-100">
+  <div class="w-100">
     <br>
     <br>
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <div class="input-group">
-                      <input class="form-control border-secondary py-2" type="search"  placeholder="Search Skills, Employee Id, Name ...">
-                  </div>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="input-group">
+            <input class="form-control border-secondary py-2" type="search" placeholder="Search Skills, Employee Id, Name ...">
           </div>
+        </div>
       </div>
+    </div>
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
@@ -39,7 +40,7 @@
         <thead>
           <tr>
             <th>
-             S.No
+              S.No
             </th>
             <th>Name</th>
             <th>Email</th>
@@ -106,22 +107,41 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Address</label>
-              <textarea class="form-control" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Phone</label>
-              <input type="text" class="form-control" required>
-            </div>
+
+            <!-- Username -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Username">
+            </mat-form-field>
+            <br>
+            <!-- Email -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Email">
+            </mat-form-field>
+            <br>
+
+            <!-- Emp ID -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Employee ID">
+            </mat-form-field>
+            <br>
+
+            <!-- Designation -->
+            <mat-form-field class="input">
+              <mat-select placeholder="Designation">
+                <mat-option value="option1">SDET</mat-option>
+                <mat-option value="option2">Sr SDET</mat-option>
+                <mat-option value="option2">Lead</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Role -->
+            <mat-form-field class="input">
+              <mat-select placeholder="Role">
+                <mat-option value="option1">Admin</mat-option>
+                <mat-option value="option2">Employee</mat-option>
+              </mat-select>
+            </mat-form-field>
+
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -141,22 +161,41 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Address</label>
-              <textarea class="form-control" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Phone</label>
-              <input type="text" class="form-control" required>
-            </div>
+            
+            <!-- Username -->
+            <mat-form-field class="input">
+                <input matInput #input placeholder="Username">
+              </mat-form-field>
+              <br>
+              <!-- Email -->
+              <mat-form-field class="input">
+                <input matInput #input placeholder="Email">
+              </mat-form-field>
+              <br>
+  
+              <!-- Emp ID -->
+              <mat-form-field class="input">
+                <input matInput #input placeholder="Employee ID">
+              </mat-form-field>
+              <br>
+  
+              <!-- Designation -->
+              <mat-form-field class="input">
+                <mat-select placeholder="Designation">
+                  <mat-option value="option1">SDET</mat-option>
+                  <mat-option value="option2">Sr SDET</mat-option>
+                  <mat-option value="option2">Lead</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <!-- Role -->
+              <mat-form-field class="input">
+                <mat-select placeholder="Role">
+                  <mat-option value="option1">Admin</mat-option>
+                  <mat-option value="option2">Employee</mat-option>
+                </mat-select>
+              </mat-form-field>
+
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

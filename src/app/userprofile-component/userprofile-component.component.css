@@ -1,6 +1,22 @@
-.panel > .panel-heading {
-    background-image: none;
-    background-color:#5bc0de;
-    color: white;
+.input {
+    width: 75%;
+  }
 
-}
+.centerAlign{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+.input1{
+      width: 37%;
+  }
+
+.btnUpdate{
+    position: relative;
+    min-width:500px;
+    margin:auto;
+    display:block;
+  }
+
+  

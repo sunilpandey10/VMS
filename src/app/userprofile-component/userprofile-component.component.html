@@ -1,31 +1,178 @@
 <h3>My Profile</h3>
-<div class="row w-100">
-  <div class="col-4">
-  <img class="align-self-start mr-3 img-circle" width="180" height="180" src="https://www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120" alt="Generic placeholder image">    
-</div>
-<div class="col-8">
-     <span style="text-align:initial">  <h4>John Doe</h4></span>
-Department:<br>
-Location:
-
-</div>
-</div>
 <br>
-<div class="row">
-  <div class="col">
-      <div class="panel panel-default w-100">
-          <div class="panel-heading"> 
-        <span><i class="glyphicon glyphicon-info-sign"></i> About </span>
-          </div>
-          <div class="panel-body">
-            <b>Email :</b> <br>
-            <b>Phone No : </b>
+<br>
+<div class="form-group">
 
-          </div>
-        </div>
-        <button type="submit" class=" btn btn-info">
-          <i class="glyphicon glyphicon-edit"></i>
-          Update Your Info
-        </button>
-</div>
+  <div class="row wd-100">
+
+    <!-- Upload Image -->
+    <div class="col">
+      <br>
+      <br>
+      <br>
+      <img class="img-circle centerAlign" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+        width="200">
+      <br>
+      <br>
+      <br>
+      <!-- <div style="position:relative" class='btn btn-info centerAlign' width="30" href='javascript:;'>
+        Upload Expense Bill...
+        <input type="file" class='input' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+      </div> -->
+      <div style="position:relative" class='btn btn-info centerAlign' href='javascript:;'>
+        Upload Avatar
+        <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+          class='input' name="file_source" size="40">
+      </div>
+    </div>
+
+    <!-- Update Info -->
+    <div class="col">
+
+      <!-- Username -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Username">
+      </mat-form-field>
+      <br>
+
+      <!-- Designation -->
+      <mat-form-field class="input">
+        <mat-select placeholder="Designation">
+          <mat-option value="option1">SDET</mat-option>
+          <mat-option value="option2">Sr SDET</mat-option>
+          <mat-option value="option2">Lead</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <!-- Experience -->
+      <mat-form-field class="input1">
+        <mat-select placeholder="Years">
+          <mat-option value="option1">1</mat-option>
+          <mat-option value="option2">2</mat-option>
+          <mat-option value="option2">3</mat-option>
+          <mat-option value="option1">4</mat-option>
+          <mat-option value="option2">5</mat-option>
+          <mat-option value="option2">6</mat-option>
+          <mat-option value="option1">7</mat-option>
+          <mat-option value="option2">8</mat-option>
+          <mat-option value="option2">9</mat-option>
+          <mat-option value="option1">10</mat-option>
+          <mat-option value="option2">11</mat-option>
+          <mat-option value="option2">12</mat-option>
+          <mat-option value="option1">13</mat-option>
+          <mat-option value="option2">14</mat-option>
+          <mat-option value="option2">15</mat-option>
+          <mat-option value="option1">16</mat-option>
+          <mat-option value="option2">17</mat-option>
+          <mat-option value="option2">18</mat-option>
+          <mat-option value="option1">19</mat-option>
+          <mat-option value="option2">20</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="input1">
+        <mat-select placeholder="Months">
+          <mat-option value="option1">1</mat-option>
+          <mat-option value="option2">2</mat-option>
+          <mat-option value="option2">3</mat-option>
+          <mat-option value="option1">4</mat-option>
+          <mat-option value="option2">5</mat-option>
+          <mat-option value="option2">6</mat-option>
+          <mat-option value="option1">7</mat-option>
+          <mat-option value="option2">8</mat-option>
+          <mat-option value="option2">9</mat-option>
+          <mat-option value="option1">10</mat-option>
+          <mat-option value="option2">11</mat-option>
+          <mat-option value="option2">12</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <!-- Data of Joining -->
+      <mat-form-field class="input">
+        <input matInput [matDatepicker]="picker" placeholder="Date Of Joining">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <!-- Tools -->
+      <mat-form-field class="input">
+        <mat-select placeholder="Tools" [formControl]="tools" multiple>
+          <mat-option *ngFor="let tools of toolsList" [value]="tools">{{tools}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <!-- Tools -->
+      <mat-form-field class="input">
+        <mat-select placeholder="Clients" [formControl]="clients" multiple>
+          <mat-option *ngFor="let clients of clientsList" [value]="clients">{{clients}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <!-- Location -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Location">
+      </mat-form-field>
+      <br>
+
+    </div>
+
+    <div class="col">
+
+      <!-- DOB -->
+      <mat-form-field class="input">
+        <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <!-- Currently Living In -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Currently Living In">
+      </mat-form-field>
+      <br>
+
+      <!-- HomeTown -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="HomeTown">
+      </mat-form-field>
+      <br>
+
+      <!-- Mobile -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Mobile">
+      </mat-form-field>
+      <br>
+
+      <!-- Linkedin Profile Link -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Linkedin Profile Link">
+      </mat-form-field>
+      <br>
+
+      <!-- Github -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="Github Username">
+      </mat-form-field>
+      <br>
+
+      <!-- BitBucket -->
+      <mat-form-field class="input">
+        <input matInput #input placeholder="BitBucket Username">
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <button type="button" class="btn btn-info btnUpdate">Update Info</button>
+  </div>
 </div>
