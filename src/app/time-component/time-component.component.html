@@ -3,15 +3,23 @@
 <br>
 <table class="table">
     <thead>
+            <tr class="header">
+                 
+                    <th class="text-center">Mon</th>
+                    <th class="text-center">Tue</th>
+                    <th class="text-center">Wed</th>
+                    <th class="text-center">Thu</th>
+                    <th class="text-center">Fri</th>
+                    <th class="text-center">Sat</th>
+                    <th class="text-center">Sun</th>
+                    <th class="text-center">Total</th>
+                  </tr>
         <tr class="header">
             <th class="col-sm-2">
                 <b>Project</b>
             </th>
-            <th *ngFor="let date of getDAteMondaytoFriday">
+            <th class="text-center" *ngFor="let date of getDAteMondaytoFriday">
                 <span>{{date}}</span>
-            </th>
-            <th>
-                <b>Total hrs</b>
             </th>
         </tr>
     </thead>
@@ -42,9 +50,6 @@
                 <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
             </td>
             <td class="hours">
-                <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
-            </td>
-            <td class="">
                 <input class="form-control input-sm" type="number" min="0" value="0" max="24" width="25px" height="25px" />
             </td>
         </tr>

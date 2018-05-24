@@ -47,10 +47,10 @@ export class LoginComponentComponent implements OnInit  {
   onSubmit(email, password) {
 
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
+      debugger;
       if (this.rememberMe && this.email != null) {
         this.cookieService.set('_query1', this.email.value);
         this.cookieService.set('_query2', this.rememberMe.toString());
-        console.log(this.router.url);
       }
       else {
         this.rememberMe = false;
@@ -58,17 +58,14 @@ export class LoginComponentComponent implements OnInit  {
         this.cookieService.delete('_query2');
       }
       this.isError = false;
-      var items = [];
-      items.push(data.access_token);
-      items.push(data.refresh_token);
-      localStorage.setItem('Tokens', JSON.stringify(items));
+      var items = data.auth_token;
+      localStorage.setItem('Tokens', items);
       this.router.navigate(['/home/dashboard']);
 
     },
       (err: any) => {
         this.isError = true;
-        errorMessage = err.statusText;
-        console.log("error cdfdfdf " + errorMessage);
+        this.router.navigate(['/login']);
       });
   }
   rememberchk(event) {

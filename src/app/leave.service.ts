@@ -8,7 +8,7 @@ import { GetType } from './models/type'
 export class LeaveService {
 
   constructor(private http:HttpClient) {}
-  baseUrl="https://kaala-api.herokuapp.com";
+  baseUrl="https://vmsapi.herokuapp.com/v1";
 
   applyleaves(leaveType, desc, noOfdays, fromDate, toDate, status) {
     debugger;
@@ -18,12 +18,12 @@ export class LeaveService {
   }
 
   getLeaves(id) {
-    var x = JSON.parse(localStorage.getItem('Tokens'));
+    var x = localStorage.getItem('Tokens');
     return this.http.get(this.baseUrl + "/leaves/" + id);
   }
 
   getTypeLeaves():Observable<GetType>{
-    return this.http.get<GetType>(this.baseUrl+"/leaves/getTypes"); 
+    return this.http.get<GetType>(this.baseUrl+"/leaveTypes"); 
   } 
 
   addLeaves(LeaveTypes,noOfdays,validity,carryforward){

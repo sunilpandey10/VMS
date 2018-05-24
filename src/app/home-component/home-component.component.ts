@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-component.component.css']
 })
 export class HomeComponentComponent implements OnInit {
-  public pieChartLabels:string[] = ['Vacation', 'Vacation Left'];
+  public pieChartLabels:string[] = ['Annual Leave', 'Sick Leave'];
   public pieChartData:number[] = [22, 5];
   public pieChartType:string = 'pie';
 

@@ -1,0 +1,11 @@
+.hours{
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+}
+.table > tbody > tr > td.hours > input.input-sm {
+    text-align: right;
+    padding: 0 0 0 5px;
+    min-width: 40px;
+  }

@@ -29,14 +29,8 @@ export class NavbarComponentComponent implements OnInit {
 
   }
   logOut(){
-
-    //this.loginservice.logout().subscribe((access :any)=>{
-    //   this.loginservice.refreshToken().subscribe((refresh:any)=>{
       localStorage.removeItem('Tokens');
       this.route.navigate(['/login']);
-      //this.cookieService.deleteAll();
-     //  });
-   // });
 
   }
 

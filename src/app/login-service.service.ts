@@ -5,12 +5,12 @@ import {Headers} from '@angular/http'
 
 @Injectable()
 export class LoginServiceService {
-  baseUrl="https://kaala-api.herokuapp.com";
+  baseUrl="https://vmsapi.herokuapp.com/v1/auth";
   constructor(private httpclient:HttpClient) { }
 
   userAuthentication(userName, password) {
-    var data = "email=" + userName + "&password=" + password;
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
+    var data = '{ "email" :  "' + userName + '", "password" : "' + password + '" }';
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.httpclient.post(this.baseUrl+"/login" , data, { headers: reqHeader });
   }
 

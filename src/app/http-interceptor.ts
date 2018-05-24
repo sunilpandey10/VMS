@@ -39,17 +39,6 @@ export class httpInterceptor implements HttpInterceptor {
     handle400Error() {
 
     }
-    handle401Error(req: HttpRequest<any>, next: HttpHandler) {
-        var refreshToken="";
-        if (localStorage.getItem('Tokens') != null) {
-            refreshToken = JSON.parse(localStorage.getItem('Tokens'))[1];
-        }
-        req = req.clone({
-            setHeaders: {
-                Authorization: `Bearer ${refreshToken}`
-            }
-        });
-        return next.handle(req);
-    }
+    
 }
 
