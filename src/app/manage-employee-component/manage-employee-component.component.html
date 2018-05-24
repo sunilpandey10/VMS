@@ -108,44 +108,30 @@
           </div>
           <div class="modal-body">
 
-            <!-- Username -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Username">
-            </mat-form-field>
-            <br>
             <!-- Email -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Email">
+              <input matInput #input placeholder="Email" [formControl]="email"  name="email" >
             </mat-form-field>
             <br>
 
             <!-- Emp ID -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Employee ID">
+              <input matInput #input placeholder="Employee ID" [formControl]="empid"  name="empid">
             </mat-form-field>
             <br>
 
-            <!-- Designation -->
-            <mat-form-field class="input">
-              <mat-select placeholder="Designation">
-                <mat-option value="option1">SDET</mat-option>
-                <mat-option value="option2">Sr SDET</mat-option>
-                <mat-option value="option2">Lead</mat-option>
-              </mat-select>
-            </mat-form-field>
-
             <!-- Role -->
             <mat-form-field class="input">
-              <mat-select placeholder="Role">
-                <mat-option value="option1">Admin</mat-option>
-                <mat-option value="option2">Employee</mat-option>
+              <mat-select placeholder="Role" [formControl]="role"  name="role">
+                <mat-option value="Admin">Admin</mat-option>
+                <mat-option value="User">Employee</mat-option>
               </mat-select>
             </mat-form-field>
 
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-success" value="Add">
+            <input type="submit" class="btn btn-info" value="Add User" (click)="getRegistered()">
           </div>
         </form>
       </div>

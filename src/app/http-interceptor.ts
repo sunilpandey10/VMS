@@ -12,7 +12,7 @@ export class httpInterceptor implements HttpInterceptor {
 
         let token = "";
         if (localStorage.getItem('Tokens') != null) {
-            token = JSON.parse(localStorage.getItem('Tokens'))[0];
+            token = localStorage.getItem('Tokens');
         }
         if (this.router.url == '/login') {
             return next.handle(request);

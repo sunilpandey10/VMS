@@ -13,11 +13,13 @@ export class ManageLeavesComponentComponent implements OnInit {
   constructor(private leaveService: LeaveService) { }
 
   ngOnInit() {
+    debugger;
     this.leaveService.getTypeLeaves().subscribe(data => {
       if (!data) {
         return;
       }
-      this.datasource = data.types;
+      this.datasource = data.leave_types;
+      console.log(this.datasource);
     });
 
   }

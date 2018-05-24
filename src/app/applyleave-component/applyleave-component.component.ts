@@ -46,7 +46,7 @@ export class ApplyleaveComponentComponent implements OnInit {
       if (!data) {
       return;
       }
-      this.leavesType = data.types;
+      this.leavesType = data.leave_types;
     });
   }
   /* This event help To Reduce Task in apply Leave modal pop up */
@@ -59,20 +59,10 @@ export class ApplyleaveComponentComponent implements OnInit {
          break; 
       } 
       case Leaves.MATERNITY: { 
-       // this.endDate =this.startDate.setMonth(6);
          console.log("MATERNITY"); 
          this.desc="MATERNITY Leave";
          break; 
       } 
-      case Leaves.OPTIONAL: {
-        this.desc="Yeap it is Optional";
-         console.log("OPTIONAL"); 
-         break;    
-      } 
-      case Leaves.OTHERS: { 
-         console.log("OTHERS"); 
-         break; 
-      }  
       case Leaves.PATERNITY: { 
         this.desc="PATERNITY Leave";
         console.log("PATERNITY"); 

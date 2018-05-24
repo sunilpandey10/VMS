@@ -43,7 +43,8 @@ export class ApplyleavemodalComponentComponent implements OnInit {
       if (!data) {
         return;
       }
-      this.leavesTypeDatasource = data.types;
+      //this.leavesTypeDatasource = data.leave_types;
+      this.leavesTypeDatasource=data.leave_types;
     });
   }
   onEventsChange(event) {
@@ -58,14 +59,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
         this.desc = "Maternity Leave";
         break;
       }
-      case Leaves.OPTIONAL: {
-        this.desc = 'Optional Leave'
-        break;
-      }
-      case Leaves.OTHERS: {
-        this.desc = 'Others Leaves';
-        break;
-      }
+  
       case Leaves.PATERNITY: {
         this.desc = "Paternity Leave";
         break;

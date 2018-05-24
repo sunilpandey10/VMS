@@ -6,8 +6,6 @@ import{ Observable } from 'rxjs/Observable'
 @Injectable()
 export class UserService {
 private baseUrl='https://vmsapi.herokuapp.com/v1/auth';
-//'https://jsonplaceholder.typicode.com/users';
-
   constructor(private http:HttpClient) { }
 
   getUser():Observable<user[]>{
@@ -19,7 +17,8 @@ private baseUrl='https://vmsapi.herokuapp.com/v1/auth';
       return this.http.post<user>(this.baseUrl,data,{headers:reqHeader});
   }
 registerEmployee(email,role,empid){
-  var data = '{ "email" :  "' + email + '", "role" : "' + role + '" ,"emp_id":"'+empid+'"}';
+  debugger;
+  var data = '{ "email":"'+ email +'","role":"'+role +'","emp_id":"'+empid+'"}';
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.post(this.baseUrl+"/register" , data, { headers: reqHeader });
 }

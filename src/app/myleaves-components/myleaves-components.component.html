@@ -30,14 +30,14 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef class="col-2"> Action </mat-header-cell>
       <mat-cell *matCellDef="let leaves" class="col-2">
-        <span *ngIf="leaves.status == 1">
+        <span *ngIf="leaves.leave_status == 1">
           Submitted
           <i></i>
         </span>
-        <a href="#editEmployeeModal" *ngIf="leaves.status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
+        <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
           <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
         </a>
-        <a href="#deleteEmployeeModal" *ngIf="leaves.status == 0" class="delete" data-toggle="modal">
+        <a  *ngIf="leaves.leave_status == 0" class="delete"  (click)="removeLeave(leaves.id)">
           <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
         </a>
       </mat-cell>

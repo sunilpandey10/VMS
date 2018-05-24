@@ -1,3 +1,3 @@
 export interface GetType{
-    types?:any[];
+    leave_types:any[];
 }
