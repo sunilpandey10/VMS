@@ -5,11 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 
-
-
 var errorMessage='';
 declare var $:any;
-
 
 @Component({
   selector: 'app-login-component',
@@ -17,7 +14,7 @@ declare var $:any;
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent implements OnInit  {
-
+  message:String;
   rememberMe:boolean=false;
   emailText:String='';
 
@@ -45,7 +42,7 @@ export class LoginComponentComponent implements OnInit  {
     return this.password.hasError('required') ? 'Password is Required' :'';
    }
   onSubmit(email, password) {
-
+    this.isError = false;
     this.loginService.userAuthentication(email, password).subscribe((data: any) => {
       debugger;
       if (this.rememberMe && this.email != null) {
@@ -64,7 +61,16 @@ export class LoginComponentComponent implements OnInit  {
 
     },
       (err: any) => {
+        debugger;
         this.isError = true;
+        this.message = err.message;
+        window.setTimeout(function () {
+          $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+            $(this).remove();
+            $("#applyleaveModal .close").click()
+          });
+        }, 5000);
+       // this.isError = false;
         this.router.navigate(['/login']);
       });
   }

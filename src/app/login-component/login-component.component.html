@@ -2,6 +2,13 @@
   <form #loginForm="ngForm" class="form-signin" (ngSubmit)="onSubmit(Email.value,Password.value)">
     <h2 class="form-signin-heading">Login</h2>
     <div class="row">
+        <div class="col" *ngIf="isError">
+            <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+              <strong>{{message}}</strong> 
+            </div>
+          </div>
+    </div>
+    <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
         <mat-form-field class="example-full-width"> 
@@ -10,7 +17,6 @@
           </mat-form-field>
       </div>
     </div>
-
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">vpn_key</i>
@@ -19,8 +25,7 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="password.invalid">{{getPasswordMessage()}}</mat-error>
         </mat-form-field>
-      </div>
-      
+      </div>     
     </div>
     <br>
     <div class="row">
@@ -33,7 +38,6 @@
           <input type="checkbox" value="None" id="squaredFour" name="check" (click)="rememberchk($event)" />
           <label for="squaredFour">Remember Me</label>
         </div>
-
       </div>
       <div class="col">
         <a data-toggle="modal" data-target="#pwdModal">Forgot Password</a>
@@ -45,8 +49,6 @@
     </div>
   </form>
 </div>
-
-<!-- <div class="modal fade" id="pwdModal" role="dialog" data-backdrop="static" data-keyboard="false"> -->
 
 <div class="modal fade" id="pwdModal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
@@ -76,4 +78,4 @@
     </div>
   </div>
 </div>
-<!-- <app-alertcomponent></app-alertcomponent> -->
+

@@ -1,5 +1,4 @@
 <br>
-<br>
 <ul class="nav nav-tabs">
   <li class="active">
     <a data-toggle="tab" routerLink="/home/setting/manageemp" routerLinkActive="active">Manage Employees</a>
@@ -11,17 +10,6 @@
     <a data-toggle="tab" routerLink="/home/setting/manageleaves" routerLinkActive="active">Manage Leaves</a>
   </li>
   <div class="w-100">
-    <br>
-    <br>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="input-group">
-            <input class="form-control border-secondary py-2" type="search" placeholder="Search Skills, Employee Id, Name ...">
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
@@ -29,76 +17,118 @@
             <h3>Manage Employees</h3>
           </div>
           <div class="col-sm-6">
-            <a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal">
+            <a href="#editEmployeeModal" class="btn btn-info" data-toggle="modal">
               <i class="material-icons">&#xE147;</i>
               <span>Add New Employee</span>
             </a>
           </div>
         </div>
       </div>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>
-              S.No
-            </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td>Thomas Hardy</td>
-            <td>thomashardy@mail.com</td>
-            <td>89 Chiaroscuro Rd, Portland, USA</td>
-            <td>(171) 555-2222</td>
-            <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-              </a>
-              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="clearfix">
-        <div class="hint-text">Showing
-          <b>5</b> out of
-          <b>25</b> entries</div>
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a href="#">Previous</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">2</a>
-          </li>
-          <li class="page-item active">
-            <a href="#" class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">4</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">5</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">Next</a>
-          </li>
-        </ul>
+      <div>
+        <div class="row">
+          <div class="col-2"> </div>
+          <div class="col-8">
+            <mat-form-field class="searchBox full-width">
+              <input matInput placeholder="Serach Employee based on Id and Name" [(ngModel)]="searchText">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="empid">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Emp Id</mat-header-cell>
+              <mat-cell *matCellDef="let users"> {{users.emp_id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef class="col-4"> Email Id </mat-header-cell>
+              <mat-cell *matCellDef="let users" class="col-4"> {{users.email}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let users"> {{users.username}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="role">
+              <mat-header-cell *matHeaderCellDef> Role</mat-header-cell>
+              <mat-cell *matCellDef="let users"> {{users.role}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let users">
+                <a href="#" class="edit" data-toggle="modal" data-target="#addEmployeeModal" (click)="getSingleEmployee(users.emp_id)">
+                  <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                </a>
+                <a class="delete" data-toggle="confirmation" (click)="removeLeave(users.id)">
+                  <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+            <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
+          </mat-table>
+        </div>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        </mat-paginator>
       </div>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
+  <!-- Update Modal HTML -->
   <div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Update Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col" *ngIf="flag">
+                <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                  <strong>Success!</strong> Employee Record is updated.
+                </div>
+              </div>
+            </div>
+            <!-- Email -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="UserName" [formControl]="nameVal" [(ngModel)]="name" name="name" [disabled]="disabled">
+            </mat-form-field>
+            <br>
+            <!-- Email -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Email" [formControl]="emailVal" [(ngModel)]="email" [disabled]="disabled">
+            </mat-form-field>
+            <br>
+
+            <!-- Emp ID -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Employee ID" [formControl]="empidVal" [(ngModel)]="empid" name="empid" [disabled]="disabled">
+            </mat-form-field>
+            <br>
+
+            <!-- Role -->
+            <mat-form-field class="input">
+              <mat-select placeholder="Role" [formControl]="roleVal" [(ngModel)]="role" name="role">
+                <mat-option value="1">Admin</mat-option>
+                <mat-option value="2">Employee</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            <input type="submit" class="btn btn-info" value="Update User" (click)="updateUser(role,empid)">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal HTML -->
+  <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -108,84 +138,34 @@
           </div>
           <div class="modal-body">
 
+            <!-- Username -->
+            <mat-form-field class="input">
+              <input matInput #input placeholder="Username" [formControl]="usernamecreate">
+            </mat-form-field>
+            <br>
             <!-- Email -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Email" [formControl]="email"  name="email" >
+              <input matInput #input placeholder="Email" autocomplete="email" [formControl]="emailcreate">
             </mat-form-field>
             <br>
 
             <!-- Emp ID -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Employee ID" [formControl]="empid"  name="empid">
+              <input matInput #input placeholder="Employee ID" [formControl]="empidcreate">
             </mat-form-field>
             <br>
 
             <!-- Role -->
             <mat-form-field class="input">
-              <mat-select placeholder="Role" [formControl]="role"  name="role">
-                <mat-option value="Admin">Admin</mat-option>
-                <mat-option value="User">Employee</mat-option>
+              <mat-select placeholder="Role" [formControl]="rolecreate">
+                <mat-option value="1">Admin</mat-option>
+                <mat-option value="2">Employee</mat-option>
               </mat-select>
             </mat-form-field>
-
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-info" value="Add User" (click)="getRegistered()">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">
-            <h4 class="modal-title">Edit Employee</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            
-            <!-- Username -->
-            <mat-form-field class="input">
-                <input matInput #input placeholder="Username">
-              </mat-form-field>
-              <br>
-              <!-- Email -->
-              <mat-form-field class="input">
-                <input matInput #input placeholder="Email">
-              </mat-form-field>
-              <br>
-  
-              <!-- Emp ID -->
-              <mat-form-field class="input">
-                <input matInput #input placeholder="Employee ID">
-              </mat-form-field>
-              <br>
-  
-              <!-- Designation -->
-              <mat-form-field class="input">
-                <mat-select placeholder="Designation">
-                  <mat-option value="option1">SDET</mat-option>
-                  <mat-option value="option2">Sr SDET</mat-option>
-                  <mat-option value="option2">Lead</mat-option>
-                </mat-select>
-              </mat-form-field>
-  
-              <!-- Role -->
-              <mat-form-field class="input">
-                <mat-select placeholder="Role">
-                  <mat-option value="option1">Admin</mat-option>
-                  <mat-option value="option2">Employee</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-info" value="Save">
+            <input type="submit" class="btn btn-info" value="Save" (click)="getRegistered()">
           </div>
         </form>
       </div>

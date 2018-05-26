@@ -24,21 +24,13 @@ export class httpInterceptor implements HttpInterceptor {
         });
         return next.handle(request).catch((error: HttpErrorResponse) => {
             if (error instanceof HttpErrorResponse) {
-                switch ((<HttpErrorResponse>error).status) {
-                    case 400:
-                    // return this.handle400Error(error);
-                    case 401:
-                    //return this.handle401Error(request, next);
-                }
+                return Observable.throw(error);           
             } else {
                 return Observable.throw(error);
             }
         });
 
     }
-    handle400Error() {
 
-    }
-    
 }
 

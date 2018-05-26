@@ -2,6 +2,11 @@
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>
 
+      <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Email </mat-header-cell>
+          <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.email}} </mat-cell>
+        </ng-container>
+
     <ng-container matColumnDef="leave_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Leave type </mat-header-cell>
       <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
@@ -37,8 +42,8 @@
         <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
           <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
         </a>
-        <a  *ngIf="leaves.leave_status == 0" class="delete"  (click)="removeLeave(leaves.id)">
-          <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+        <a *ngIf="leaves.leave_status == 0" class="delete" data-toggle="confirmation" (click)="removeLeave(leaves.id)">
+          <i class="material-icons" data-toggle="tooltip"  title="Delete">&#xE872;</i>
         </a>
       </mat-cell>
     </ng-container>
@@ -64,6 +69,16 @@
       <div class="modal-body">
         <div class="form-group form">
           <div class="row">
+              <div class="col" *ngIf="success">
+                  <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                    <strong>Success!</strong> Your Leave is Successfully Submitted.
+                  </div>
+                </div>
+                <div class="col" *ngIf="error">
+                    <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                      <strong>Something Went Wrong.</strong>
+                    </div>
+                  </div>
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-select placeholder="Leave Type" [(ngModel)]="leave">

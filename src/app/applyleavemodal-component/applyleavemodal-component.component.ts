@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { LeaveTypes } from '../models/myLeavesType'
 import { MatSelect, MatTableDataSource } from '@angular/material';
 import { Leaves } from '../models/leaveEnum'
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { GetType  } from '../models/type'
 declare var $:any;
 
@@ -26,16 +26,29 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   leaveType:any;
   dataSource=[];
   flag:any=false;
+  datetobeinFormat:any;
+  month:any;
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
-    return day !== 0 && day !== 6 && d >= new Date();
+    return day !== 0 && day !== 6;
   }
   constructor(private leaveService: LeaveService) {
-    this.startDate = new FormControl();
-    this.endDate = new FormControl();
-    this.desc = new FormControl();
+    this.startDate = new FormControl('', [Validators.required]);
+    this.endDate = new FormControl('', [Validators.required]);
+    this.desc = new FormControl('', [Validators.required]);
     this.desc = '';
+    
+  }
+ 
+  startDateMessage(){
+    return this.startDate.hasError('required') ? 'Start Date is Required' :'';
+  }
+  endDateMessage(){
+    return this.endDate.hasError('required') ? 'End Date is Required' :'';
+  }
+  descMessage(){
+    return this.desc.hasError('required') ? 'Description Required' :'';
   }
 
   ngOnInit() {
@@ -71,16 +84,14 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     }
   }
 
-  clickSave(events) {
+  clickSave() {
     debugger;
     this.flag='';
-    // var stDate= Date.parse(this.startDate).toString();
-    var stDate=this.startDate.toISOString().split('T');
-    var eDate=this.endDate.toISOString().split('T');
-    this.noOfdays = this.diffDays(this.startDate,this.endDate)
-    this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate[0], eDate[0], this.status).subscribe(data => {
+    var stDate=this.getChangeDate(this.startDate);
+    var eDate=this.getChangeDate(this.endDate)
+    this.noOfdays = this.getBusinessDateCount(this.startDate,this.endDate)
+    this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate, eDate, this.status).subscribe(data => {
       this.flag=true;
-      console.log(this.flag);
       window.setTimeout(function() {
         $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
             $(this).remove(); 
@@ -92,14 +103,30 @@ export class ApplyleavemodalComponentComponent implements OnInit {
      
     });
   }
-
-  diffDays(startDate, endDate) {
-    var ONEDAY = 1000 * 60 * 60 * 24;
-    var date1_ms = startDate.getTime();
-    var date2_ms = endDate.getTime();
-    var difference_ms = Math.abs(date1_ms - date2_ms);
-    return Math.round(difference_ms/ONEDAY);
+  getChangeDate(dateTobeChange) {
+    debugger;
+    this.datetobeinFormat = new Date(dateTobeChange);
+    this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + (this.datetobeinFormat.getMonth() + 1);
+    return this.datetobeinFormat = this.datetobeinFormat.getFullYear() + "-" + this.month + "-" + this.datetobeinFormat.getDate();
   }
+  getBusinessDateCount (startDate, endDate) {
+    var elapsed, daysBeforeFirstSaturday, daysAfterLastSunday;
+    var ifThen = function (a, b, c) {
+        return a == b ? c : a;
+    };
+
+    elapsed = endDate - startDate;
+    elapsed /= 86400000;
+
+    var daysBeforeFirstSunday = (7 - startDate.getDay()) % 7;
+    daysAfterLastSunday = endDate.getDay();
+
+    elapsed -= (daysBeforeFirstSunday + daysAfterLastSunday);
+    elapsed = (elapsed / 7) * 5;
+    elapsed += ifThen(daysBeforeFirstSunday - 1, -1, 0) + ifThen(daysAfterLastSunday, 6, 5);
+
+    return Math.ceil(elapsed);
+}
   closeModal(){
     debugger;
     $('#applyleaveModal').on('click',function(e){
@@ -110,7 +137,5 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     this.endDate='';
     this.leaveType='';
   }
-  // private updateTableData(data: any[]) {
-  //   this.dataSource = data && data.length ? new MatTableDataSource(data) : new MatTableDataSource([]);
-  // }
+
 }

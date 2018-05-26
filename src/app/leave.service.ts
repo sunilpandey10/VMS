@@ -13,9 +13,9 @@ export class LeaveService {
 
   applyleaves(leaveType, desc, noOfdays, fromDate, toDate, status) {
     debugger;
-    var data = "leave_type=" + leaveType + "&description=" + desc + "&num_of_days=" + noOfdays + "&from_date=" + fromDate + "&to_date=" + toDate + "&status=" + status;
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.baseUrl + "/leaves", data, { headers: reqHeader });
+    var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '",  "num_of_days" :  ' + noOfdays + ', "from_date" : "' + fromDate + '","to_date" : "' + toDate + '", "leave_status" : ' + status + '  }';
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.post(this.baseUrl + "/leaves/", data, { headers: reqHeader });
   }
 
   getLeaves() {

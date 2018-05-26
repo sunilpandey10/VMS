@@ -221,3 +221,17 @@ table.table .avatar {
 .input {
     width: 85%;
   }
+
+  a.edit {
+    color: #FFC107;
+}
+a.delete {
+    color: #F44336;
+}
+.full-width{
+  width: 100%;
+}
+.searchBox{
+    text-align: center;
+    
+}

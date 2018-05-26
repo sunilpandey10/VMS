@@ -10,6 +10,8 @@ import { debug } from 'util';
 import { Leaves } from '../models/leaveEnum'
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
+
+declare var bootbox: any
 @Component({
   selector: 'app-myleaves-components',
   templateUrl: './myleaves-components.component.html',
@@ -29,11 +31,13 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   datetobeinFormat: any;
   month: any;
   leavetype: number;
+  success: any;
+  error: any = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource;
-  displayedCoulumns = ['leave_type', 'description', 'from_date', 'to_date', 'num_of_days', 'action'];
+  displayedCoulumns = ['email', 'leave_type', 'description', 'from_date', 'to_date', 'num_of_days', 'action'];
 
   constructor(private leaveService: LeaveService) { }
 
@@ -45,15 +49,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   }
   ngOnInit() {
     this.date = new FormControl();
-    this.leaveService.getLeaves().subscribe((results: any) => {
-      debugger;
-      if (!results) {
-        return;
-      }
-      this.dataSource = new MatTableDataSource(results.leaves);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    this.getLeaves();
     this.leaveService.getTypeLeaves().subscribe((data: GetType) => {
       if (!data) {
         return;
@@ -70,26 +66,66 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.id = this.dataSource.filteredData.find(x => x.id == id).id;
   }
   clickSave() {
+    debugger;
+    this.success = false;
     this.status = 1;
-    this.num_of_days = 2;
+    this.num_of_days = this.getBusinessDateCount(this.from_date, this.to_date);
+    console.log(this.num_of_days);
     this.leavetype = toInteger(Leaves[this.leave]);
     this.leaveService.updateapplyleaves(this.leavetype, this.description, this.num_of_days, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
-
+      this.success = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+          $(this).remove();
+          $("#saveLeaveModal .close").click()
+        });
+      }, 5000);
     });
   }
   getChangeDate(dateTobeChange) {
     this.datetobeinFormat = new Date(dateTobeChange);
-    this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + this.datetobeinFormat.getMonth()
+    this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + (this.datetobeinFormat.getMonth() + 1);
     return this.datetobeinFormat = this.datetobeinFormat.getFullYear() + "-" + this.month + "-" + this.datetobeinFormat.getDate();
   }
+  getBusinessDateCount(startDate, endDate) {
+    var elapsed, daysBeforeFirstSaturday, daysAfterLastSunday;
+    var ifThen = function (a, b, c) {
+      return a == b ? c : a;
+    };
+
+    elapsed = endDate - startDate;
+    elapsed /= 86400000;
+
+    var daysBeforeFirstSunday = (7 - startDate.getDay()) % 7;
+    daysAfterLastSunday = endDate.getDay();
+
+    elapsed -= (daysBeforeFirstSunday + daysAfterLastSunday);
+    elapsed = (elapsed / 7) * 5;
+    elapsed += ifThen(daysBeforeFirstSunday - 1, -1, 0) + ifThen(daysAfterLastSunday, 6, 5);
+
+    return Math.ceil(elapsed);
+  }
   removeLeave(id) {
-    debugger;
-    this.leaveService.deleteapplyleaves(id).subscribe(data => {
-    console.log(' Record Deleted');
-    });
+    var x = confirm("Are you sure you want to delete?");
+    if (x) {
+      this.leaveService.deleteapplyleaves(id).subscribe(data => {
+        this.getLeaves();
+        console.log(' Record Deleted');
+      });
+    }
+
   }
 
-  calculateDays() {
+  getLeaves() {
+    this.leaveService.getLeaves().subscribe((results: any) => {
+      debugger;
+      if (!results) {
+        return;
+      }
+      this.dataSource = new MatTableDataSource(results.leaves);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
 
   }
 }
