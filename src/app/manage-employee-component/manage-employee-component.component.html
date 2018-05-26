@@ -29,7 +29,7 @@
           <div class="col-2"> </div>
           <div class="col-8">
             <mat-form-field class="searchBox full-width">
-              <input matInput placeholder="Serach Employee based on Id and Name" [(ngModel)]="searchText">
+              <input matInput placeholder="Serach Employee based on Id and Name">
             </mat-form-field>
           </div>
         </div>
@@ -94,18 +94,18 @@
             </div>
             <!-- Email -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="UserName" [formControl]="nameVal" [(ngModel)]="name" name="name" [disabled]="disabled">
+              <input matInput #input placeholder="UserName" [formControl]="nameVal" [(ngModel)]="name" name="name">
             </mat-form-field>
             <br>
             <!-- Email -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Email" [formControl]="emailVal" [(ngModel)]="email" [disabled]="disabled">
+              <input matInput #input placeholder="Email" [formControl]="emailVal" [(ngModel)]="email" >
             </mat-form-field>
             <br>
 
             <!-- Emp ID -->
             <mat-form-field class="input">
-              <input matInput #input placeholder="Employee ID" [formControl]="empidVal" [(ngModel)]="empid" name="empid" [disabled]="disabled">
+              <input matInput #input placeholder="Employee ID" [formControl]="empidVal" [(ngModel)]="empid" name="empid" >
             </mat-form-field>
             <br>
 
