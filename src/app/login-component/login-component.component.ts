@@ -63,14 +63,16 @@ export class LoginComponentComponent implements OnInit  {
       (err: any) => {
         debugger;
         this.isError = true;
-        this.message = err.message;
+        if(!err.error.message){
+          this.message=err.message;
+        } else {
+        this.message = err.error.message;
+        }
         window.setTimeout(function () {
-          $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+          $(".alert").fadeTo(600, 0).slideUp(600, function () {
             $(this).remove();
-            $("#applyleaveModal .close").click()
           });
-        }, 5000);
-       // this.isError = false;
+        }, 3000);
         this.router.navigate(['/login']);
       });
   }

@@ -6,6 +6,8 @@ import { MatSelect, MatTableDataSource } from '@angular/material';
 import { Leaves } from '../models/leaveEnum'
 import { FormControl, Validators } from '@angular/forms';
 import { GetType  } from '../models/type'
+import { MyleavesComponentsComponent } from '../myleaves-components/myleaves-components.component'
+
 declare var $:any;
 
 @Component({
@@ -33,7 +35,9 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     const day = d.getDay();
     return day !== 0 && day !== 6;
   }
-  constructor(private leaveService: LeaveService) {
+  constructor(private leaveService: LeaveService,
+              private myleavesComponent:MyleavesComponentsComponent) 
+  {
     this.startDate = new FormControl('', [Validators.required]);
     this.endDate = new FormControl('', [Validators.required]);
     this.desc = new FormControl('', [Validators.required]);
@@ -95,12 +99,10 @@ export class ApplyleavemodalComponentComponent implements OnInit {
       window.setTimeout(function() {
         $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
             $(this).remove(); 
-            this.flag=false;
-            console.log(this.flag);
             $("#applyleaveModal .close").click()
         });
     }, 5000);
-     
+     this.myleavesComponent.ngOnInit();
     });
   }
   getChangeDate(dateTobeChange) {

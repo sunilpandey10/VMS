@@ -28,7 +28,6 @@ public barChartData:any[] = [
   public doughnutChartData:number[] = [22, 12, 5];
   public doughnutChartType:string = 'doughnut';
  
-  // events
   public chartClicked(e:any):void {
     console.log(e);
   }
