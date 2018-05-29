@@ -20,11 +20,6 @@ export class LoginServiceService {
     var header=new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
     return this.httpclient.post(this.baseUrl+"/logout/access" , data, { headers: header });
   }
- refreshToken(){
-  var refresh_Token=JSON.parse(localStorage.getItem('Tokens'));
-  var data ='Bearer '+ refresh_Token[1];
-  var header=new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-  return this.httpclient.post(this.baseUrl+"/token/refresh" , data, { headers: header });
-}
+
 
 }

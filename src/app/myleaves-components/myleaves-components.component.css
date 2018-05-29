@@ -7,3 +7,6 @@ a.delete {
 .full-width{
   width: 100%;
 }
+span > i.glyphicon-ok{
+    color: green;
+}

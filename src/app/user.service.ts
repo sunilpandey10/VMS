@@ -3,6 +3,7 @@ import{ HttpClient, HttpHeaders } from '@angular/common/http'
 import { user } from './models/user.modal'
 import{ Observable } from 'rxjs/Observable'
 import { userDetails } from './models/userDetails';
+import { Dashboard } from './models/dashboard';
 
 @Injectable()
 export class UserService {
@@ -17,9 +18,9 @@ private baseUrl='https://vmsapi.herokuapp.com/v1/auth';
       var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
       return this.http.post<user>(this.baseUrl,data,{headers:reqHeader});
   }
-registerEmployee(email,role,empid,username,isactive){
+registerEmployee(email,role,empid,username,designation){
   debugger;
-  var data = '{ "email":"'+ email +'","role":'+role +',"emp_id":'+empid+',"username":"'+username+'","is_active":'+isactive+'}';
+  var data = '{ "email":"'+ email +'","role":'+role +',"emp_id":'+empid+',"username":"'+username+'","designation":"'+designation+'"}';
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.post(this.baseUrl+"/register" , data, { headers: reqHeader });
 }
@@ -34,6 +35,17 @@ employeeUpdate(role,id){
   var data = '{ "role":'+ role +'}';
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.put(this.baseUrl+"/user/details/"+id , data, { headers: reqHeader });
+}
+disableEmployee(empid,status){
+  console.log(empid);
+  console.log(status);
+  var data = '{ "is_active":'+ status +'}';
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+  return this.http.put(this.baseUrl+"/user/details/"+empid , data, { headers: reqHeader });
+ }
+dashboard():Observable<Dashboard>{
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+  return this.http.get<Dashboard>(this.baseUrl+"/user_dashboard",{ headers: reqHeader });
 }
 
 }

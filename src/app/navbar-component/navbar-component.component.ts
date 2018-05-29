@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import{ LoginServiceService } from '../login-service.service'
 import { CookieService } from 'ngx-cookie-service';
+import{UserService} from '../user.service'
+import { Dashboard } from '../models/dashboard';
 
 declare var $:any;
 
@@ -12,11 +14,19 @@ declare var $:any;
 })
 export class NavbarComponentComponent implements OnInit {
   fullImagePath: string;
+  dashboard=[];
   constructor(private route:Router, 
     private cookieService: CookieService,
-    private loginservice: LoginServiceService ) { this.fullImagePath = '../../assets/Images/Untitled.png'}
+    private loginservice: LoginServiceService ,
+    private userService:UserService) 
+    { this.fullImagePath = '../../assets/Images/Untitled.png'}
 
   ngOnInit() {
+
+    this.userService.dashboard().subscribe((data:Dashboard)=>{
+    this.dashboard=data.dashboard;
+    console.log(this.dashboard);
+    });
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
   });

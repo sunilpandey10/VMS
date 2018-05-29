@@ -19,6 +19,11 @@
                 <strong>Success!</strong> kindly go and Submit your Leave from Dashboard.
               </div>
             </div>
+            <div class="col" *ngIf="error">
+                <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                  <strong>{{errormessage}}</strong>
+                </div>
+              </div>
           </div>
           <div class="row">
             <div class="col">

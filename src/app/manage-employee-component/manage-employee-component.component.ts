@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { userDetails } from '../models/userDetails';
 import { DISABLED } from '@angular/forms/src/model';
+import { FilterPipe } from '../models/filter.pipe'
 
 
 @Component({
@@ -18,7 +19,13 @@ export class ManageEmployeeComponentComponent implements OnInit {
   email: any;
   empid: any;
   role: any;
-  isactive:any;
+  isactive: any;
+  items: any[];
+  sortedData:any[];
+  demo:any[];
+  error:any;
+  errormessage:any;
+
 
 
 
@@ -38,17 +45,17 @@ export class ManageEmployeeComponentComponent implements OnInit {
   empidVal = new FormControl({ value: '', disabled: true }, [Validators.required]);
 
   usernamecreate = new FormControl('', [Validators.required]);
-  emailcreate = new FormControl('' , [Validators.required]);
+  emailcreate = new FormControl('', [Validators.required]);
   rolecreate = new FormControl('', [Validators.required]);
   empidcreate = new FormControl('', [Validators.required]);
+  desingnationcreate=new FormControl('', [Validators.required]);;
 
   getRegistered() {
     debugger;
     this.flag = false;
-    this.isactive=1;
-    this.userService.registerEmployee(this.emailcreate.value, this.rolecreate.value, this.empidcreate.value, this.usernamecreate.value,this.isactive).subscribe(data => {
-      this.flag = true;
-
+    this.isactive = 1;
+    this.userService.registerEmployee(this.emailcreate.value, this.rolecreate.value, this.empidcreate.value, this.usernamecreate.value,this.desingnationcreate.value).subscribe(data => {
+    this.flag = true;
       window.setTimeout(function () {
         $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
           $(this).remove();
@@ -56,8 +63,21 @@ export class ManageEmployeeComponentComponent implements OnInit {
         });
         this.clearTextfield();
       }, 5000);
-    }, error => {
-      console.log(error.status);
+    }, (err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
     });
   }
   dataSourcebind() {
@@ -65,11 +85,25 @@ export class ManageEmployeeComponentComponent implements OnInit {
       if (!response) {
         return;
       }
+      this.sortedData=response.users;
       this.dataSource = new MatTableDataSource(response.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    },error=>{
-      console.log('error is '+error.message);
+    }, (err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
     });
   }
   clearTextfield() {
@@ -93,14 +127,43 @@ export class ManageEmployeeComponentComponent implements OnInit {
         $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
           $(this).remove();
           $("#addEmployeeModal .close").click();
-        });         
-        this.clearTextfield();
+        });
       }, 5000);
       this.dataSourcebind();
-    }, error => {
-      console.log(error.status);
+    }, (err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
     });
     this.clearTextfield();
   }
-
+  disableEmployee(id) {
+    var status = 0;
+    console.log(id);
+    var x = confirm("Are you sure you want to delete?");
+    if (x) {
+      this.userService.disableEmployee(id, status).subscribe(data => {
+       this.dataSourcebind();
+      });
+    }
+  }
+  sortData(searchText) {
+    debugger;
+    searchText=searchText.toLowerCase();
+    this.sortedData=this.sortedData.find(x => x.email == searchText);
+   console.log(this.sortedData);
+   return   this.sortedData;
+  }
 }
+

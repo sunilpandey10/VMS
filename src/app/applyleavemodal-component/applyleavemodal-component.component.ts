@@ -29,6 +29,8 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   flag:any=false;
   datetobeinFormat:any;
   month:any;
+  errormessage:string;
+  error:any;
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
@@ -66,20 +68,20 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     debugger;
     this.leaveType=event;
     switch (event) {
-      case Leaves.ANNUAL: {
+      case Leaves.Annual: {
         this.desc = 'Annual Leave';
         break;
       }
-      case Leaves.MATERNITY: {
+      case Leaves.Maternity: {
         this.desc = "Maternity Leave";
         break;
       }
   
-      case Leaves.PATERNITY: {
+      case Leaves.Paternity: {
         this.desc = "Paternity Leave";
         break;
       }
-      case Leaves.SICK: {
+      case Leaves.Sick: {
         this.desc = 'Sick Leave'
         break;
       }
@@ -89,17 +91,33 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   clickSave() {
     debugger;
     this.flag='';
+    this.error=false;
     var stDate=this.getChangeDate(this.startDate);
     var eDate=this.getChangeDate(this.endDate)
     this.noOfdays = this.getBusinessDateCount(this.startDate,this.endDate)
     this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate, eDate, this.status).subscribe(data => {
       this.flag=true;
       window.setTimeout(function() {
-        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
             $(this).remove(); 
             $("#applyleaveModal .close").click()
         });
-    }, 5000);
+    }, 1000);
+    },(err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
     });
   }
   getChangeDate(dateTobeChange) {

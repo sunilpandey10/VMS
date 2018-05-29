@@ -9,54 +9,13 @@
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
-                <a [routerLink]="['/home/dashboard']" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-home"></i>
-                    Home
+            <li class="active" *ngFor="let navbar of dashboard">
+                <a routerLink= {{navbar.roter_link}} routerLinkActive="active">
+                    <i class="{{navbar.class}}"></i>
+                   {{navbar.text}}
                 </a>
             </li>
-            <li>
-                <a [routerLink]="['/home/calendar']" routerLinkActive="active">
-                    <i class="glyphicon glyphicon glyphicon-calendar"></i>
-                    Calendar
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/report" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-link"></i>
-                    Report
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/timesheet" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-time"></i>
-                    Time Sheet
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/expenses" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-usd"></i>
-                    Expenses
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/profile" routerLinkActive="active" class="hidden-lg">
-                    <i class="glyphicon glyphicon-user"></i>
-                    Profile
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/setting/manageemp" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-user"></i>
-                    Manage
-                </a>
-            </li>
-            <li>
-                <a routerLink="/home/team" routerLinkActive="active">
-                    <i class="glyphicon glyphicon-folder-open"></i>
-                    Team Directory
-                </a>
-            </li>
+
             <li>
                 <a class="hidden-lg" data-toggle="modal" data-target="#applyleaveModal">
                     <i class="glyphicon glyphicon-plus"></i>

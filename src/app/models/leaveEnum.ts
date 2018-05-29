@@ -1,7 +1,7 @@
 export enum Leaves {
-    ANNUAL = 1,
-    SICK=2,
-    MATERNITY=4,
-    PATERNITY=3,
+    Annual = 1,
+    Sick=2,
+    Maternity=4,
+    Paternity=3,
   
 }

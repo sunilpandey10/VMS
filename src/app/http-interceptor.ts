@@ -22,8 +22,8 @@ export class httpInterceptor implements HttpInterceptor {
                 Authorization: `Bearer ${token}`
             }
         });
-        return next.handle(request).catch((error: HttpErrorResponse) => {
-            if (error instanceof HttpErrorResponse) {
+        return next.handle(request).catch((error: Response) => {
+            if (error instanceof Response) {
                 return Observable.throw(error);           
             } else {
                 return Observable.throw(error);

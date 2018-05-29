@@ -2,10 +2,10 @@
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>
 
-      <ng-container matColumnDef="email">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Email </mat-header-cell>
-          <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.email}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Email </mat-header-cell>
+      <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.email}} </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="leave_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Leave type </mat-header-cell>
@@ -36,14 +36,14 @@
       <mat-header-cell *matHeaderCellDef class="col-2"> Action </mat-header-cell>
       <mat-cell *matCellDef="let leaves" class="col-2">
         <span *ngIf="leaves.leave_status == 1">
-          Submitted
-          <i class="em em-smiley"></i>
+          <i class="glyphicon glyphicon-ok"></i>
         </span>
-        <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
-          <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+        <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal"
+          (click)="getData(leaves.id)">
+          <i class="material-icons" title="Edit">&#xE254;</i>
         </a>
         <a *ngIf="leaves.leave_status == 0" class="delete" data-toggle="confirmation" (click)="removeLeave(leaves.id)">
-          <i class="material-icons" data-toggle="tooltip"  title="Delete">&#xE872;</i>
+          <i class="material-icons" title="Delete">&#xE872;</i>
         </a>
       </mat-cell>
     </ng-container>
@@ -69,55 +69,56 @@
       <div class="modal-body">
         <div class="form-group form">
           <div class="row">
-              <div class="col" *ngIf="success">
-                  <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
-                    <strong>Success!</strong> Your Leave is Successfully Submitted.
-                  </div>
-                </div>
-                <div class="col" *ngIf="error">
-                    <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
-                      <strong>Something Went Wrong.</strong>
-                    </div>
-                  </div>
-            <div class="col">
-              <mat-form-field class="full-width">
-                <mat-select placeholder="Leave Type" [(ngModel)]="leave">
-                  <mat-option *ngFor="let leaves of leavesTypeDatasource" [value]="leaves.leave_type">
-                    {{leaves.leave_type}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="col" *ngIf="success">
+              <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                <strong>Success!</strong> Your Leave is Successfully Submitted.
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col col-12">
-              <mat-form-field class="full-width">
-                <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
-              </mat-form-field>
+            <div class="col" *ngIf="error">
+              <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                <strong>{{errormessage}}</strong>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker1" placeholder="Start Date" [(ngModel)] ="from_date">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-              </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Leave Type" [(ngModel)]="leave">
+                    <mat-option *ngFor="let leaves of leavesTypeDatasource" [value]="leaves.leave_type">
+                      {{leaves.leave_type}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
-            <div class="col">
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker2" placeholder="End date" [(ngModel)]="to_date">
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-              </mat-form-field>
+            <div class="row">
+              <div class="col col-12">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker1" placeholder="Start Date" [(ngModel)]="from_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker2" placeholder="End date" [(ngModel)]="to_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" (click)="clickSave()">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="clickSave()">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -3,6 +3,7 @@ import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
 import { MyTeamService } from '../my-team.service';
 import { AsyncPipe } from '@angular/common';
+import { profile } from '../models/profile';
 
 @Component({
   selector: 'app-teamdirectory-component',
@@ -11,33 +12,14 @@ import { AsyncPipe } from '@angular/common';
 })
 
 export class TeamdirectoryComponentComponent implements OnInit {
-@ViewChild(MatPaginator) paginator: MatPaginator;
-@ViewChild(MatSort) sort:MatSort;
-  dataSource;
-  displayedCoulumns=['firstname','lastname','avtar','id'];
+teamMemberSource:any[];
 
   constructor(private teamService:MyTeamService) {
   }
-
-  onRowClicked(row) {
-   // console.log('Row clicked: ', row);
-}
-
-applyFilter(filterValue: string) {
-  filterValue = filterValue.trim(); // Remove whitespace
-  filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-  this.dataSource.filterValue = filterValue;
-}
   ngOnInit() {
-    this.teamService.getUser().subscribe(results=>{
-      let res=results["data"];
-      if(!results){
-        return;
-      }
-  
-      this.dataSource=new MatTableDataSource(res);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort=this.sort;
+   this.teamService.getUsersProfile().subscribe((data:profile)=>{
+    this.teamMemberSource=data.profiles;
+    console.log(this.teamMemberSource);
     });
   }
 

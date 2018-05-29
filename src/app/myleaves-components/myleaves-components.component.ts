@@ -33,6 +33,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leavetype: number;
   success: any;
   error: any = false;
+  errormessage:any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -66,7 +67,6 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.id = this.dataSource.filteredData.find(x => x.id == id).id;
   }
   clickSave() {
-    debugger;
     this.success = false;
     this.status = 1;
     this.num_of_days = this.getBusinessDateCount(this.from_date, this.to_date);
@@ -75,11 +75,27 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.leaveService.updateapplyleaves(this.leavetype, this.description, this.num_of_days, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
       this.success = true;
       window.setTimeout(function () {
-        $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
           $(this).remove();
           $("#saveLeaveModal .close").click()
         });
-      }, 5000);
+      }, 1000);
+    },(err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
+      
     });
   }
   getChangeDate(dateTobeChange) {
