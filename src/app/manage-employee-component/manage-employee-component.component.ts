@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { userDetails } from '../models/userDetails';
 import { DISABLED } from '@angular/forms/src/model';
-import { FilterPipe } from '../models/filter.pipe'
+
 
 
 @Component({
