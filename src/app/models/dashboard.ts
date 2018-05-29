@@ -1,3 +1,3 @@
-export interface dashboard{
+export interface Dashboard{
     dashboard:any;
 }
