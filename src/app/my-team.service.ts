@@ -19,4 +19,9 @@ export class MyTeamService {
     return this.http.get<profile>(this.baseUrl+'/users',{headers: reqHeader});
    }
 
+   loggedInUserProfile(id){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.get(this.baseUrl+'/users/'+id,{headers: reqHeader});
+  }
+
 }

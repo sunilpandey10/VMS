@@ -38,13 +38,10 @@
         <span *ngIf="leaves.leave_status == 1">
           <i class="glyphicon glyphicon-ok"></i>
         </span>
-        <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal"
-          (click)="getData(leaves.id)">
-          <i class="material-icons" title="Edit">&#xE254;</i>
-        </a>
+        <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
+          <i class="material-icons" title="Edit">&#xE254;</i></a>
         <a *ngIf="leaves.leave_status == 0" class="delete" data-toggle="confirmation" (click)="removeLeave(leaves.id)">
-          <i class="material-icons" title="Delete">&#xE872;</i>
-        </a>
+          <i class="material-icons" title="Delete">&#xE872;</i></a>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
@@ -79,6 +76,7 @@
                 <strong>{{errormessage}}</strong>
               </div>
             </div>
+          </div>
             <div class="row">
               <div class="col">
                 <mat-form-field class="full-width">
@@ -91,12 +89,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="col col-12">
+              <div class="col">
                 <mat-form-field class="full-width">
                   <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
                 </mat-form-field>
               </div>
             </div>
+            
             <div class="row">
               <div class="col">
                 <mat-form-field>
@@ -113,7 +112,6 @@
                 </mat-form-field>
               </div>
             </div>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-info" (click)="clickSave()">Save</button>

@@ -99,23 +99,29 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
             <!-- Email -->
-            <mat-form-field class="input">
+            <mat-form-field class="input full-width">
               <input matInput #input placeholder="UserName" [formControl]="nameVal" [(ngModel)]="name" name="name">
             </mat-form-field>
             <br>
+          </div>
+          <div class="row">
             <!-- Email -->
             <mat-form-field class="input">
               <input matInput #input placeholder="Email" [formControl]="emailVal" [(ngModel)]="email" >
             </mat-form-field>
             <br>
+          </div>
 
+          <div class="row">
             <!-- Emp ID -->
             <mat-form-field class="input">
               <input matInput #input placeholder="Employee ID" [formControl]="empidVal" [(ngModel)]="empid" name="empid" >
             </mat-form-field>
             <br>
-
+          </div>
+          <div class="row">
             <!-- Role -->
             <mat-form-field class="input">
               <mat-select placeholder="Role" [formControl]="roleVal" [(ngModel)]="role" name="role">
@@ -123,7 +129,7 @@
                 <mat-option value="2">Employee</mat-option>
               </mat-select>
             </mat-form-field>
-
+          </div>
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
