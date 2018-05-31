@@ -70,7 +70,7 @@ section .section-title {
 .backside {
     position: absolute;
     top: 0;
-    left: 0%;
+    left: 0;
     background: white;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
@@ -120,7 +120,8 @@ section .section-title {
 }
 
 .profile-info-row {
-    display: table-row
+    display: table-row;
+    align-items: initial;
 }
 
 .profile-info-name,
