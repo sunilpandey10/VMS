@@ -12,7 +12,7 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
         <mat-form-field class="example-full-width"> 
-            <input matInput #Email [(ngModel)]="emailText" placeholder="User Name" [formControl]="email" id="emailText"name="email" required>
+            <input matInput #Email [(ngModel)]="emailText" autocomplete='email' placeholder="User Name" [formControl]="email" id="emailText" name="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
       </div>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="col">
-        <a data-toggle="modal" data-target="#pwdModal">Forgot Password</a>
+        <a data-toggle="modal" data-target="#forgetpwdModal">Forgot Password</a>
       </div>
     </div>
     <br>
@@ -50,7 +50,7 @@
   </form>
 </div>
 
-<div class="modal fade" id="pwdModal" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="forgetpwdModal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -64,6 +64,20 @@
 
       <!-- Modal body -->
       <div class="modal-body">
+          <div class="row">
+              <div class="col" *ngIf="isError">
+                  <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                    <strong>{{message}}</strong> 
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+              <div class="col" *ngIf="isSucess">
+                  <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                    <strong>Mail Sent Sucessfully</strong> 
+                  </div>
+                </div>
+          </div>
         <i class="material-icons">email</i>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Enter Email" #UserName ngModel required name="UserName">
@@ -73,7 +87,7 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Send</button>
+        <button type="button" class="btn btn-info"(click)="sendPassword(UserName.value)">Send</button>
       </div>
     </div>
   </div>

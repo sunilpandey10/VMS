@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import{ HttpClient, HttpHeaders } from '@angular/common/http'
 import { Team } from './models/myTeam'
 import{ Observable } from 'rxjs/Observable'
-import { profile } from './models/profile'
+import { Profiles } from './models/profiles'
+import { LeaveTrack } from './models/leaveTrack';
 
 @Injectable()
 export class MyTeamService {
@@ -14,14 +15,20 @@ export class MyTeamService {
     return this.http.get<Team[]>(this.baseUrl);
   }
 
-  getUsersProfile():Observable<profile>{
+  getUsersProfile():Observable<Profiles>{
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return this.http.get<profile>(this.baseUrl+'/users',{headers: reqHeader});
+    return this.http.get<Profiles>(this.baseUrl+'/users',{headers: reqHeader});
    }
 
    loggedInUserProfile(id){
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.http.get(this.baseUrl+'/users/'+id,{headers: reqHeader});
+  }
+
+  trackUserLeave():Observable<LeaveTrack>{
+    debugger;
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.get<LeaveTrack>(this.baseUrl+'/leaves/track',{headers: reqHeader});
   }
 
 }

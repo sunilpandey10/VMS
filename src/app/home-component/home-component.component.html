@@ -7,8 +7,7 @@
                 <small class="text-muted"></small>
             </p>
             <div style="display: block" class="col-md-12">
-                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
+                    <p-chart type="pie" [data]="data"></p-chart>
             </div>
         </div>
     </div>

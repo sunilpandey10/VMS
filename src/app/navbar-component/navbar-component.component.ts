@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import{ LoginServiceService } from '../login-service.service'
 import { CookieService } from 'ngx-cookie-service';
 import{UserService} from '../user.service'
 import { Dashboard } from '../models/dashboard';
+import { UserprofileComponentComponent } from '../userprofile-component/userprofile-component.component'
+import { Profiles } from '../models/profiles';
+import { AdmindashboardService } from '../admindashboard.service';
 
 declare var $:any;
+
 
 @Component({
   selector: 'app-navbar-component',
@@ -13,20 +17,53 @@ declare var $:any;
   styleUrls: ['./navbar-component.component.css']
 })
 export class NavbarComponentComponent implements OnInit {
+  public text: boolean=false;
+
   fullImagePath: string;
   dashboard=[];
+  userName:string;
+  dataProfile:any;
+  name:string;
+  //text:boolean=true;
+  @ViewChild(UserprofileComponentComponent) uname;
   constructor(private route:Router, 
     private cookieService: CookieService,
     private loginservice: LoginServiceService ,
-    private userService:UserService) 
-    { this.fullImagePath = '../../assets/Images/Untitled.png'}
+    private userService:UserService,
+    private adminService:AdmindashboardService,
+    private Route:Router
+  ) 
+    { this.fullImagePath = '../../assets/Images/Untitled.png'
+  
+    this.adminService.getProfile().subscribe((data:Profiles)=>{
+      debugger;
+      this.dataProfile=data.profiles[0];
+      this.name=data.profiles[0].first_name;
+     
+    });
+    console.log(this.name);
+  }
+
+    ngAfterViewInit() {
+ 
+    }
+    
 
   ngOnInit() {
 
     this.userService.dashboard().subscribe((data:Dashboard)=>{
+      debugger;
     this.dashboard=data.dashboard;
     console.log(this.dashboard);
     });
+    if(this.Route.url=='/home/dashboard'){
+      debugger;
+      this.text=true;
+    }
+    else{
+      this.text=false;
+    }
+    // this.getEmployeeProfile();
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
   });
@@ -45,3 +82,6 @@ export class NavbarComponentComponent implements OnInit {
   }
 
 }
+
+
+

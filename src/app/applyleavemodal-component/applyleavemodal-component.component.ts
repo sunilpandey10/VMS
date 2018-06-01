@@ -7,6 +7,7 @@ import { Leaves } from '../models/leaveEnum'
 import { FormControl, Validators } from '@angular/forms';
 import { GetType  } from '../models/type';
 
+
 declare var $:any;
 
 @Component({
@@ -31,6 +32,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   month:any;
   errormessage:string;
   error:any;
+  selected:any
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
@@ -41,6 +43,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     this.startDate = new FormControl('', [Validators.required]);
     this.endDate = new FormControl('', [Validators.required]);
     this.desc = new FormControl('', [Validators.required]);
+    this.selected = new FormControl('', [Validators.required]);
     this.desc = '';
     
   }
@@ -60,7 +63,6 @@ export class ApplyleavemodalComponentComponent implements OnInit {
       if (!data) {
         return;
       }
-      //this.leavesTypeDatasource = data.leave_types;
       this.leavesTypeDatasource=data.leave_types;
     });
   }
@@ -72,13 +74,9 @@ export class ApplyleavemodalComponentComponent implements OnInit {
         this.desc = 'Annual Leave';
         break;
       }
-      case Leaves.Maternity: {
-        this.desc = "Maternity Leave";
-        break;
-      }
   
-      case Leaves.Paternity: {
-        this.desc = "Paternity Leave";
+      case Leaves.Optional: {
+        this.desc = "Optional Leave";
         break;
       }
       case Leaves.Sick: {
@@ -94,8 +92,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     this.error=false;
     var stDate=this.getChangeDate(this.startDate);
     var eDate=this.getChangeDate(this.endDate)
-    this.noOfdays = this.getBusinessDateCount(this.startDate,this.endDate)
-    this.leaveService.applyleaves(this.leaveType, this.desc, this.noOfdays, stDate, eDate, this.status).subscribe(data => {
+    this.leaveService.applyleaves(this.leaveType, this.desc, this.selected, stDate, eDate, this.status).subscribe(data => {
       this.flag=true;
       window.setTimeout(function() {
         $(".alert").fadeTo(600, 0).slideUp(600, function(){

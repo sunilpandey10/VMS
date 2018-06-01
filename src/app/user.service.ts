@@ -30,15 +30,11 @@ getManageEmployee():Observable<userDetails>{
   return this.http.get<userDetails>(this.baseUrl+"/user/details",{ headers: reqHeader });
 }
 employeeUpdate(role,id){
-  //auth/user/details/<emp_id> 
-  debugger;
   var data = '{ "role":'+ role +'}';
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.put(this.baseUrl+"/user/details/"+id , data, { headers: reqHeader });
 }
 disableEmployee(empid,status){
-  console.log(empid);
-  console.log(status);
   var data = '{ "is_active":'+ status +'}';
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.put(this.baseUrl+"/user/details/"+empid , data, { headers: reqHeader });
@@ -46,6 +42,13 @@ disableEmployee(empid,status){
 dashboard():Observable<Dashboard>{
   var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
   return this.http.get<Dashboard>(this.baseUrl+"/user_dashboard",{ headers: reqHeader });
+}
+//auth/reset/password 
+
+updatePassword(oldPassword,newPassword,confirmPassword){
+  var data = '{ "oldPassword":"'+ oldPassword +'","newPassword":"'+newPassword +'","passwordConfirmation":"'+confirmPassword+'"}';
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+  return this.http.post(this.baseUrl+"/reset/password" , data, { headers: reqHeader });
 }
 
 }

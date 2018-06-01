@@ -24,7 +24,6 @@ export class LeaveService {
   }
 
   getTypeLeaves():Observable<GetType>{
-    debugger;
     return this.http.get<GetType>(this.baseUrl+"/leaveTypes"); 
   } 
 
@@ -43,5 +42,12 @@ export class LeaveService {
   deleteapplyleaves(id) {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.http.delete(this.baseUrl + "/leaves/"+id, { headers: reqHeader });
+  }
+
+  manageLeaveEdit(leavetypeid){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    //var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '", "num_of_days" :  "' + noOfdays + '", "from_date" : "' + fromDate + '", "to_date" : "' + toDate + '","leave_status" : ' + status + ' }';
+    return this.http.put(this.baseUrl + "/leaveTypes/"+leavetypeid, { headers: reqHeader });
+
   }
 }

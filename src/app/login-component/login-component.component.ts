@@ -17,6 +17,7 @@ export class LoginComponentComponent implements OnInit  {
   message:String;
   rememberMe:boolean=false;
   emailText:String='';
+  isSucess:boolean;
 
   ngOnInit() {
     if (this.cookieService.get('_query2') != null) {
@@ -57,7 +58,12 @@ export class LoginComponentComponent implements OnInit  {
       this.isError = false;
       var items = data.auth_token;
       localStorage.setItem('Tokens', items);
+      if(data.role==2){
       this.router.navigate(['/home/dashboard']);
+      }
+      else if(data.role==1){ 
+        this.router.navigate(['/home/admindashboard']);
+      }
 
     },
       (err: any) => {
@@ -72,12 +78,36 @@ export class LoginComponentComponent implements OnInit  {
           $(".alert").fadeTo(600, 0).slideUp(600, function () {
             $(this).remove();
           });
-        }, 3000);
+        }, 1000);
         this.router.navigate(['/login']);
       });
   }
   rememberchk(event) {
     this.rememberMe = event.target.checked;
+  }
+  sendPassword(email){
+    this.isSucess=false;
+    this.loginService.forgetPassword(email).subscribe(data=>{
+    this.isSucess=true;
+       window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#forgetpwdModal .close").click();
+        });
+      }, 1000);
+    },(err: any) => {
+      this.isError = true;
+      if(!err.error.message){
+        this.message=err.message;
+      } else {
+      this.message = err.error.message;
+      }
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+        });
+      }, 1000);
+    })
   }
 }
 

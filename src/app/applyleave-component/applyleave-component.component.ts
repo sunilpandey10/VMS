@@ -54,18 +54,12 @@ export class ApplyleaveComponentComponent implements OnInit {
     debugger;
     switch(event) { 
       case Leaves.Annual: { 
-         console.log("ANNUAL"); 
-         
+        this.desc="Annual Leave";
          break; 
       } 
-      case Leaves.Maternity: { 
-         console.log("MATERNITY"); 
-         this.desc="MATERNITY Leave";
-         break; 
-      } 
-      case Leaves.Paternity: { 
-        this.desc="PATERNITY Leave";
-        console.log("PATERNITY"); 
+  
+      case Leaves.Optional: { 
+        this.desc="Optional Leave";
         break; 
      }  
      case Leaves.Sick: { 

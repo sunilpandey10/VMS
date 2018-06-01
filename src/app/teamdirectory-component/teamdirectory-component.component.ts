@@ -3,7 +3,7 @@ import{ Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
 import { MyTeamService } from '../my-team.service';
 import { AsyncPipe } from '@angular/common';
-import { profile } from '../models/profile';
+import { Profiles } from '../models/profiles';
 
 @Component({
   selector: 'app-teamdirectory-component',
@@ -17,7 +17,7 @@ teamMemberSource:any[];
   constructor(private teamService:MyTeamService) {
   }
   ngOnInit() {
-   this.teamService.getUsersProfile().subscribe((data:profile)=>{
+   this.teamService.getUsersProfile().subscribe((data:Profiles)=>{
     this.teamMemberSource=data.profiles;
     console.log(this.teamMemberSource);
     });

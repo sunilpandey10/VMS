@@ -4,7 +4,7 @@ import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular
 import { LeaveService } from '../leave.service';
 import { GetType } from '../models/type';
 import { MatTableModule } from '@angular/material/table';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { saveDataSource } from '../models/saveLeavebind'
 import { debug } from 'util';
 import { Leaves } from '../models/leaveEnum'
@@ -34,13 +34,31 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   success: any;
   error: any = false;
   errormessage:any;
+  selected:any;
+  startDate:any;
+  endDate:any;
+  desc:any;
+  leaveType:any;
+  flag:any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource;
-  displayedCoulumns = ['email', 'leave_type', 'description', 'from_date', 'to_date', 'num_of_days', 'action'];
+  displayedCoulumns = ['leave_type', 'description', 'from_date', 'to_date', 'num_of_days', 'action'];
 
-  constructor(private leaveService: LeaveService) { }
+
+
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    return day !== 0 && day !== 6;
+  }
+  constructor(private leaveService: LeaveService) { 
+    this.startDate = new FormControl('', [Validators.required]);
+    this.endDate = new FormControl('', [Validators.required]);
+    this.desc = new FormControl('', [Validators.required]);
+    this.selected = new FormControl('', [Validators.required]);
+    this.desc = '';
+  }
 
 
   applyFilter(filterValue: string) {
@@ -48,6 +66,16 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filterValue = filterValue;
   }
+  startDateMessage(){
+    return this.startDate.hasError('required') ? 'Start Date is Required' :'';
+  }
+  endDateMessage(){
+    return this.endDate.hasError('required') ? 'End Date is Required' :'';
+  }
+  descMessage(){
+    return this.desc.hasError('required') ? 'Description Required' :'';
+  }
+
   ngOnInit() {
     this.date = new FormControl();
     this.getLeaves();
@@ -65,21 +93,20 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.description = this.dataSource.filteredData.find(x => x.id == id).description;
     this.leave = this.dataSource.filteredData.find(x => x.id == id).leave_type;
     this.id = this.dataSource.filteredData.find(x => x.id == id).id;
+    this.selected=this.dataSource.filteredData.find(x => x.id == id).num_of_days;
+    
   }
-  clickSave() {
+  clickUpdate() {
+    
     this.success = false;
     this.status = 1;
-    this.num_of_days = this.getBusinessDateCount(this.from_date, this.to_date);
-    console.log(this.num_of_days);
     this.leavetype = toInteger(Leaves[this.leave]);
-    this.leaveService.updateapplyleaves(this.leavetype, this.description, this.num_of_days, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
+    console.log( this.leavetype);
+    this.leaveService.updateapplyleaves(this.leavetype, this.description, this.selected, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
       this.success = true;
-      window.setTimeout(function () {
-        $(".alert").fadeTo(600, 0).slideUp(600, function () {
-          $(this).remove();
-          $("#saveLeaveModal .close").click()
-        });
-      }, 1000);
+      this.setTimeOutF('#saveLeaveModal .close');
+      this.getLeaves();
+      
     },(err: any) => {
       debugger;
       this.error=true;
@@ -89,13 +116,9 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       this.errormessage = err.error.message;
       }
       this.error=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
-        });
-    }, 1000);
-      
+      this.setTimeOutF('#applyleaveModal .close');
+    //#applyleaveModal .close"
+      this.getLeaves();
     });
   }
   getChangeDate(dateTobeChange) {
@@ -126,10 +149,17 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     if (x) {
       this.leaveService.deleteapplyleaves(id).subscribe(data => {
         this.getLeaves();
-        console.log(' Record Deleted');
       });
     }
 
+  }
+  setTimeOutF(id:string){
+    window.setTimeout(function() {
+      $(".alert").fadeTo(600, 0).slideUp(600, function(){
+          $(this).remove(); 
+          $(id).click()
+      });
+  }, 1000);
   }
 
   getLeaves() {
@@ -143,5 +173,37 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       this.dataSource.sort = this.sort;
     });
 
+  }
+
+  clickSave() {
+    debugger;
+    this.flag='';
+    this.error=false;
+    var stDate=this.getChangeDate(this.startDate);
+    var eDate=this.getChangeDate(this.endDate)
+    this.leaveService.applyleaves(this.leaveType, this.desc, this.selected, stDate, eDate, this.status).subscribe(data => {
+      this.flag=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
+    },(err: any) => {
+      debugger;
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+            $("#applyleaveModal .close").click()
+        });
+    }, 1000);
+    });
   }
 }

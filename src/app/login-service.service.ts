@@ -20,6 +20,11 @@ export class LoginServiceService {
     var header=new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
     return this.httpclient.post(this.baseUrl+"/logout/access" , data, { headers: header });
   }
-
+forgetPassword(email){
+  debugger;
+  var data = '{ "email" :  "' + email + '"}';
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+  return this.httpclient.put(this.baseUrl+"/forgot/password",data, { headers: reqHeader });
+}
 
 }

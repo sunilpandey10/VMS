@@ -46,6 +46,15 @@ import { ManageLeavesComponentComponent } from './manage-leaves-component/manage
 import { httpInterceptor } from './http-interceptor';
 import { MyexpensescomponentsComponent } from './myexpensescomponents/myexpensescomponents.component';
 import { MytimereportcomponentComponent } from './mytimereportcomponent/mytimereportcomponent.component';
+import { ChartModule } from 'primeng/primeng';
+import { AdmindashboardcomponentComponent } from './admindashboardcomponent/admindashboardcomponent.component';
+import { AdmindashboardService } from './admindashboard.service';
+import { AdminLeaveManageComponent } from './admin-leave-manage/admin-leave-manage.component';
+import { AdminLeaveModalComponent } from './admin-leave-modal/admin-leave-modal.component';
+import { EmployeeDetailsLeaveComponent } from './employee-details-leave/employee-details-leave.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ManagesectionComponent } from './managesection/managesection.component';
+
 
 
 const appRoutes: Routes = [
@@ -68,6 +77,8 @@ const appRoutes: Routes = [
       ]},
       { path: 'profile', component: UserprofileComponentComponent },
 
+      {path:'admindashboard', component:AdmindashboardcomponentComponent},
+      
       { path: 'team', component: TeamdirectoryComponentComponent }, 
  
 ]},
@@ -105,6 +116,12 @@ const appRoutes: Routes = [
     ManageLeavesComponentComponent,
     MyexpensescomponentsComponent,
     MytimereportcomponentComponent,
+    AdmindashboardcomponentComponent,
+    AdminLeaveManageComponent,
+    AdminLeaveModalComponent,
+    EmployeeDetailsLeaveComponent,
+    ChangepasswordComponent,
+    ManagesectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +129,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     ChartsModule,
+    ChartModule,
     FullCalendarModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -134,7 +152,7 @@ const appRoutes: Routes = [
     )
   ],
   providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
-    ,LeaveService
+    ,LeaveService,AdmindashboardService,
   ,{
     provide: HTTP_INTERCEPTORS,
     useClass: httpInterceptor,

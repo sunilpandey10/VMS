@@ -1,0 +1,87 @@
+  <div class="modal fade" id="leaveModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg"style="width:1250px;">
+      <div class="modal-content"> 
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            Employee Leave Details
+          </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div> 
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group form"> 
+            <div class="media">
+              <img aria-expanded="true" aria-haspopup="true" class="align-self-center mr-3 img-circle dropdown-toggle" data-toggle="dropdown"
+                height="180" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120" width="180">
+              <div class="media-body">
+                <h5 class="mt-0">Employee Name</h5>
+            
+                <div class="row">
+                  <div class="col">
+                    <p>Vacation Taken :</p>    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <p>Vacation Balance :</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <p>Sick Leave :</p>
+                  </div>
+                </div>
+              </div>
+            </div>       
+            <br>
+            <div class="mat-elevation-z8">
+              <mat-table #table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="empid">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Emp Id</mat-header-cell>
+                  <mat-cell *matCellDef="let users"> {{users.emp_id}} </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef class="col-4"> Email Id </mat-header-cell>
+                  <mat-cell *matCellDef="let users" class="col-4"> {{users.email}} </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let users"> {{users.username}} </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="role">
+                  <mat-header-cell *matHeaderCellDef> Role</mat-header-cell>
+                  <mat-cell *matCellDef="let users"> {{users.role}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                  <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                  <mat-cell *matCellDef="let users">
+                    <a href="#" class="edit" data-toggle="modal" data-target="#rejectModal" (click)="getSingleEmployee(users.emp_id)">
+                      <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                    </a>
+                    <!-- <a class="delete" data-toggle="confirmation" (click)="disableEmployee(users.emp_id)">
+                          <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                        </a> -->
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+                <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
+              </mat-table>
+            </div>
+            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+            </mat-paginator> 
+        </div>
+        <!-- Modal footer -->
+         <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="clickSave()">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
