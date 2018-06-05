@@ -151,8 +151,7 @@ const appRoutes: Routes = [
     NgbModalModule.forRoot(),
     RouterModule.forRoot(appRoutes,{useHash: true}),
     ],
-  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
-    ,LeaveService,AdmindashboardService,
+  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService
   ,{
     provide: HTTP_INTERCEPTORS,
     useClass: httpInterceptor,

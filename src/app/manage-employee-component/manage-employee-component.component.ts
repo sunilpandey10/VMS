@@ -165,5 +165,17 @@ export class ManageEmployeeComponentComponent implements OnInit {
    console.log(this.sortedData);
    return   this.sortedData;
   }
+
+  valuechange(name:string) {
+  //  var name='pa';
+   debugger;
+   if(name.length > 0)
+{
+   this.dataSource = new MatTableDataSource(this.sortedData.filter(data =>data.email.toLowerCase().indexOf(name.toLowerCase()) === 0));
+  }
+  else{
+    this.dataSource=new MatTableDataSource(this.sortedData);
+  }
+}
 }
 
