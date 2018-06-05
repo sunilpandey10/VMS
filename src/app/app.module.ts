@@ -149,7 +149,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes,{useHash: true})
+    RouterModule.forRoot(appRoutes,{useHash: true}),
     ],
   providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
     ,LeaveService,AdmindashboardService,
