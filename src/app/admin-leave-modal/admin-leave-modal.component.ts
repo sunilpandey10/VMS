@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-leave-modal.component.css']
 })
 export class AdminLeaveModalComponent implements OnInit {
-
+  dataSource;
+  displayedCoulumns=[];
   constructor() { }
 
   ngOnInit() {

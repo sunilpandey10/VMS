@@ -14,7 +14,7 @@ export class ChangepasswordComponent implements OnInit {
   isError:any;
   isSucess:any;
   message:any;
-
+  hide=true;
   constructor(private userService:UserService) { }
   getnewPasswordMessage(){
     return this.newPassword.hasError('required') ? 'Password is Required' :'';
