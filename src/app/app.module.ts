@@ -53,7 +53,7 @@ import { AdminLeaveManageComponent } from './admin-leave-manage/admin-leave-mana
 import { AdminLeaveModalComponent } from './admin-leave-modal/admin-leave-modal.component';
 import { EmployeeDetailsLeaveComponent } from './employee-details-leave/employee-details-leave.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
-import { ManagesectionComponent } from './managesection/managesection.component';
+import { BookmanageComponent } from './bookmanage/bookmanage.component';
 
 
 
@@ -74,6 +74,8 @@ const appRoutes: Routes = [
         { path: 'manageemp', component: ManageEmployeeComponentComponent },
         { path: 'clientdetails', component: ClientDetailsComponentComponent },
         { path: 'manageleaves', component: ManageLeavesComponentComponent },
+        { path: 'managebook', component: BookmanageComponent },
+        //managebook
       ]},
       { path: 'profile', component: UserprofileComponentComponent },
 
@@ -121,7 +123,7 @@ const appRoutes: Routes = [
     AdminLeaveModalComponent,
     EmployeeDetailsLeaveComponent,
     ChangepasswordComponent,
-    ManagesectionComponent,
+    BookmanageComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,10 +149,8 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes,{useHash: true}
-
-    )
-  ],
+    RouterModule.forRoot(appRoutes,{useHash: true})
+    ],
   providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService
     ,LeaveService,AdmindashboardService,
   ,{

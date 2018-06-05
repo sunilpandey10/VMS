@@ -38,12 +38,12 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 py-2 ">
-                <div class="card text-white bg-warning h-100" style="cursor: pointer;">
+                <div class="card text-white bg-warning h-100" style="cursor: pointer;" (click)="getBookmanage()">
                     <div class="card-body">
                         <div class="rotate">
-                            <i class="fa fa-share fa-4x"></i>
+                            <i class="glyphicon glyphicon-book fa-4x"></i>
                         </div>
-                        <h6 class="text-uppercase">Shares</h6>
+                        <h6 class="text-uppercase">Manage Book</h6>
                         <h1 class="display-4">36</h1>
                     </div>
                 </div>
@@ -110,8 +110,7 @@
                         <img aria-expanded="true" aria-haspopup="true" class="align-self-center mr-3 img-circle mat-elevation-z8" data-toggle="dropdown"
                             height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
                             width="200">
-                        <div class="media-body">
-                            
+                        <div class="media-body"style="padding-left: 60px;">                           
                                 <div class="card mat-elevation-z8 rad" style="width: 25rem;">
                                         <div class="card-body">
                                           <h3 class="card-title" align="center">{{name}}</h3>
@@ -120,6 +119,7 @@
                                           <p class="card-text">Annual Leave Taken : {{takenVacation}} </p>
                                           <p class="card-text">Remaining Annual Leave :{{totalVacation - takenVacation}} </p>
                                           <p class="card-text">Sick Leave : {{sickLeave}} </p>
+                                          <p></p>
                                         
                                         </div>
                                       </div>
@@ -158,20 +158,18 @@
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                                 <mat-cell *matCellDef="let users">
-                                    <a href="#" class="edit" data-toggle="modal" data-target="#rejectModal" (click)="getSingleEmployee(user.emp_id)">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                    </a>
+                                    <a href="#" class="edit" data-toggle="modal" data-target="#myModal1" (click)="getSingleEmployee(user.emp_id)">
+                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a class="delete" data-toggle="confirmation"  data-target="#leaveModal" (click)="disableEmployee(users.emp_id)">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                    </a>
+                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </mat-cell>
                             </ng-container>
                             <mat-header-row *matHeaderRowDef="empdisplayedColumns"></mat-header-row>
                             <mat-row *matRowDef="let myRowData; columns: empdisplayedColumns"></mat-row>
                         </mat-table>
-                        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-                            </mat-paginator>
                     </div>
+                    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+                        </mat-paginator>
                     
                 </div>
                 <!-- Modal footer -->
@@ -181,4 +179,29 @@
                 </div>
             </div>
         </div>
+
+        
     </div>
+
+
+
+    <!--child Popup-->
+    <div id="myModal1" class="modal modal-child" data-backdrop-limit="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-modal-parent="#leaveModal">
+            <div class="modal-dialog modal-lg" style="width:2250px;">
+                    <div >
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header 1</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Two modal body…1</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    </div>
+        
+                </div>
+            </div>
+        </div>

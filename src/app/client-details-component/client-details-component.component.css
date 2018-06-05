@@ -221,3 +221,11 @@ table.table .avatar {
 .input {
     width: 85%;
   }
+
+  .full-width{
+    width: 100%;
+  }
+  .searchBox{
+      text-align: center;
+      
+  }

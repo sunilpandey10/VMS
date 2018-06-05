@@ -33,7 +33,7 @@
 
         <!-- Designation -->
         <mat-form-field class="input">
-          <mat-select placeholder="Designation" [(ngModel)]="profile.designation">
+          <mat-select placeholder="Designation" [(ngModel)]="profile.designation" selected="profile.designation">
             <mat-option value="option1">SDET</mat-option>
             <mat-option value="option2">Sr SDET</mat-option>
             <mat-option value="option2">Lead</mat-option>
@@ -111,7 +111,7 @@
 
         <!-- Location -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Location">
+          <input matInput #input placeholder="Location" [(ngModel)]="profile.location">
         </mat-form-field>
         <br>
 
@@ -121,7 +121,7 @@
 
         <!-- DOB -->
         <mat-form-field class="input">
-          <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth"[(ngModel)]="profile.dob">
+          <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth" selected="profile.dob">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -159,7 +159,7 @@
 
         <!-- BitBucket -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="BitBucket Username" [(ngModel)]="profile.dob">
+          <input matInput #input placeholder="BitBucket Username" [(ngModel)]="profile.github">
         </mat-form-field>
         <br>
         <br>

@@ -1,28 +1,24 @@
 <br>
-<br>
-<!-- <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" routerLink="/home/setting/manageemp">Manage Employees</a></li>
-    <li><a data-toggle="tab" href="/home/setting/clientdetails">Add Client & Project Details</a></li>
-    <li><a data-toggle="tab" href="/home/setting/manageleaves">Manage Leaves</a></li>
-  </ul> -->
 <ul class="nav nav-tabs">
-  <li>
+  <li class="">
     <a data-toggle="tab" routerLink="/home/setting/manageemp" routerLinkActive="active">Manage Employees</a>
   </li>
   <li>
     <a data-toggle="tab" routerLink="/home/setting/clientdetails" routerLinkActive="active">Add Client & Project Details</a>
   </li>
-  <li class="active">
+  <li>
     <a data-toggle="tab" routerLink="/home/setting/manageleaves" routerLinkActive="active">Manage Leaves</a>
   </li>
-<div class="w-100">
-  <br>
-  <br>
-    <div class="table-wrapper w-100">
+  <li>
+      <a data-toggle="tab" routerLink="home/setting/managebook" routerLinkActive="active">Manage Books</a>
+    </li>
+    </ul>
+  <div class="w-100">
+    <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h3>Manage Leaves</h3>
+            <h3>Add New Leave</h3>
           </div>
           <div class="col-sm-6">
             <a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal">
@@ -32,7 +28,11 @@
           </div>
         </div>
       </div>
-      <table class="table table-striped table-hover">
+      </div>
+      </div>
+
+<div class="w-100">
+      <table class="table table-striped table-hover mat-elevation-z8">
         <thead>
           <tr>
             <th>S.No</th>
@@ -61,7 +61,6 @@
         </tbody>
       </table>
     </div>
-  </div>
   <!-- Edit Modal HTML -->
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import{ LoginServiceService } from '../login-service.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -7,8 +7,11 @@ import { Dashboard } from '../models/dashboard';
 import { UserprofileComponentComponent } from '../userprofile-component/userprofile-component.component'
 import { Profiles } from '../models/profiles';
 import { AdmindashboardService } from '../admindashboard.service';
+import { LeaveService } from '../leave.service';
 
 declare var $:any;
+
+
 
 
 @Component({
@@ -31,7 +34,8 @@ export class NavbarComponentComponent implements OnInit {
     private loginservice: LoginServiceService ,
     private userService:UserService,
     private adminService:AdmindashboardService,
-    private Route:Router
+    private Route:Router,
+    private leaveService: LeaveService
   ) 
     { this.fullImagePath = '../../assets/Images/Untitled.png'
   
@@ -78,6 +82,17 @@ export class NavbarComponentComponent implements OnInit {
   logOut(){
       localStorage.removeItem('Tokens');
       this.route.navigate(['/login']);
+
+  }
+  getLeaves() {
+    this.leaveService.getLeaves().subscribe((results: any) => {
+      if (!results) {
+        return;
+      }
+      // this.dataSource = new MatTableDataSource(results.leaves);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
+    });
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator } from '@angular/material';
 import { LeaveService } from '../leave.service';
@@ -43,6 +43,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() dataSourceP;
   dataSource;
   displayedCoulumns = ['leave_type', 'description', 'from_date', 'to_date', 'num_of_days', 'action'];
 

@@ -61,6 +61,9 @@ export class AdmindashboardcomponentComponent implements OnInit {
     //  console.log(data);
     // });
   }
+  getBookmanage(){
+    this.router.navigate(['/home/setting/managebook']);
+  }
   rowClicked(row){
     debugger;
     this.name=row.full_name;
