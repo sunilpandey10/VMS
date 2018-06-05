@@ -50,9 +50,8 @@ export class ManageEmployeeComponentComponent implements OnInit {
   rolecreate = new FormControl('', [Validators.required]);
   empidcreate = new FormControl('', [Validators.required]);
   desingnationcreate=new FormControl('', [Validators.required]);;
-
+  
   getRegistered() {
-    debugger;
     this.flag = false;
     this.isactive = 1;
     this.userService.registerEmployee(this.emailcreate.value, this.rolecreate.value, this.empidcreate.value, this.usernamecreate.value,this.desingnationcreate.value).subscribe(data => {
@@ -160,7 +159,6 @@ export class ManageEmployeeComponentComponent implements OnInit {
     }
   }
   sortData(searchText) {
-    debugger;
     searchText=searchText.toLowerCase();
     this.sortedData=this.sortedData.find(x => x.email == searchText);
    console.log(this.sortedData);
@@ -172,7 +170,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
    debugger;
    if(name.length > 0)
 {
-   this.dataSource = new MatTableDataSource(this.sortedData.filter(data =>data.email.toLowerCase().indexOf(name.toLowerCase()) === 0));
+   this.dataSource = new MatTableDataSource(this.sortedData.filter(data =>data.username.toLowerCase().indexOf(name.toLowerCase()) === 0));
   }
   else{
     this.dataSource=new MatTableDataSource(this.sortedData);
