@@ -33,7 +33,7 @@
           <div class="col-2"> </div>
           <div class="col-8">
             <mat-form-field class="searchBox full-width">
-              <input matInput placeholder="Serach Employee based on Id or Name"  (ngModelChange)="valuechange($event)">
+              <input matInput placeholder="Serach Employee based on Id or Name" [ngModel]="mymodel" (ngModelChange)="valuechange($event)">
             </mat-form-field>
           </div>
         </div>

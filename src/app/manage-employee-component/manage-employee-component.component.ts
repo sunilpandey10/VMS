@@ -25,6 +25,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
   demo:any[];
   error:any;
   errormessage:any;
+  searchModel:any;
 
 
 
