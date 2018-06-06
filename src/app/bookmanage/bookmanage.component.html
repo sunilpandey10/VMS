@@ -33,40 +33,40 @@
   
   <div class="mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="bookid">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Book Id</mat-header-cell>
-        <mat-cell *matCellDef="let books"> {{books.emp_id}} </mat-cell>
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+        <mat-cell *matCellDef="let books"> {{books.author}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="bookname">
+      <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef class="col-4"> Book Name </mat-header-cell>
-        <mat-cell *matCellDef="let books" class="col-4"> {{books.email}} </mat-cell>
+        <mat-cell *matCellDef="let books" class="col-4"> {{books.name}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let books"> {{books.username}} </mat-cell>
+      <ng-container matColumnDef="lended_by">
+        <mat-header-cell *matHeaderCellDef> Lended By </mat-header-cell>
+        <mat-cell *matCellDef="let books"> {{books.lended_by}} </mat-cell>
       </ng-container>
 
 
-      <ng-container matColumnDef="qty">
-        <mat-header-cell *matHeaderCellDef> Quantity</mat-header-cell>
-        <mat-cell *matCellDef="let books"> {{books.role}} </mat-cell>
+      <ng-container matColumnDef="available_copies">
+        <mat-header-cell *matHeaderCellDef> Available Copies</mat-header-cell>
+        <mat-cell *matCellDef="let books"> {{books.available_copies}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="qtyleft">
-        <mat-header-cell *matHeaderCellDef> Quantity Left</mat-header-cell>
-        <mat-cell *matCellDef="let books"> {{books.role}} </mat-cell>
+      <ng-container matColumnDef="total_copies">
+        <mat-header-cell *matHeaderCellDef> Total Copies</mat-header-cell>
+        <mat-cell *matCellDef="let books"> {{books.total_copies}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let books">
 
-          <a href="#" class="edit" data-toggle="modal" data-target="#addEmployeeModal" (click)="getSingleEmployee(books.book_id)">
+          <a href="#" class="edit" data-toggle="modal" data-target="#addEmployeeModal">
             <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
           </a>
-          <a class="delete" data-toggle="confirmation" (click)="disableEmployee(books.book_id)">
+          <a class="delete" data-toggle="confirmation" >
             <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
           </a>
         </mat-cell>

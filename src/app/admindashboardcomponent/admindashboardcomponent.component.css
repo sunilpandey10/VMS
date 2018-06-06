@@ -11,3 +11,9 @@
     text-align: center;
     
 }
+a.edit {
+    color: #FFC107;
+}
+a.delete {
+    color: #F44336;
+}

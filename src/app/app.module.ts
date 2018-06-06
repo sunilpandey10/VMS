@@ -55,6 +55,7 @@ import { EmployeeDetailsLeaveComponent } from './employee-details-leave/employee
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BookmanageComponent } from './bookmanage/bookmanage.component';
 
+import {ClientdataService} from './clientdata.service';
 
 
 const appRoutes: Routes = [
@@ -151,7 +152,7 @@ const appRoutes: Routes = [
     NgbModalModule.forRoot(),
     RouterModule.forRoot(appRoutes,{useHash: true}),
     ],
-  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService
+  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService,ClientdataService,
   ,{
     provide: HTTP_INTERCEPTORS,
     useClass: httpInterceptor,

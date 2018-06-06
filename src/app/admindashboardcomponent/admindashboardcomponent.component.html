@@ -59,7 +59,7 @@
 </div>
 <div class="col-6">
         <mat-form-field class=" searchBox full-width">
-          <input matInput placeholder="Serach Employee based on Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
+          <input matInput placeholder="Serach Employee based On Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
         </mat-form-field>
       </div>
       <div class="col-3">
@@ -118,12 +118,27 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+                    <div class="row">
+                            <div class="col" *ngIf="isError">
+                                <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                                  <strong>{{message}}</strong> 
+                                </div>
+                              </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" *ngIf="rejectScucess">
+                                <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                                  <strong>Leave Rejected Sucessfully</strong> Employee will notify soon.
+                                </div>
+                              </div>
+                        </div>
                 <div class="form-group form">
                     <div class="media">
                         <img aria-expanded="true" aria-haspopup="true" class="align-self-center mr-3 img-circle mat-elevation-z8" data-toggle="dropdown"
                             height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
                             width="200">
-                        <div class="media-body"style="padding-left: 60px;">                           
+                        <div class="media-body"style="padding-left: 60px;"> 
+
                                 <div class="card mat-elevation-z8 rad" style="width: 25rem;">
                                         <div class="card-body">
                                           <h3 class="card-title" align="center">{{name}}</h3>
@@ -145,36 +160,37 @@
                             
                             <ng-container matColumnDef="leavetype">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type</mat-header-cell>
-                                <mat-cell *matCellDef="let empuser"> {{empuser.leave_type}} </mat-cell>
+                                <mat-cell *matCellDef="let leaves"> {{leaves.leave_type}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="description">
                                 <mat-header-cell *matHeaderCellDef class="col-4"> Description </mat-header-cell>
-                                <mat-cell *matCellDef="let empuser" class="col-4"> {{empuser.description}} </mat-cell>
+                                <mat-cell *matCellDef="let leaves" class="col-4"> {{leaves.description}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="from_date">
                                 <mat-header-cell *matHeaderCellDef> From Data </mat-header-cell>
-                                <mat-cell *matCellDef="let empuser"> {{empuser.from_date | date}} </mat-cell>
+                                <mat-cell *matCellDef="let leaves"> {{leaves.from_date | date}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="to_date">
                                 <mat-header-cell *matHeaderCellDef> To Date</mat-header-cell>
-                                <mat-cell *matCellDef="let empuser"> {{empuser.to_date | date}} </mat-cell>
+                                <mat-cell *matCellDef="let leaves"> {{leaves.to_date | date}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="num_of_days">
                                 <mat-header-cell *matHeaderCellDef> No Of Days</mat-header-cell>
-                                <mat-cell *matCellDef="let empuser"> {{empuser.num_of_days}} </mat-cell>
+                                <mat-cell *matCellDef="let leaves"> {{leaves.num_of_days}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-                                <mat-cell *matCellDef="let users">
-                                    <a href="#" class="edit" data-toggle="modal" data-target="#myModal1" (click)="getSingleEmployee(user.emp_id)">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a class="delete" data-toggle="confirmation"  data-target="#leaveModal" (click)="disableEmployee(users.emp_id)">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <mat-cell *matCellDef="let leaves">
+                                    <a class="edit" (click)="getSingleEmployee(leaves.id)" *ngIf="leaves.leave_status==2">
+                                        <i class="material-icons" data-toggle="tooltip" title="Rejected">&#xE254;</i></a>
+                                    <a class="delete" (click)="disableEmployee(leaves.id)" *ngIf="leaves.leave_status!=2"> 
+                                        <i class="material-icons " data-toggle="tooltip" title="Reject">&#xE872;</i>
+                                    </a>
                                 </mat-cell>
                             </ng-container>
                             <mat-header-row *matHeaderRowDef="empdisplayedColumns"></mat-header-row>
@@ -187,7 +203,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info">Submit</button>
+                    <!-- <button type="button" class="btn btn-info">Submit</button> -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -198,23 +214,4 @@
 
 
 
-    <!--child Popup-->
-    <div id="myModal1" class="modal modal-child" data-backdrop-limit="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-modal-parent="#leaveModal">
-            <div class="modal-dialog modal-lg" style="width:2250px;">
-                    <div >
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header 1</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Two modal body…1</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    </div>
-        
-                </div>
-            </div>
-        </div>
+    

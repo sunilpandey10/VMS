@@ -12,7 +12,6 @@ export class LeaveService {
   baseUrl="https://vmsapi.herokuapp.com/v1";
 
   applyleaves(leaveType, desc, noOfdays, fromDate, toDate, status) {
-    debugger;
     var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '",  "num_of_days" :  ' + noOfdays + ', "from_date" : "' + fromDate + '","to_date" : "' + toDate + '", "leave_status" : ' + status + '  }';
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.http.post(this.baseUrl + "/leaves", data, { headers: reqHeader });
@@ -48,6 +47,11 @@ export class LeaveService {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     //var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '", "num_of_days" :  "' + noOfdays + '", "from_date" : "' + fromDate + '", "to_date" : "' + toDate + '","leave_status" : ' + status + ' }';
     return this.http.put(this.baseUrl + "/leaveTypes/"+leavetypeid, { headers: reqHeader });
+
+  }
+  rejectleaves(id){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.put(this.baseUrl + "/leaves/"+id, { headers: reqHeader });
 
   }
 }

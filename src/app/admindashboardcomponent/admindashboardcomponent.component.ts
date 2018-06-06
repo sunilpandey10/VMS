@@ -12,7 +12,7 @@ import { LeaveService } from '../leave.service';
 })
 export class AdmindashboardcomponentComponent implements OnInit {
 
-  constructor( private router: Router,private adminService: AdmindashboardService,private leaveService: LeaveService) { }
+  constructor( private router: Router,private adminService: AdmindashboardService,private leaveService: LeaveService,) { }
   dataSource;
   displayedColumns = ['empid', 'fullname','annualleave', 'sickleave','recent'];
   empdataSource;
@@ -27,6 +27,9 @@ export class AdmindashboardcomponentComponent implements OnInit {
   takenVacation:any;
   totalVacation:any;
   searchModel:any;
+  rejectScucess:any;
+  isError:any;
+  message:any;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,7 +51,6 @@ export class AdmindashboardcomponentComponent implements OnInit {
     this.router.navigate(['/home/setting/clientdetails']);
   }
   getLeaves() {
-    debugger;
     this.leaveService.getLeaves().subscribe((results: any) => {
       this.dataSource = new MatTableDataSource(results.leaves);
       this.dataSource.paginator = this.paginator;
@@ -57,11 +59,37 @@ export class AdmindashboardcomponentComponent implements OnInit {
   }
 
   getSingleEmployee(id){
-
+    debugger;
+  }
+  disableEmployee(id){
+    this.isError = false;
+    this.rejectScucess = false;
+    this.leaveService.rejectleaves(id).subscribe(data=>{
+      if(!data){
+        return;
+      }
+      this.rejectScucess=true;
+      this.setClose();
+    },(err: any) => {
+      debugger;
+      this.isError = true;
+      if(!err.error.message){
+        this.message=err.message;
+      } else {
+      this.message = err.error.message;
+      }
+      this.setClose();
+      });
+  }
+  setClose(){
+    window.setTimeout(function () {
+      $(".alert").fadeTo(600, 0).slideUp(600, function () {
+        $(this).remove();
+      });
+    }, 1000);
+    
   }
   valuechange(name:string){
-    console.log(this.sortedData);
-    debugger;
     if (name.length > 0) {
       this.dataSource = new MatTableDataSource(this.sortedData.filter(data => data.full_name.toLowerCase().indexOf(name.toLowerCase()) === 0));
     }
@@ -73,7 +101,7 @@ export class AdmindashboardcomponentComponent implements OnInit {
     this.router.navigate(['/home/setting/managebook']);
   }
   rowClicked(row){
-    debugger;
+    this.empdataSource='';
     this.name=row.full_name;
     this.empId=row.employee_id;
     this.vacationLeft=row.annual_leaves;

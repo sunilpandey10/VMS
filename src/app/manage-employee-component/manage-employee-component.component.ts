@@ -21,11 +21,11 @@ export class ManageEmployeeComponentComponent implements OnInit {
   role: any;
   isactive: any;
   items: any[];
-  sortedData:any[];
-  demo:any[];
-  error:any;
-  errormessage:any;
-  searchModel:any;
+  sortedData: any[];
+  demo: any[];
+  error: any;
+  errormessage: any;
+  searchModel: any;
 
 
 
@@ -49,13 +49,13 @@ export class ManageEmployeeComponentComponent implements OnInit {
   emailcreate = new FormControl('', [Validators.required]);
   rolecreate = new FormControl('', [Validators.required]);
   empidcreate = new FormControl('', [Validators.required]);
-  desingnationcreate=new FormControl('', [Validators.required]);;
-  
+  desingnationcreate = new FormControl('', [Validators.required]);;
+
   getRegistered() {
     this.flag = false;
     this.isactive = 1;
-    this.userService.registerEmployee(this.emailcreate.value, this.rolecreate.value, this.empidcreate.value, this.usernamecreate.value,this.desingnationcreate.value).subscribe(data => {
-    this.flag = true;
+    this.userService.registerEmployee(this.emailcreate.value, this.rolecreate.value, this.empidcreate.value, this.usernamecreate.value, this.desingnationcreate.value).subscribe(data => {
+      this.flag = true;
       window.setTimeout(function () {
         $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
           $(this).remove();
@@ -65,19 +65,19 @@ export class ManageEmployeeComponentComponent implements OnInit {
       }, 5000);
     }, (err: any) => {
       debugger;
-      this.error=true;
-      if(!err.error.message){
-        this.errormessage=err.message;
+      this.error = true;
+      if (!err.error.message) {
+        this.errormessage = err.message;
       } else {
-      this.errormessage = err.error.message;
+        this.errormessage = err.error.message;
       }
-      this.error=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
+      this.error = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#applyleaveModal .close").click()
         });
-    }, 1000);
+      }, 1000);
     });
   }
   dataSourcebind() {
@@ -85,25 +85,25 @@ export class ManageEmployeeComponentComponent implements OnInit {
       if (!response) {
         return;
       }
-      this.sortedData=response.users;
+      this.sortedData = response.users;
       this.dataSource = new MatTableDataSource(response.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, (err: any) => {
       debugger;
-      this.error=true;
-      if(!err.error.message){
-        this.errormessage=err.message;
+      this.error = true;
+      if (!err.error.message) {
+        this.errormessage = err.message;
       } else {
-      this.errormessage = err.error.message;
+        this.errormessage = err.error.message;
       }
-      this.error=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
+      this.error = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#applyleaveModal .close").click()
         });
-    }, 1000);
+      }, 1000);
     });
   }
   clearTextfield() {
@@ -132,19 +132,19 @@ export class ManageEmployeeComponentComponent implements OnInit {
       this.dataSourcebind();
     }, (err: any) => {
       debugger;
-      this.error=true;
-      if(!err.error.message){
-        this.errormessage=err.message;
+      this.error = true;
+      if (!err.error.message) {
+        this.errormessage = err.message;
       } else {
-      this.errormessage = err.error.message;
+        this.errormessage = err.error.message;
       }
-      this.error=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
+      this.error = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#applyleaveModal .close").click()
         });
-    }, 1000);
+      }, 1000);
     });
     this.clearTextfield();
   }
@@ -154,27 +154,25 @@ export class ManageEmployeeComponentComponent implements OnInit {
     var x = confirm("Are you sure you want to delete?");
     if (x) {
       this.userService.disableEmployee(id, status).subscribe(data => {
-       this.dataSourcebind();
+        this.dataSourcebind();
       });
     }
   }
   sortData(searchText) {
-    searchText=searchText.toLowerCase();
-    this.sortedData=this.sortedData.find(x => x.email == searchText);
-   console.log(this.sortedData);
-   return   this.sortedData;
+    searchText = searchText.toLowerCase();
+    this.sortedData = this.sortedData.find(x => x.email == searchText);
+    console.log(this.sortedData);
+    return this.sortedData;
   }
 
-  valuechange(name:any) {
-  //  var name='pa';
-   debugger;
-   if(name.length > 0)
-{
-   this.dataSource = new MatTableDataSource(this.sortedData.filter(data =>data.username.toLowerCase().indexOf(name.toLowerCase()) === 0));
+  valuechange(name: any) {
+
+    if (name.length > 0) {
+      this.dataSource = new MatTableDataSource(this.sortedData.filter(data => data.username.toLowerCase().indexOf(name.toLowerCase()) === 0));
+    }
+    else {
+      this.dataSource = new MatTableDataSource(this.sortedData);
+    }
   }
-  else{
-    this.dataSource=new MatTableDataSource(this.sortedData);
-  }
-}
 }
 

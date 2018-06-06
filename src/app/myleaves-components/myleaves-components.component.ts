@@ -118,7 +118,6 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       }
       this.error=true;
       this.setTimeOutF('#applyleaveModal .close');
-    //#applyleaveModal .close"
       this.getLeaves();
     });
   }
