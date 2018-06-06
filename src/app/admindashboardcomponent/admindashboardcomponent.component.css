@@ -3,3 +3,11 @@
 .rad{ 
         border-radius: 20%;    
 }
+
+.full-width {
+    width: 100%;
+  }
+  .searchBox {
+    text-align: center;
+    
+}

@@ -165,7 +165,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
    return   this.sortedData;
   }
 
-  valuechange(name:string) {
+  valuechange(name:any) {
   //  var name='pa';
    debugger;
    if(name.length > 0)

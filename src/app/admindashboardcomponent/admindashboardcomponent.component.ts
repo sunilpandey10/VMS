@@ -18,7 +18,7 @@ export class AdmindashboardcomponentComponent implements OnInit {
   empdataSource;
   empdisplayedColumns = ['leavetype', 'description','from_date', 'to_date','num_of_days','action'];
   id:number;
-
+  sortedData: any[];
   name:string;
   vacationLeft:any;
   empId:any;
@@ -34,6 +34,7 @@ export class AdmindashboardcomponentComponent implements OnInit {
 
   ngOnInit() {
     this.adminService.getemployeesinAdminsec().subscribe((data:AdminDetails) => {
+      this.sortedData=data.users;
       this.dataSource = new MatTableDataSource(data.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -56,10 +57,17 @@ export class AdmindashboardcomponentComponent implements OnInit {
   }
 
   getSingleEmployee(id){
-    // console.log('id is ' +id);
-    // this.adminService.UserbyId(id).subscribe(data=>{
-    //  console.log(data);
-    // });
+
+  }
+  valuechange(name:string){
+    console.log(this.sortedData);
+    debugger;
+    if (name.length > 0) {
+      this.dataSource = new MatTableDataSource(this.sortedData.filter(data => data.full_name.toLowerCase().indexOf(name.toLowerCase()) === 0));
+    }
+    else {
+      this.dataSource = new MatTableDataSource(this.sortedData);
+    }
   }
   getBookmanage(){
     this.router.navigate(['/home/setting/managebook']);

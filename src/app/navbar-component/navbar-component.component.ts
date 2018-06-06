@@ -27,6 +27,7 @@ export class NavbarComponentComponent implements OnInit {
   userName:string;
   dataProfile:any;
   name:string;
+  timerSubscription:any;
   //text:boolean=true;
   @ViewChild(UserprofileComponentComponent) uname;
   constructor(private route:Router, 
@@ -89,13 +90,10 @@ export class NavbarComponentComponent implements OnInit {
       if (!results) {
         return;
       }
-      // this.dataSource = new MatTableDataSource(results.leaves);
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
     });
 
   }
-
+  
 }
 
 
