@@ -26,7 +26,7 @@ export class AdmindashboardcomponentComponent implements OnInit {
   recentlyApplied:any;
   takenVacation:any;
   totalVacation:any;
-
+  searchModel:any;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
