@@ -76,13 +76,6 @@ const appRoutes: Routes = [
       { path: 'timesheet', component: TimeComponentComponent },
       { path: 'booksview', component: BookcomponentComponent },
       { path: 'setting', component: ManageReferencesComponentComponent },
-      // { path: 'setting', component: SettingComponentComponent,children:[
-      //   { path: 'manageemp', component: ManageEmployeeComponentComponent },
-      //   { path: 'clientdetails', component: ClientDetailsComponentComponent },
-      //   { path: 'manageleaves', component: ManageLeavesComponentComponent },
-      //   { path: 'managebook', component: BookmanageComponent },
-      //   //managebook
-      // ]},
       { path: 'profile', component: UserprofileComponentComponent },
 
       {path:'admindashboard', component:AdmindashboardcomponentComponent},
