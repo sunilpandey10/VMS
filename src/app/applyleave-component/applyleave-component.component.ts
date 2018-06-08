@@ -51,7 +51,6 @@ export class ApplyleaveComponentComponent implements OnInit {
   }
   /* This event help To Reduce Task in apply Leave modal pop up */
   onEventsChange(event){
-    debugger;
     switch(event) { 
       case Leaves.Annual: { 
         this.desc="Annual Leave";
@@ -63,7 +62,7 @@ export class ApplyleaveComponentComponent implements OnInit {
         break; 
      }  
      case Leaves.Sick: { 
-      console.log("SICK"); 
+      this.desc="Sick Leave";
       break; 
    }  
 
@@ -74,9 +73,8 @@ addMonth(){
 
 }
   onSubmit() {
-    debugger;
     this.leaveService.applyleaves(this.selectedValueLeavetype,this.desc,this.noOfdays,this.fromDate,this.toDate,this.status).subscribe(data=>{
-    console.log(data);
+  
     });
   }
 }

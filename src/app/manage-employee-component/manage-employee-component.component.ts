@@ -64,7 +64,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
         this.clearTextfield();
       }, 5000);
     }, (err: any) => {
-      debugger;
+
       this.error = true;
       if (!err.error.message) {
         this.errormessage = err.message;
@@ -90,7 +90,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, (err: any) => {
-      debugger;
+
       this.error = true;
       if (!err.error.message) {
         this.errormessage = err.message;
@@ -131,7 +131,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
       }, 5000);
       this.dataSourcebind();
     }, (err: any) => {
-      debugger;
+
       this.error = true;
       if (!err.error.message) {
         this.errormessage = err.message;
@@ -150,7 +150,6 @@ export class ManageEmployeeComponentComponent implements OnInit {
   }
   disableEmployee(id) {
     var status = 0;
-    console.log(id);
     var x = confirm("Are you sure you want to delete?");
     if (x) {
       this.userService.disableEmployee(id, status).subscribe(data => {
@@ -161,7 +160,6 @@ export class ManageEmployeeComponentComponent implements OnInit {
   sortData(searchText) {
     searchText = searchText.toLowerCase();
     this.sortedData = this.sortedData.find(x => x.email == searchText);
-    console.log(this.sortedData);
     return this.sortedData;
   }
 

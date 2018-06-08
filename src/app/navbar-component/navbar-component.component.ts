@@ -46,10 +46,8 @@ export class NavbarComponentComponent implements OnInit {
   ngOnInit() {
     this.userService.dashboard().subscribe((data: Dashboard) => {
       this.dashboard = data.dashboard;
-      console.log(this.dashboard);
     });
     if (this.Route.url == '/home/dashboard') {
-      debugger;
       this.text = true;
     }
     else {

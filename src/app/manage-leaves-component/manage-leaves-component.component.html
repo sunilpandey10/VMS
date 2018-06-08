@@ -7,7 +7,7 @@
             <h3>Manage Leaves</h3>
           </div>
           <div class="col-sm-6">
-            <a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal">
+            <a data-target="#manageEmployeeLeaveModal" class="btn btn-info" data-toggle="modal">
               <i class="material-icons">&#xE147;</i>
               <span>Add New Leave</span>
             </a>
@@ -36,7 +36,7 @@
             <td>{{leves.validity}}</td>
             <td>{{leves.carry_forward}}</td>        
             <td>
-              <a href="#editEmployeeModal" class="edit" data-toggle="modal" (click)="getData(leves.id)">
+              <a data-target="#manageEditEmployeeModal" class="edit" data-toggle="modal" (click)="getData(leves.id)">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
               </a>
               <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
@@ -48,7 +48,7 @@
       </table>
     </div>
   <!-- Edit Modal HTML -->
-  <div id="addEmployeeModal" class="modal fade">
+  <div id="manageEmployeeLeaveModal" class="modal fade" data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -83,7 +83,7 @@
     </div>
   </div>
   <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
+  <div id="manageEditEmployeeModal" class="modal fade"  data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>

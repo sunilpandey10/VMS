@@ -16,7 +16,7 @@ export class ExpensesComponentComponent implements OnInit {
   constructor(private userService:UserService) { }
 
   onRowClicked(row) {
-    console.log('Row clicked: ', row);
+    
 }
 
 applyFilter(filterValue: string) {

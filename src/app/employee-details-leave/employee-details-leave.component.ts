@@ -16,7 +16,6 @@ export class EmployeeDetailsLeaveComponent implements OnInit {
 
   ngOnInit() {
     this.AdminService.UserbyId(this.id).subscribe(data=>{
-    console.log(data);
     //this.dataSource = new MatTableDataSource(data);
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;

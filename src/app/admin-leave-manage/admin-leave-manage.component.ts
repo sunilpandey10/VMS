@@ -27,8 +27,7 @@ export class AdminLeaveManageComponent implements OnInit {
     });
   }
   rowClicked(rowid: any): void {
-  
-    console.log(rowid);
+   
   }
 
 }

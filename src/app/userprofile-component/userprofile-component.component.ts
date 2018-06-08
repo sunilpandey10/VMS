@@ -32,13 +32,12 @@ export class UserprofileComponentComponent implements OnInit {
 };
 
 onUpload(file: UploadedFile) {
-  console.log(file.response);
+
 }
   ngOnInit() {
   this.adminService.getProfile().subscribe((data:Profiles)=>{
     this.dataProfile=data.profiles;
     this.name=data.profiles.first_name;
-     console.log(this.dataProfile);
     })
   }
 

@@ -19,7 +19,6 @@ teamMemberSource:any[];
   ngOnInit() {
    this.teamService.getUsersProfile().subscribe((data:Profiles)=>{
     this.teamMemberSource=data.profiles;
-    console.log(this.teamMemberSource);
     });
   }
 

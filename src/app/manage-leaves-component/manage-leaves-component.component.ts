@@ -19,7 +19,6 @@ export class ManageLeavesComponentComponent implements OnInit {
         return;
       }
       this.datasource = data.leave_types;
-      console.log(this.datasource);
     });
 
   }

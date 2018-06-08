@@ -74,7 +74,7 @@ const appRoutes: Routes = [
       { path: 'profile', component: UserprofileComponentComponent },
       { path: 'expenses', component: ExpensesComponentComponent },
       { path: 'timesheet', component: TimeComponentComponent },
-      { path: 'booksview', component: BookcomponentComponent },
+      { path: 'references', component: BookcomponentComponent },
       { path: 'setting', component: ManageReferencesComponentComponent },
       { path: 'profile', component: UserprofileComponentComponent },
 
