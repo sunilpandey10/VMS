@@ -13,7 +13,7 @@ export class ManageLeavesComponentComponent implements OnInit {
   constructor(private leaveService: LeaveService) { }
 
   ngOnInit() {
-    debugger;
+
     this.leaveService.getTypeLeaves().subscribe(data => {
       if (!data) {
         return;
@@ -24,7 +24,6 @@ export class ManageLeavesComponentComponent implements OnInit {
 
   }
   getData(id) {
-    debugger;
     this.abc = this.datasource.filter(x => x.id == id);
   }
   addLeaveRecord(LeaveTypes, noOfdays, validity, carryforward) {

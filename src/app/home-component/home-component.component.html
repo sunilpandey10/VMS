@@ -1,7 +1,7 @@
 <h3>My Dashboard</h3>
 <div class="card-deck">
     <div class="card cardsDesign mb-4">
-        <div class="card-body">
+        <div class="card-body mat-elevation-z8">
             <h5 class="card-title">Vacation</h5>
             <p class="card-text" style="text-align: right;">
                 <small class="text-muted"></small>
@@ -12,25 +12,23 @@
         </div>
     </div>
     <div class="card cardsDesign mb-4">
-        <div class="card-body">
+        <div class="card-body mat-elevation-z8">
             <h5 class="card-title">Time Report</h5>
             <p class="card-text" style="text-align: right;">
                 <small class="text-muted"></small>
             </p>
             <div style="display: block">
-                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
+                    <p-chart type="doughnut" [data]="data"></p-chart>
             </div>
         </div>
     </div>
     <div class="card cardsDesign mb-4">
-        <div class="card-body">
+        <div class="card-body mat-elevation-z8">
             <h5 class="card-title">Expense Report</h5>
             <p class="card-text" style="text-align: right;">
             </p>
             <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                    [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    <p-chart type="bar" [data]="data"></p-chart>
             </div>
         </div>
     </div>
@@ -39,3 +37,4 @@
 <div>
     <app-myleaves-components></app-myleaves-components>
 </div>
+

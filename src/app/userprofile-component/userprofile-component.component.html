@@ -2,7 +2,7 @@
   <div class="col"><h3>My Profile</h3></div>
   <!-- <div class="col"><button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button></div> -->
 </div>
-<button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button>
+<!-- <button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button> -->
 <br><br>
 
 <div class="panel panel-default mat-elevation-z8">
@@ -11,14 +11,10 @@
       <!-- Upload Image -->
       <div class="col-3">
         <br>
-        <img class="img-circle example-container mat-elevation-z8" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
-          width="200">
+        <fancy-image-uploader [options]="options" (onUpload)="onUpload($event)" class="img-circle example-container mat-elevation-z8"></fancy-image-uploader>
+        <!-- <img class="img-circle example-container mat-elevation-z8" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+          width="200"> -->
         <br><br>
-        <div style="position:relative" class='btn btn-info' href='javascript:;'>
-          Upload Avatar
-          <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
-            class='input' name="file_source" size="40">
-        </div>
         <button type="button" class="btn btn-info ">Update Info</button>
       </div>
 
@@ -170,4 +166,3 @@
   </div>
 </div>
 
-<app-changepassword></app-changepassword>

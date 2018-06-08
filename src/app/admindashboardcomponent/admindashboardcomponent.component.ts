@@ -4,6 +4,8 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { AdmindashboardService } from '../admindashboard.service';
 import { AdminDetails } from '../models/adminDetails';
 import { LeaveService } from '../leave.service';
+import { MyTeamService } from '../my-team.service';
+import { ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-admindashboardcomponent',
@@ -12,7 +14,8 @@ import { LeaveService } from '../leave.service';
 })
 export class AdmindashboardcomponentComponent implements OnInit {
 
-  constructor( private router: Router,private adminService: AdmindashboardService,private leaveService: LeaveService,) { }
+  constructor( private router: Router,private adminService: AdmindashboardService,private leaveService: LeaveService,private myTeamService:MyTeamService
+  ,private confirmationService: ConfirmationService) { }
   dataSource;
   displayedColumns = ['empid', 'fullname','annualleave', 'sickleave','recent'];
   empdataSource;
@@ -30,12 +33,20 @@ export class AdmindashboardcomponentComponent implements OnInit {
   rejectScucess:any;
   isError:any;
   message:any;
+  booksCount:any;
+  clientsCount:any;
+  usersCount:any;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
+    this.getDashboardCount();
+    this.getEmployeesList();
+  }
+  
+  getEmployeesList(){
     this.adminService.getemployeesinAdminsec().subscribe((data:AdminDetails) => {
       this.sortedData=data.users;
       this.dataSource = new MatTableDataSource(data.users);
@@ -43,7 +54,6 @@ export class AdmindashboardcomponentComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-  
   totalEmployees(){
     this.router.navigate(['/home/team']);
   }
@@ -59,19 +69,25 @@ export class AdmindashboardcomponentComponent implements OnInit {
   }
 
   getSingleEmployee(id){
-    debugger;
+  
   }
   disableEmployee(id){
+    // this.confirmationService.confirm({
+    //   message: 'Do you want to delete this record?',
+    //   header: 'Delete Confirmation',
+    //   icon: 'pi pi-info-circle',
+    //   accept: () => {
     this.isError = false;
     this.rejectScucess = false;
     this.leaveService.rejectleaves(id).subscribe(data=>{
       if(!data){
         return;
       }
+      this.getEmployeesList();
+      this.getEmployeeLeaves(this.empId);
       this.rejectScucess=true;
       this.setClose();
     },(err: any) => {
-      debugger;
       this.isError = true;
       if(!err.error.message){
         this.message=err.message;
@@ -80,6 +96,8 @@ export class AdmindashboardcomponentComponent implements OnInit {
       }
       this.setClose();
       });
+
+    // }});
   }
   setClose(){
     window.setTimeout(function () {
@@ -112,13 +130,21 @@ export class AdmindashboardcomponentComponent implements OnInit {
        this.takenVacation =x[0];
        this.totalVacation =x[1];
     }
-  
-
-
-    this.adminService.UserbyId(row.employee_id).subscribe((data:any)=>{
+    this.getEmployeeLeaves(this.empId);
+   
+  }
+  getEmployeeLeaves(id){
+    this.adminService.UserbyId(id).subscribe((data:any)=>{
       this.empdataSource = new MatTableDataSource(data.leaves);
       this.empdataSource.paginator = this.paginator;
       this.empdataSource.sort = this.sort;
-  });
-}
+    });
+  }
+  getDashboardCount() {
+    this.myTeamService.getadminDashboard().subscribe((data :any )=> {
+      this.booksCount=data.books;
+      this.clientsCount=data.clients;
+      this.usersCount=data.users;
+    })
+  }
 }

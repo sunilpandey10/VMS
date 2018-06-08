@@ -9,13 +9,15 @@ import { saveDataSource } from '../models/saveLeavebind'
 import { debug } from 'util';
 import { Leaves } from '../models/leaveEnum'
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
 
 declare var bootbox: any
 @Component({
   selector: 'app-myleaves-components',
   templateUrl: './myleaves-components.component.html',
-  styleUrls: ['./myleaves-components.component.css']
+  styleUrls: ['./myleaves-components.component.css'],
+
 })
 export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   id: string;
@@ -33,13 +35,17 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leavetype: number;
   success: any;
   error: any = false;
-  errormessage:any;
-  selected:any;
-  startDate:any;
-  endDate:any;
-  desc:any;
-  leaveType:any;
-  flag:any;
+  errormessage: any;
+  selected: any;
+  startDate: any;
+  endDate: any;
+  desc: any;
+  leaveType: any;
+  flag: any;
+  msgs: any;
+  
+  isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
+  expandedElement: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,7 +59,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     const day = d.getDay();
     return day !== 0 && day !== 6;
   }
-  constructor(private leaveService: LeaveService) { 
+  constructor(private leaveService: LeaveService, private confirmationService: ConfirmationService) {
     this.startDate = new FormControl('', [Validators.required]);
     this.endDate = new FormControl('', [Validators.required]);
     this.desc = new FormControl('', [Validators.required]);
@@ -67,14 +73,14 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filterValue = filterValue;
   }
-  startDateMessage(){
-    return this.startDate.hasError('required') ? 'Start Date is Required' :'';
+  startDateMessage() {
+    return this.startDate.hasError('required') ? 'Start Date is Required' : '';
   }
-  endDateMessage(){
-    return this.endDate.hasError('required') ? 'End Date is Required' :'';
+  endDateMessage() {
+    return this.endDate.hasError('required') ? 'End Date is Required' : '';
   }
-  descMessage(){
-    return this.desc.hasError('required') ? 'Description Required' :'';
+  descMessage() {
+    return this.desc.hasError('required') ? 'Description Required' : '';
   }
 
   ngOnInit() {
@@ -94,29 +100,28 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.description = this.dataSource.filteredData.find(x => x.id == id).description;
     this.leave = this.dataSource.filteredData.find(x => x.id == id).leave_type;
     this.id = this.dataSource.filteredData.find(x => x.id == id).id;
-    this.selected=this.dataSource.filteredData.find(x => x.id == id).num_of_days;
-    
+    this.selected = this.dataSource.filteredData.find(x => x.id == id).num_of_days;
+
   }
   clickUpdate() {
-    
+
     this.success = false;
     this.status = 1;
     this.leavetype = toInteger(Leaves[this.leave]);
-    console.log( this.leavetype);
     this.leaveService.updateapplyleaves(this.leavetype, this.description, this.selected, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
       this.success = true;
       this.setTimeOutF('#saveLeaveModal .close');
       this.getLeaves();
-      
-    },(err: any) => {
-      debugger;
-      this.error=true;
-      if(!err.error.message){
-        this.errormessage=err.message;
+
+    }, (err: any) => {
+
+      this.error = true;
+      if (!err.error.message) {
+        this.errormessage = err.message;
       } else {
-      this.errormessage = err.error.message;
+        this.errormessage = err.error.message;
       }
-      this.error=true;
+      this.error = true;
       this.setTimeOutF('#applyleaveModal .close');
       this.getLeaves();
     });
@@ -145,26 +150,29 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     return Math.ceil(elapsed);
   }
   removeLeave(id) {
-    var x = confirm("Are you sure you want to delete?");
-    if (x) {
-      this.leaveService.deleteapplyleaves(id).subscribe(data => {
-        this.getLeaves();
-      });
-    }
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.leaveService.deleteapplyleaves(id).subscribe(data => {
+          this.getLeaves();
+        });
+      }
+    });
 
   }
-  setTimeOutF(id:string){
-    window.setTimeout(function() {
-      $(".alert").fadeTo(600, 0).slideUp(600, function(){
-          $(this).remove(); 
-          $(id).click()
+  setTimeOutF(id: string) {
+    window.setTimeout(function () {
+      $(".alert").fadeTo(600, 0).slideUp(600, function () {
+        $(this).remove();
+        $(id).click()
       });
-  }, 1000);
+    }, 1000);
   }
 
   getLeaves() {
     this.leaveService.getLeaves().subscribe((results: any) => {
-      debugger;
       if (!results) {
         return;
       }
@@ -176,34 +184,32 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   }
 
   clickSave() {
-    debugger;
-    this.flag='';
-    this.error=false;
-    var stDate=this.getChangeDate(this.startDate);
-    var eDate=this.getChangeDate(this.endDate)
+    this.flag = '';
+    this.error = false;
+    var stDate = this.getChangeDate(this.startDate);
+    var eDate = this.getChangeDate(this.endDate)
     this.leaveService.applyleaves(this.leaveType, this.desc, this.selected, stDate, eDate, this.status).subscribe(data => {
-      this.flag=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
+      this.flag = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#applyleaveModal .close").click()
         });
-    }, 1000);
-    },(err: any) => {
-      debugger;
-      this.error=true;
-      if(!err.error.message){
-        this.errormessage=err.message;
+      }, 1000);
+    }, (err: any) => {
+      this.error = true;
+      if (!err.error.message) {
+        this.errormessage = err.message;
       } else {
-      this.errormessage = err.error.message;
+        this.errormessage = err.error.message;
       }
-      this.error=true;
-      window.setTimeout(function() {
-        $(".alert").fadeTo(600, 0).slideUp(600, function(){
-            $(this).remove(); 
-            $("#applyleaveModal .close").click()
+      this.error = true;
+      window.setTimeout(function () {
+        $(".alert").fadeTo(600, 0).slideUp(600, function () {
+          $(this).remove();
+          $("#applyleaveModal .close").click()
         });
-    }, 1000);
+      }, 1000);
     });
   }
 }

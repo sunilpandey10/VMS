@@ -29,10 +29,10 @@ public barChartData:any[] = [
   public doughnutChartType:string = 'doughnut';
  
   public chartClicked(e:any):void {
-    console.log(e);
+  
   }
  
   public chartHovered(e:any):void {
-    console.log(e);
+   
   }
 }

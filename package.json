@@ -49,8 +49,10 @@
     "ng-bootstrap-modal": "^1.1.19",
     "ng-fullcalendar": "^1.5.5",
     "ng2-charts": "^1.6.0",
+    "ng2-fancy-image-uploader": "^2.0.1",
     "ng2-opd-popup": "^1.1.21",
     "ngx-cookie-service": "^1.0.10",
+    "primeicons": "^1.0.0-beta.6",
     "primeng": "^6.0.0-alpha.1",
     "rxjs": "^5.5.10",
     "zone.js": "^0.8.19"

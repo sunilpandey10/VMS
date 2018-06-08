@@ -6,6 +6,7 @@ import { MatSelect, MatTableDataSource } from '@angular/material';
 import { Leaves } from '../models/leaveEnum'
 import { FormControl, Validators } from '@angular/forms';
 import { GetType  } from '../models/type';
+import { Router } from '@angular/router';
 
 
 declare var $:any;
@@ -38,7 +39,8 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     const day = d.getDay();
     return day !== 0 && day !== 6;
   }
-  constructor(private leaveService: LeaveService) 
+  constructor(private leaveService: LeaveService,
+  private route:Router) 
   {
     this.startDate = new FormControl('', [Validators.required]);
     this.endDate = new FormControl('', [Validators.required]);
@@ -67,7 +69,6 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     });
   }
   onEventsChange(event) {
-    debugger;
     this.leaveType=event;
     switch (event) {
       case Leaves.Annual: {
@@ -87,7 +88,6 @@ export class ApplyleavemodalComponentComponent implements OnInit {
   }
 
   clickSave() {
-    debugger;
     this.flag='';
     this.error=false;
     var stDate=this.getChangeDate(this.startDate);
@@ -100,8 +100,8 @@ export class ApplyleavemodalComponentComponent implements OnInit {
             $("#applyleaveModal .close").click()
         });
     }, 1000);
+    location.reload();
     },(err: any) => {
-      debugger;
       this.error=true;
       if(!err.error.message){
         this.errormessage=err.message;
@@ -116,9 +116,12 @@ export class ApplyleavemodalComponentComponent implements OnInit {
         });
     }, 1000);
     });
+//this.route.navigateByUrl('/home/dashboard', {skipLocationChange: true});//.then(()=>
+//this.route.navigate(["/home/dashboard"]));
+    // this.route.navigateByUrl('/home/calendar', { skipLocationChange: true });
+     this.route.navigate(["/home/dashboard"]);
   }
   getChangeDate(dateTobeChange) {
-    debugger;
     this.datetobeinFormat = new Date(dateTobeChange);
     this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + (this.datetobeinFormat.getMonth() + 1);
     return this.datetobeinFormat = this.datetobeinFormat.getFullYear() + "-" + this.month + "-" + this.datetobeinFormat.getDate();
@@ -142,7 +145,6 @@ export class ApplyleavemodalComponentComponent implements OnInit {
     return Math.ceil(elapsed);
 }
   closeModal(){
-    debugger;
     $('#applyleaveModal').on('click',function(e){
      e.preventDefault();
     });

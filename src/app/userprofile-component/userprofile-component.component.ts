@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { AdmindashboardService } from '../admindashboard.service';
 import { Profiles } from '../models/profiles';
+import { FancyImageUploaderOptions, UploadedFile } from 'ng2-fancy-image-uploader';
 
 @Component({
   selector: 'app-userprofile-component',
@@ -22,7 +23,17 @@ export class UserprofileComponentComponent implements OnInit {
   constructor(private adminService:AdmindashboardService) { 
    
   }
+  options: FancyImageUploaderOptions = {
+    thumbnailHeight: 150,
+    thumbnailWidth: 150,
+    uploadUrl: 'http://some-server.com/upload',
+    allowedImageTypes: ['image/png', 'image/jpeg','image/jpg'],
+    maxImageSize: 3
+};
 
+onUpload(file: UploadedFile) {
+  console.log(file.response);
+}
   ngOnInit() {
   this.adminService.getProfile().subscribe((data:Profiles)=>{
     this.dataProfile=data.profiles;

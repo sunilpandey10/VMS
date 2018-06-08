@@ -54,8 +54,10 @@ import { AdminLeaveModalComponent } from './admin-leave-modal/admin-leave-modal.
 import { EmployeeDetailsLeaveComponent } from './employee-details-leave/employee-details-leave.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BookmanageComponent } from './bookmanage/bookmanage.component';
-
+import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
+import {ConfirmDialogModule,ConfirmationService, GrowlModule } from 'primeng/primeng';
 import {ClientdataService} from './clientdata.service';
+import { BookcomponentComponent } from './bookcomponent/bookcomponent.component';
 
 
 const appRoutes: Routes = [
@@ -125,6 +127,8 @@ const appRoutes: Routes = [
     EmployeeDetailsLeaveComponent,
     ChangepasswordComponent,
     BookmanageComponent,
+    BookcomponentComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -138,6 +142,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
+    GrowlModule,
+    ConfirmDialogModule,
+    FancyImageUploaderModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -152,7 +159,7 @@ const appRoutes: Routes = [
     NgbModalModule.forRoot(),
     RouterModule.forRoot(appRoutes,{useHash: true}),
     ],
-  providers: [AuthGuard,AlertServiceService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService,ClientdataService
+  providers: [AuthGuard,AlertServiceService,ConfirmationService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService,ClientdataService
   ,{
     provide: HTTP_INTERCEPTORS,
     useClass: httpInterceptor,
