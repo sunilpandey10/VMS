@@ -58,6 +58,7 @@ import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
 import {ConfirmDialogModule,ConfirmationService, GrowlModule } from 'primeng/primeng';
 import {ClientdataService} from './clientdata.service';
 import { BookcomponentComponent } from './bookcomponent/bookcomponent.component';
+import { ManageReferencesComponentComponent } from './manage-references-component/manage-references-component.component';
 
 
 const appRoutes: Routes = [
@@ -74,13 +75,14 @@ const appRoutes: Routes = [
       { path: 'expenses', component: ExpensesComponentComponent },
       { path: 'timesheet', component: TimeComponentComponent },
       { path: 'booksview', component: BookcomponentComponent },
-      { path: 'setting', component: SettingComponentComponent,children:[
-        { path: 'manageemp', component: ManageEmployeeComponentComponent },
-        { path: 'clientdetails', component: ClientDetailsComponentComponent },
-        { path: 'manageleaves', component: ManageLeavesComponentComponent },
-        { path: 'managebook', component: BookmanageComponent },
-        //managebook
-      ]},
+      { path: 'setting', component: ManageReferencesComponentComponent },
+      // { path: 'setting', component: SettingComponentComponent,children:[
+      //   { path: 'manageemp', component: ManageEmployeeComponentComponent },
+      //   { path: 'clientdetails', component: ClientDetailsComponentComponent },
+      //   { path: 'manageleaves', component: ManageLeavesComponentComponent },
+      //   { path: 'managebook', component: BookmanageComponent },
+      //   //managebook
+      // ]},
       { path: 'profile', component: UserprofileComponentComponent },
 
       {path:'admindashboard', component:AdmindashboardcomponentComponent},
@@ -128,7 +130,8 @@ const appRoutes: Routes = [
     EmployeeDetailsLeaveComponent,
     ChangepasswordComponent,
     BookmanageComponent,
-    BookcomponentComponent
+    BookcomponentComponent,
+    ManageReferencesComponentComponent
     
   ],
   imports: [
