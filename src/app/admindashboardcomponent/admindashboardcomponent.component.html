@@ -32,7 +32,7 @@
                         <div class="rotate">
                             <i class="glyphicon glyphicon-cog fa-4x"></i>
                         </div>
-                        <h6 class="text-uppercase">Manage Tool</h6>
+                        <h6 class="text-uppercase">Add Skill</h6>
                         <h1 class="display-4">125</h1>
                     </div>
                 </div>
@@ -187,9 +187,9 @@
                                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                                 <mat-cell *matCellDef="let leaves">
                                     <a class="edit" (click)="getSingleEmployee(leaves.id)" *ngIf="leaves.leave_status==2">
-                                        <i class="material-icons" data-toggle="tooltip" title="Rejected">&#xE254;</i></a>
+                                        <i class="material-icons color" data-toggle="tooltip" title="Rejected">remove_circle_outline</i></a>
                                     <a class="delete" (click)="disableEmployee(leaves.id)" *ngIf="leaves.leave_status!=2"> 
-                                        <i class="material-icons " data-toggle="tooltip" title="Reject">&#xE872;</i>
+                                        <i class="material-icons " title="Reject">delete_outline</i>
                                     </a>
                                 </mat-cell>
                             </ng-container>

@@ -31,7 +31,7 @@ export class HomeComponentComponent implements OnInit {
     var x;
     debugger;
     this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
-      this.anuualLeave = data.track[0].total_annual_leaves_left;
+      this.anuualLeave = data.track[0].total_annual_leaves_taken;
       this.totalLeave = data.track[0].total_annual_leaves;
       this.sickLeave = data.track[0].total_sick_leaves;
       x = this.totalLeave + "," + this.anuualLeave + "," + this.sickLeave;
