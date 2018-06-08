@@ -1,3 +1,83 @@
-<p>
-  bookcomponent works!
-</p>
+<mat-tab-group>
+  <mat-tab label="Books">
+    <h3>Our Books</h3>
+    <div class="mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="author">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+          <mat-cell *matCellDef="let books"> {{books.author}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="col-4"> Book Name </mat-header-cell>
+          <mat-cell *matCellDef="let books" class="col-4"> {{books.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lended_by">
+          <mat-header-cell *matHeaderCellDef> Lended By </mat-header-cell>
+          <mat-cell *matCellDef="let books"> {{books.lended_by}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="available_copies">
+          <mat-header-cell *matHeaderCellDef> Available Copies</mat-header-cell>
+          <mat-cell *matCellDef="let books"> {{books.available_copies}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total_copies">
+          <mat-header-cell *matHeaderCellDef> Total Copies</mat-header-cell>
+          <mat-cell *matCellDef="let books"> {{books.total_copies}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+        <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+  <mat-tab label="Client">
+      <h3>Our Clients</h3>
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSourceClient" matSort>
+
+        <ng-container matColumnDef="sno">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> S.NO </mat-header-cell>
+          <mat-cell *matCellDef="let leaves"> {{leaves.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="client">
+          <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+          <mat-cell *matCellDef="let leaves"> {{leaves.client}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="subteam">
+          <mat-header-cell *matHeaderCellDef> Team </mat-header-cell>
+          <mat-cell *matCellDef="let leaves"> {{leaves.team}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="domain">
+          <mat-header-cell *matHeaderCellDef> Domain </mat-header-cell>
+          <mat-cell *matCellDef="let leaves"> {{leaves.domain}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="people">
+          <mat-header-cell *matHeaderCellDef> People</mat-header-cell>
+          <mat-cell *matCellDef="let leaves"> {{leaves.people}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedCoulumnsClient"></mat-header-row>
+        <mat-row *matRowDef="let myRowData; columns: displayedCoulumnsClient"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+  <mat-tab label="Leaves">Leaves Type
+
+    
+  </mat-tab>
+</mat-tab-group>

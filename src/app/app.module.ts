@@ -8,7 +8,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule, MatPaginatorModule,MatProgressSpinnerModule,MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, MatTabsModule } from '@angular/material';
 import {AuthGuard} from './Auth/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponentComponent } from './login-component/login-component.component';
@@ -73,6 +73,7 @@ const appRoutes: Routes = [
       { path: 'profile', component: UserprofileComponentComponent },
       { path: 'expenses', component: ExpensesComponentComponent },
       { path: 'timesheet', component: TimeComponentComponent },
+      { path: 'booksview', component: BookcomponentComponent },
       { path: 'setting', component: SettingComponentComponent,children:[
         { path: 'manageemp', component: ManageEmployeeComponentComponent },
         { path: 'clientdetails', component: ClientDetailsComponentComponent },
@@ -152,6 +153,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
+    MatTabsModule,
     NgbDatepickerModule.forRoot(),
     NgbTimepickerModule.forRoot(),
     MatProgressSpinnerModule,
