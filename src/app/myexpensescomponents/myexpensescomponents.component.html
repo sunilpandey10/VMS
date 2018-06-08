@@ -4,8 +4,7 @@
       <div class="panel-heading">Over All Report</div>
       <div class="panel-body">
         <div style="display: block">
-          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
         </div>
       </div>
     </div>
@@ -16,7 +15,7 @@
       <div class="panel-body">
         <div style="display: block">
           <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            [chartType]="barChartType" ></canvas>
         </div>
           </div>
         </div>
