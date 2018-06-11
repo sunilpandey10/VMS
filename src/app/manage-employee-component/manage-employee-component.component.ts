@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { userDetails } from '../models/userDetails';
 import { DISABLED } from '@angular/forms/src/model';
+import { ConfirmationService } from 'primeng/primeng';
 
 
 
@@ -35,7 +36,7 @@ export class ManageEmployeeComponentComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource;
   displayedCoulumns = ['empid', 'name', 'email', 'role', 'action'];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.dataSourcebind();
@@ -150,12 +151,16 @@ export class ManageEmployeeComponentComponent implements OnInit {
   }
   disableEmployee(id) {
     var status = 0;
-    var x = confirm("Are you sure you want to delete?");
-    if (x) {
-      this.userService.disableEmployee(id, status).subscribe(data => {
-        this.dataSourcebind();
+      this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.userService.disableEmployee(id, status).subscribe(data => {
+            this.dataSourcebind();
+          });
+        }
       });
-    }
   }
   sortData(searchText) {
     searchText = searchText.toLowerCase();

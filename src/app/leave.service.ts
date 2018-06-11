@@ -18,24 +18,36 @@ export class LeaveService {
   }
 
   getLeaves() {
-    var x = localStorage.getItem('Tokens');
-    return this.http.get(this.baseUrl + "/leaves");
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.get(this.baseUrl + "/leaves",{ headers: reqHeader });
   }
 
   getTypeLeaves():Observable<GetType>{
     return this.http.get<GetType>(this.baseUrl+"/leaveTypes"); 
   } 
 
-  addLeaves(LeaveTypes,noOfdays,validity,carryforward){
-    var data="leave_type="+LeaveTypes+"&num_of_days="+noOfdays+"&Validity="+validity+"&carryForward="+carryforward;
+  addLeaves(LeaveTypes,description,noOfdays,validity,carryforward){
+    var data = '{ "leaveType" :  "' + LeaveTypes + '", "description" : "' + description + '", "num_of_days" :  ' + noOfdays + ', "validity" : "' + validity + '" , "carry_forward" : ' + carryforward + ' }';
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.baseUrl + "/leavesTypes", data, { headers: reqHeader });
-    
+    return this.http.post(this.baseUrl + "/leaveTypes", data, { headers: reqHeader }); 
   }
+
   updateapplyleaves(leaveType, desc, noOfdays, fromDate, toDate, status,id) {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '", "num_of_days" :  "' + noOfdays + '", "from_date" : "' + fromDate + '", "to_date" : "' + toDate + '","leave_status" : ' + status + ' }';
     return this.http.put(this.baseUrl + "/leaves/"+id, data, { headers: reqHeader });
+  }
+
+  updaleavesTypes(id,LeaveTypes,description,noOfdays,validity,carryforward) {
+    debugger;
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    var data = '{ "leaveType" :  "' + LeaveTypes + '", "description" : "' + description + '", "num_of_days" :  ' + noOfdays + ', "validity" : "' + validity + '" , "carry_forward" : "' + carryforward + '" }';
+    return this.http.put(this.baseUrl + "/leaveTypes/"+id, data, { headers: reqHeader });
+  }
+
+  deleteLeavesType(id) {
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.delete(this.baseUrl + "/leaveTypes/"+id, { headers: reqHeader });
   }
 
   deleteapplyleaves(id) {
@@ -45,7 +57,6 @@ export class LeaveService {
 
   manageLeaveEdit(leavetypeid){
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
-    //var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '", "num_of_days" :  "' + noOfdays + '", "from_date" : "' + fromDate + '", "to_date" : "' + toDate + '","leave_status" : ' + status + ' }';
     return this.http.put(this.baseUrl + "/leaveTypes/"+leavetypeid, { headers: reqHeader });
 
   }

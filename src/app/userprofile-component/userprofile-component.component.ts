@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import { AdmindashboardService } from '../admindashboard.service';
 import { Profiles } from '../models/profiles';
 import { FancyImageUploaderOptions, UploadedFile } from 'ng2-fancy-image-uploader';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-userprofile-component',
@@ -26,7 +27,7 @@ export class UserprofileComponentComponent implements OnInit {
   options: FancyImageUploaderOptions = {
     thumbnailHeight: 150,
     thumbnailWidth: 150,
-    uploadUrl: 'http://some-server.com/upload',
+    uploadUrl: '/src/assets/Images/',
     allowedImageTypes: ['image/png', 'image/jpeg','image/jpg'],
     maxImageSize: 3
 };

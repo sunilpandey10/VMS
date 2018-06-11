@@ -51,13 +51,13 @@ export class HomeComponentComponent implements OnInit {
       var usedLeave = 'Used ' + this.trackLeave[1];
       var sub = (Number(this.trackLeave[0]) - Number(this.trackLeave[1]));
       var remainingLabel = 'Remaining ' + sub;
-      var sickLabel = ' Sick ' + this.trackLeave[2];
+  
       this.data = {
-        labels: [totalLabel, usedLeave, remainingLabel, sickLabel],
+        labels: [totalLabel, usedLeave, remainingLabel],
         datasets: [
           {
 
-            data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1])), Number(this.trackLeave[2])],
+            data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1]))],
             backgroundColor: [
               "#FF6384",
               "#36A2EB",

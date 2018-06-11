@@ -42,11 +42,11 @@
         </span>
 
         <a href="#editEmployeeModal" *ngIf="leaves.leave_status == 0" class="edit" data-toggle="modal" data-target="#saveLeaveModal" (click)="getData(leaves.id)">
-          <i class="material-icons" title="Edit">
+          <i class="material-icons" matTooltip="Edit">
               edit
               </i></a>
-        <a *ngIf="leaves.leave_status == 0" class="delete" data-toggle="confirmation" (click)="removeLeave(leaves.id)">
-          <i class="material-icons" title="Delete">
+        <a *ngIf="leaves.leave_status == 0" matTooltip="Delete" class="delete" data-toggle="confirmation" (click)="removeLeave(leaves.id)">
+          <i class="material-icons">
               delete_outline
               </i>
         </a>

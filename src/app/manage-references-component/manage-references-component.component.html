@@ -1,5 +1,5 @@
-<mat-tab-group>
-  <mat-tab label="Manage Employees">
+<mat-tab-group [selectedIndex]="selected">
+  <mat-tab label="Manage Employees" class="w-100">
     <app-manage-employee-component></app-manage-employee-component>
   </mat-tab>
   <mat-tab label="Manage Clients">
@@ -13,3 +13,4 @@
   </mat-tab>
   <mat-tab label="Manage Skills">Manage Skills</mat-tab>
 </mat-tab-group>
+{{selected1}}

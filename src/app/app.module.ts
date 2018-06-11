@@ -8,7 +8,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule, MatPaginatorModule,MatProgressSpinnerModule,MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, MatTabsModule } from '@angular/material';
+import { MatInputModule, MatPaginatorModule,MatProgressSpinnerModule,MatToolbarModule,MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, MatTabsModule } from '@angular/material';
 import {AuthGuard} from './Auth/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponentComponent } from './login-component/login-component.component';
@@ -138,6 +138,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatToolbarModule,
     MatSortModule,
     GrowlModule,
     ConfirmDialogModule,

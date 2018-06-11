@@ -1,151 +1,148 @@
-<br>
 <div id="team" class="pb-5">
-    <div class="">
-        <h5 class="section-title h1" style="text-align: center">OUR TEAM</h5>
-        <br>
-        <div class="row">
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let members of teamMemberSource">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center" style="margin: 0 auto;">
-                                    <p>
-                                        <img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image">
-                                    </p>
-                                    <h4 class="card-title">{{members.first_name}}</h4>
-                                    <br>
+    <h3 class="section-title">Our Team</h3>
+    <br>
+    <div class="row">
+        <!-- Team member -->
+        <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let members of teamMemberSource">
+            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                <div class="mainflip">
+                    <div class="frontside">
+                        <div class="card">
+                            <div class="card-body text-center" style="margin: 0 auto;">
+                                <p>
+                                    <img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image">
+                                </p>
+                                <h4 class="card-title">{{members.first_name}}</h4>
+                                <br>
 
-                                    <div class="profile-user-info">
+                                <div class="profile-user-info">
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Designation </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Designation </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.designation}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.designation}}</span>
                                         </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Experience </div>
-
-                                            <div class="profile-info-value">
-                                                <span>{{members.experience}}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Joined </div>
-
-                                            <div class="profile-info-value">
-                                                <span>{{members.joining_date | date}}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Tools </div>
-
-                                            <div class="profile-info-value">
-                                                <span>{{members.skills}}</span>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Working For </div>
-
-                                            <div class="profile-info-value">
-                                                <span>{{members.client}}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Client Location </div>
-
-                                            <div class="profile-info-value">
-                                                <i class="fa fa-map-marker"></i>
-                                                <span>{{members.location}}</span>
-                                            </div>
-                                        </div>
-
-                                        <br>
                                     </div>
+
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Experience </div>
+
+                                        <div class="profile-info-value">
+                                            <span>{{members.experience}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Joined </div>
+
+                                        <div class="profile-info-value">
+                                            <span>{{members.joining_date | date}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Tools </div>
+
+                                        <div class="profile-info-value">
+                                            <span>{{members.skills}}</span>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Working For </div>
+
+                                        <div class="profile-info-value">
+                                            <span>{{members.client}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Client Location </div>
+
+                                        <div class="profile-info-value">
+                                            <i class="fa fa-map-marker"></i>
+                                            <span>{{members.location}}</span>
+                                        </div>
+                                    </div>
+
+                                    <br>
                                 </div>
                             </div>
                         </div>
-                        <div class="backside center">
-                            <div class="card">
-                                <div class="card-body text-center" style="margin: 0 auto;">
-                                    <h3> Other Info</h3>
-                                    <br>
-                                    <br>
+                    </div>
+                    <div class="backside">
+                        <div class="card">
+                            <div class="card-body text-center" style="margin: 0 auto;">
+                                <h3> Other Info</h3>
+                                <br>
+                                <br>
 
-                                    <div class="profile-user-info">
+                                <div class="profile-user-info">
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> DOB </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> DOB </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.dob}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.dob}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Currently Living In </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Currently Living In </div>
 
-                                            <div class="profile-info-value">
-                                                <i class="fa fa-map-marker"></i>
-                                                <span>{{members.location}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <i class="fa fa-map-marker"></i>
+                                            <span>{{members.location}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> HomeTown </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> HomeTown </div>
 
-                                            <div class="profile-info-value">
-                                                <span>Bangalore</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>Bangalore</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Mobile </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Mobile </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.mobile}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.mobile}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Google </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Google </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.email}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.email}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Linkedin </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Linkedin </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.linked_in}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.linked_in}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Github </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Github </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.github}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.github}}</span>
                                         </div>
+                                    </div>
 
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Slack </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> Slack </div>
 
-                                            <div class="profile-info-value">
-                                                <span>{{members.slack}}</span>
-                                            </div>
+                                        <div class="profile-info-value">
+                                            <span>{{members.slack}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -154,3 +151,6 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>

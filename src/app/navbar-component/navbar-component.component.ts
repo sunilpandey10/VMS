@@ -8,6 +8,7 @@ import { UserprofileComponentComponent } from '../userprofile-component/userprof
 import { Profiles } from '../models/profiles';
 import { AdmindashboardService } from '../admindashboard.service';
 import { LeaveService } from '../leave.service';
+import { MyleavesComponentsComponent } from '../myleaves-components/myleaves-components.component'
 
 declare var $: any;
 

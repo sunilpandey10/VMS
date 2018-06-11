@@ -37,13 +37,13 @@
       </mat-paginator>
     </div>
   </mat-tab>
-  <mat-tab label="Client">
+  <mat-tab label="Client" name="client">
       <h3>Our Clients</h3>
     <div class="example-container mat-elevation-z8">
       <mat-table #table [dataSource]="dataSourceClient" matSort>
 
         <ng-container matColumnDef="sno">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> S.NO </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> S.NO </mat-header-cell>
           <mat-cell *matCellDef="let leaves"> {{leaves.id}} </mat-cell>
         </ng-container>
 
@@ -76,8 +76,44 @@
       </mat-paginator>
     </div>
   </mat-tab>
-  <mat-tab label="Leaves">Leaves Type
+  <mat-tab label="Leaves">
+      <h3>Our Leaves</h3>
+      <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSourceBook" matSort>
+  
+            <ng-container matColumnDef="sno">
+              <mat-header-cell *matHeaderCellDef class="col-2"> S.NO </mat-header-cell>
+              <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.id}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="leave_type">
+              <mat-header-cell *matHeaderCellDef class="col-2"> Leave Type </mat-header-cell>
+              <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.leave_type}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="num_of_days">
+              <mat-header-cell *matHeaderCellDef class="col-2"> No Of Days </mat-header-cell>
+              <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.num_of_days}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="validity">
+              <mat-header-cell *matHeaderCellDef class="col-2"> Validity </mat-header-cell>
+              <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.validity}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="carry_forward">
+              <mat-header-cell *matHeaderCellDef class="col-2"> Carry Forward</mat-header-cell>
+              <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.carry_forward}} </mat-cell>
+            </ng-container>
+  
+            <mat-header-row *matHeaderRowDef="displayedCoulumnsBook"></mat-header-row>
+            <mat-row *matRowDef="let myRowData; columns: displayedCoulumnsBook"></mat-row>
+  
+          </mat-table>
+  
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
 
-    
   </mat-tab>
 </mat-tab-group>

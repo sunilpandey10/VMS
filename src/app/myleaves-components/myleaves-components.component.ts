@@ -43,7 +43,6 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leaveType: any;
   flag: any;
   msgs: any;
-  
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
 
@@ -171,7 +170,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     }, 1000);
   }
 
-  getLeaves() {
+ public getLeaves() {
     this.leaveService.getLeaves().subscribe((results: any) => {
       if (!results) {
         return;

@@ -7,6 +7,7 @@ import { Leaves } from '../models/leaveEnum'
 import { FormControl, Validators } from '@angular/forms';
 import { GetType  } from '../models/type';
 import { Router } from '@angular/router';
+import { MyleavesComponentsComponent } from '../myleaves-components/myleaves-components.component'
 
 
 declare var $:any;
@@ -116,9 +117,7 @@ export class ApplyleavemodalComponentComponent implements OnInit {
         });
     }, 1000);
     });
-//this.route.navigateByUrl('/home/dashboard', {skipLocationChange: true});//.then(()=>
-//this.route.navigate(["/home/dashboard"]));
-    // this.route.navigateByUrl('/home/calendar', { skipLocationChange: true });
+     // new MyleavesComponentsComponent('','').getLeaves();
      this.route.navigate(["/home/dashboard"]);
   }
   getChangeDate(dateTobeChange) {

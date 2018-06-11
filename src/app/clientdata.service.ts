@@ -30,6 +30,13 @@ export class ClientdataService {
     return this.http.get(this.baseUrl + "/books",{ headers: reqHeader });
   }
 
+  addClient(addclient,addteam,adddomain,addpeople,addlocation){
+    debugger;
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    var data = '{ "client" :  "' + addclient + '", "team" : "' + addteam + '", "domain" :  "' + adddomain + '", "people" : "' + addpeople + '", "location" : "' + addlocation + '"}';
+    return this.http.post(this.baseUrl + "/clients", data, { headers: reqHeader });
+  }
+
   createBooks(){
     // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     // var data = '{ "client" :  "' + client + '", "team" : "' + team + '", "domain" :  "' + domain + '", "people" : "' + people + '", "location" : "' + location + '"}';

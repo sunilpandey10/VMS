@@ -1,7 +1,7 @@
 <br>
 
 <div class="w-100">
-  <div class="table-wrapper">
+  <div>
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
@@ -20,7 +20,7 @@
   <div class="mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="author">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
         <mat-cell *matCellDef="let books"> {{books.author}} </mat-cell>
       </ng-container>
 

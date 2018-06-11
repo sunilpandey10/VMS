@@ -1,173 +1,193 @@
 <br>
 <div class="w-100">
-  <div class="table-wrapper">
-    <div class="table-title">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>Manage Clients & Projects</h3>
-        </div>
-        <div class="col-sm-6">
-          <a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal">
-            <i class="material-icons">&#xE147;</i>
-            <span>Add New Client</span>
+  <div class="table-title">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Manage Clients</h3>
+      </div>
+      <div class="col-sm-6">
+        <a href="#addEmployeeModal" class="btn btn-info" data-target="#addClientModal" data-toggle="modal">
+          <i class="material-icons">&#xE147;</i>
+          <span>Add New Client</span>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2"> </div>
+      <div class="col-8">
+        <mat-form-field class="searchBox full-width">
+          <input matInput placeholder="Search Client based on Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
+        </mat-form-field>
+      </div>
+      <div class="col-2"> </div>
+    </div>
+  </div>
+  <div class="example-container mat-elevation-z8 w-100">
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="sno">
+        <mat-header-cell *matHeaderCellDef class="col-2"> S.NO </mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2"> {{clients.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="client">
+        <mat-header-cell *matHeaderCellDef class="col-2"> Client </mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2"> {{clients.client}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="subteam">
+        <mat-header-cell *matHeaderCellDef class="col-2"> Team </mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2"> {{clients.team}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="domain">
+        <mat-header-cell *matHeaderCellDef class="col-2"> Domain </mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2"> {{clients.domain}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="people">
+        <mat-header-cell *matHeaderCellDef class="col-2"> People</mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2"> {{clients.people}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="col-2"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let clients" class="col-2">
+          <a class="edit" data-toggle="modal" data-target="#editClientModal" (click)="editClient(clients.id)">
+            <i class="material-icons" title="Edit">&#xE254;</i>
           </a>
+          <a class="delete" (click)="deleteClient(clients.id)">
+            <i class="material-icons" title="Delete">delete_outline</i>
+          </a>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    </mat-paginator>
+  </div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="addClientModal" class="modal fade" data-backdrop="false" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Add Client</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
-      </div>
-    </div>
-    <div>
-      <div class="row">
-        <div class="col-2"> </div>
-        <div class="col-8">
-          <mat-form-field class="searchBox full-width">
-            <input matInput placeholder="Search Client based on Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
+        <div class="modal-body">isPass
+          <div class="row">
+            <div class="col" *ngIf="isPass">
+              <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                <strong>Record Added</strong>
+              </div>
+            </div>
+            <div class="col" *ngIf="error">
+              <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                <strong>{{message}}</strong>
+              </div>
+            </div>
+          </div>
+          <!-- Client -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Client" [(ngModel)]="addclient" name="client">
           </mat-form-field>
+          <br>
+
+          <!-- Team/SubClient -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Team/Sub-Client" [(ngModel)]="addteam" name="team">
+          </mat-form-field>
+          <br>
+
+          <!-- Domain -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Domain" [(ngModel)]="adddomain" name="domain">
+          </mat-form-field>
+          <br>
+
+          <!-- People -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="People" [(ngModel)]="addpeople" name="people">
+          </mat-form-field>
+          <br>
+
+          <!-- Location -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Location" [(ngModel)]="addlocation" name="location">
+          </mat-form-field>
+          <br>
+
         </div>
-      </div>
-      <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="dataSource" matSort>
-
-          <ng-container matColumnDef="sno">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> S.NO </mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.id}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="client">
-            <mat-header-cell *matHeaderCellDef class="col-2"> Client </mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.client}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="subteam">
-            <mat-header-cell *matHeaderCellDef class="col-2"> Team </mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.team}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="domain">
-            <mat-header-cell *matHeaderCellDef class="col-2"> Domain </mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.domain}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="people">
-            <mat-header-cell *matHeaderCellDef class="col-2"> People</mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2"> {{leaves.people}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef class="col-2"> Action </mat-header-cell>
-            <mat-cell *matCellDef="let leaves" class="col-2">
-              <a class="edit" data-toggle="modal" data-target="#editClientModal"(click)="editClient(leaves.id)">
-                <i class="material-icons" title="Edit">&#xE254;</i>
-              </a>
-              <a class="delete" data-toggle="confirmation" data-target="#addClientModal" (click)="deleteClient(leaves.id)">
-                <i class="material-icons" title="Delete">&#xE872;</i>
-              </a>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
-          <mat-row *matRowDef="let myRowData; columns: displayedCoulumns"></mat-row>
-
-        </mat-table>
-
-        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-        </mat-paginator>
-      </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <input type="submit" class="btn btn-info" value="Add" (click)="addClients()">
+        </div>
+      </form>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
-  <div id="addClientModal" class="modal fade" data-backdrop="false" style="position: absolute" data-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">
-            <h4 class="modal-title">Add Client</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editClientModal" class="modal fade" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Client</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col" *ngIf="isSucess">
+              <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                <strong>Record Updated</strong>
+              </div>
+            </div>
+            <div class="col" *ngIf="isError">
+              <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                <strong>{{message}}</strong>
+              </div>
+            </div>
           </div>
-          <div class="modal-body">
+          <!-- Client -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Client" class="full-width" [(ngModel)]="client" name="client">
+          </mat-form-field>
+          <br>
 
-            <!-- Client -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Client">
-            </mat-form-field>
-            <br>
+          <!-- Team/SubClient -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Team/Sub-Client" class="full-width" [(ngModel)]="subteam" name="subteam">
+          </mat-form-field>
+          <br>
 
-            <!-- Team/SubClient -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Team/Sub-Client">
-            </mat-form-field>
-            <br>
+          <!-- Domain -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Domain" [(ngModel)]="domain" class="full-width" name="domain">
+          </mat-form-field>
+          <br>
 
-            <!-- Domain -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Domain">
-            </mat-form-field>
-            <br>
+          <!-- People -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="People" [(ngModel)]="people" class="full-width" name="people">
+          </mat-form-field>
+          <br>
 
-            <!-- People -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="People">
-            </mat-form-field>
-            <br>
-
-            <!-- Location -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Location">
-            </mat-form-field>
-            <br>
-
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-success" value="Add">
-          </div>
-        </form>
-      </div>
+          <!-- Location -->
+          <mat-form-field class="input">
+            <input matInput #input placeholder="Location" [(ngModel)]="location" class="full-width" name="location">
+          </mat-form-field>
+          <br>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <input type="submit" class="btn btn-info" value="Update" (click)="updateClient()">
+        </div>
+      </form>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
-  <div id="editClientModal" class="modal fade" data-backdrop="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">
-            <h4 class="modal-title">Edit Client</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-
-            <!-- Client -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Client"[(ngModel)]="client" name="client">
-            </mat-form-field>
-            <br>
-
-            <!-- Team/SubClient -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Team/Sub-Client" [(ngModel)]="subteam" name="subteam">
-            </mat-form-field>
-            <br>
-
-            <!-- Domain -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Domain" [(ngModel)]="domain" name="domain">
-            </mat-form-field>
-            <br>
-
-            <!-- People -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="People" [(ngModel)]="people" name="people">
-            </mat-form-field>
-            <br>
-
-            <!-- Location -->
-            <mat-form-field class="input">
-              <input matInput #input placeholder="Location" [(ngModel)]="location" name="location">
-            </mat-form-field>
-            <br>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-info" value="Update" (click)="updateClient()">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+</div>
