@@ -9,7 +9,7 @@ import { RequestOptions } from '@angular/http';
 export class LeaveService {
 
   constructor(private http:HttpClient) {}
-  baseUrl="https://vmsapi.herokuapp.com/v1";
+  baseUrl="https://vms-api-new.herokuapp.com/v1";
 
   applyleaves(leaveType, desc, noOfdays, fromDate, toDate, status) {
     var data = '{ "leaveType" :  ' + leaveType + ', "description" : "' + desc + '",  "num_of_days" :  ' + noOfdays + ', "from_date" : "' + fromDate + '","to_date" : "' + toDate + '", "leave_status" : ' + status + '  }';

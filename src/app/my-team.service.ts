@@ -7,7 +7,7 @@ import { LeaveTrack } from './models/leaveTrack';
 
 @Injectable()
 export class MyTeamService {
-  private baseUrl = 'https://vmsapi.herokuapp.com/v1';
+  private baseUrl = 'https://vms-api-new.herokuapp.com/v1';
 
   constructor(private http: HttpClient) { }
 

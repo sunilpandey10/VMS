@@ -7,7 +7,7 @@ import { Dashboard } from './models/dashboard';
 
 @Injectable()
 export class UserService {
-  private baseUrl = 'https://vmsapi.herokuapp.com/v1/auth';
+  private baseUrl = 'https://vms-api-new.herokuapp.com/v1/auth';
   constructor(private http: HttpClient) { }
 
   getUser(): Observable<user[]> {

@@ -7,7 +7,7 @@ import { Profiles } from './models/profiles';
 
 @Injectable()
 export class AdmindashboardService {
-  baseUrl='https://vmsapi.herokuapp.com/v1';
+  baseUrl='https://vms-api-new.herokuapp.com/v1';
 
   constructor(private httpClient:HttpClient) { }
   getemployeesinAdminsec():Observable<AdminDetails>{

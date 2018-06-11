@@ -4,12 +4,14 @@ import { AdmindashboardService } from '../admindashboard.service';
 import { Profiles } from '../models/profiles';
 import { FancyImageUploaderOptions, UploadedFile } from 'ng2-fancy-image-uploader';
 import { getLocaleDateFormat } from '@angular/common';
+declare var $:any;
 
 @Component({
   selector: 'app-userprofile-component',
   templateUrl: './userprofile-component.component.html',
   styleUrls: ['./userprofile-component.component.css']
 })
+
 export class UserprofileComponentComponent implements OnInit {
 
   tools = new FormControl();
@@ -21,16 +23,21 @@ export class UserprofileComponentComponent implements OnInit {
   toolsList = ['Appium', 'RESTAssured', 'Selenium', 'Protractor', 'JMeter', 'Postman'];
   clientsList = ['GoJek', 'ThoughtWorks', 'Fabacus', 'BCG', 'In-House'];
 
-  constructor(private adminService:AdmindashboardService) { 
-   
+  constructor(private adminService:AdmindashboardService) { }
+
+openBrowse(){
+    $("#imageUpload").click();
+}
+fasterPreview(uploader) {
+  debugger;
+  if ( uploader.srcElement.files && uploader.srcElement.files[0] ){
+        $('#profileImage').attr('src',window.URL.createObjectURL(uploader.srcElement.files[0]) );
+        console.log(window.URL.createObjectURL(uploader.srcElement.files[0]));
   }
-  options: FancyImageUploaderOptions = {
-    thumbnailHeight: 150,
-    thumbnailWidth: 150,
-    uploadUrl: '/src/assets/Images/',
-    allowedImageTypes: ['image/png', 'image/jpeg','image/jpg'],
-    maxImageSize: 3
-};
+}
+changeBrowse(event){
+  this.fasterPreview(event);
+}
 
 onUpload(file: UploadedFile) {
 
@@ -41,5 +48,10 @@ onUpload(file: UploadedFile) {
     this.name=data.profiles.first_name;
     })
   }
-
 }
+
+
+
+$("#imageUpload").change(function(){
+  
+});

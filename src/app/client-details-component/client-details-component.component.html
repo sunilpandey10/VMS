@@ -59,6 +59,22 @@
           <a class="delete" (click)="deleteClient(clients.id)">
             <i class="material-icons" title="Delete">delete_outline</i>
           </a>
+          <!-- <ng-container matColumnDef="isActive">
+            <mat-header-cell *matHeaderCellDef class="col-2"> IsActive</mat-header-cell>
+            <mat-cell *matCellDef="let clients" class="col-2">
+              <a class="edit" *ngIf="clients.status !=0">
+                <i class="material-icons">
+                  done
+                </i>
+              </a>
+              <a class="delete" *ngIf="clients.status !=0">
+                <i class="material-icons">
+                  close
+                </i>
+              </a>
+            </mat-cell>
+          </ng-container> -->
+
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedCoulumns"></mat-header-row>
@@ -79,7 +95,7 @@
           <h4 class="modal-title">Add Client</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
-        <div class="modal-body">isPass
+        <div class="modal-body">
           <div class="row">
             <div class="col" *ngIf="isPass">
               <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">

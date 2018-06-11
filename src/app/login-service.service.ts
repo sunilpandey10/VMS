@@ -5,7 +5,7 @@ import { Headers } from '@angular/http'
 
 @Injectable()
 export class LoginServiceService {
-  baseUrl = "https://vmsapi.herokuapp.com/v1/auth";
+  baseUrl = "https://vms-api-new.herokuapp.com/v1/auth";
   constructor(private httpclient: HttpClient) { }
 
   userAuthentication(userName, password) {

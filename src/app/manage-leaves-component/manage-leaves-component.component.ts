@@ -25,7 +25,7 @@ export class ManageLeavesComponentComponent implements OnInit {
   updatecarryforward: any;
   getSingleRecord: any;
   id: any;
-  isPass:any;
+  isPass:boolean;
   error:any;
   message:any;
   isSuccess:any;

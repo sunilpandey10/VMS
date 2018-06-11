@@ -11,11 +11,14 @@
       <!-- Upload Image -->
       <div class="col-3">
         <br>
-        <fancy-image-uploader [options]="options" (onUpload)="onUpload($event)" class="img-circle example-container mat-elevation-z8"></fancy-image-uploader>
+        <div id="profile-container">
+            <img id="profileImage" class="mat-elevation-z8" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"(click)="openBrowse()" >
+            <div class="pic-overlay">
+                <a><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
+          </div>
+         <input id="imageUpload" type="file"name="profile_photo" placeholder="Photo" required="" capture (change)="changeBrowse($event)">
         <!-- <img class="img-circle example-container mat-elevation-z8" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
           width="200"> -->
-        <br><br>
-        <button type="button" class="btn btn-info ">Update Info</button>
       </div>
 
       <!-- Update Info -->
@@ -160,8 +163,11 @@
         <br>
         <br>
         <br>
-
+       
       </div>
+    </div>
+    <div class="row"  style="text-align:center;">
+        <button type="button" class="btn btn-info" style="display: block; margin: 0 auto;">Update Info</button>
     </div>
   </div>
 </div>

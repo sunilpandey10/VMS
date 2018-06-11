@@ -111,10 +111,13 @@ export class ClientDetailsComponentComponent implements OnInit {
     });
   }
   getClients() {
+    
     this.clientService.getClient().subscribe(data => {
       if (!data) {
         return;
       }
+      debugger;
+      console.log(data)
       this.sortedData = data['clients'];
       this.dataSource = data['clients'];
       this.dataSource.paginator = this.paginator;
