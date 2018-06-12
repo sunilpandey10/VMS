@@ -29,7 +29,7 @@ export class UserprofileComponentComponent implements OnInit {
 // };
 
 
-  //tools = new FormControl();
+  tools = new FormControl();
   clients = new FormControl();
 
   dataProfile: any;
