@@ -43,6 +43,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leaveType: any;
   flag: any;
   msgs: any;
+  successUpdated:any;
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
 
@@ -100,10 +101,8 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.leave = this.dataSource.filteredData.find(x => x.id == id).leave_type;
     this.id = this.dataSource.filteredData.find(x => x.id == id).id;
     this.selected = this.dataSource.filteredData.find(x => x.id == id).num_of_days;
-
   }
-  clickUpdate() {
-
+  clickSubmit() {
     this.success = false;
     this.status = 1;
     this.leavetype = toInteger(Leaves[this.leave]);
@@ -120,11 +119,11 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       } else {
         this.errormessage = err.error.message;
       }
-      this.error = true;
       this.setTimeOutF('#applyleaveModal .close');
       this.getLeaves();
     });
   }
+  
   getChangeDate(dateTobeChange) {
     this.datetobeinFormat = new Date(dateTobeChange);
     this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + (this.datetobeinFormat.getMonth() + 1);
@@ -169,8 +168,40 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       });
     }, 1000);
   }
-
- public getLeaves() {
+  clickUpdate(){
+    debugger;
+    this.status = 0;
+    this.flag='';
+    this.error=false;
+    var stDate=this.startDate;
+    var eDate=this.endDate;
+    
+    this.leaveService.updateapplyleaves(Leaves[this.leave], this.description, this.selected, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status,this.id).subscribe(data => {
+      this.successUpdated = true;
+      this.getLeaves();
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+           
+        });
+    }, 1000);
+  
+    },(err: any) => {
+      this.error=true;
+      if(!err.error.message){
+        this.errormessage=err.message;
+      } else {
+      this.errormessage = err.error.message;
+      }
+      this.error=true;
+      window.setTimeout(function() {
+        $(".alert").fadeTo(600, 0).slideUp(600, function(){
+            $(this).remove(); 
+        });
+    }, 1000);
+    });
+  }
+  getLeaves() {
     this.leaveService.getLeaves().subscribe((results: any) => {
       if (!results) {
         return;

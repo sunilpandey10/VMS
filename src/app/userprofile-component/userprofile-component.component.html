@@ -1,22 +1,30 @@
 <div class="row">
-  <div class="col"><h3>My Profile</h3></div>
+  <div class="col">
+    <h3>My Profile</h3>
+  </div>
   <!-- <div class="col"><button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button></div> -->
 </div>
 <!-- <button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button> -->
-<br><br>
+<br>
+<br>
 
 <div class="panel panel-default mat-elevation-z8">
   <div class="panel-body">
-    <div class="row" *ngFor="let profile of dataProfile">
+    <div class="row">
       <!-- Upload Image -->
       <div class="col-3">
         <br>
+        <!-- <fancy-image-uploader [options]="options" (onUpload)="onUpload($event)"></fancy-image-uploader> -->
         <div id="profile-container">
-            <img id="profileImage" class="mat-elevation-z8" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"(click)="openBrowse()" >
-            <div class="pic-overlay">
-                <a><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
+          <img id="profileImage" class="mat-elevation-z8" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+            (click)="openBrowse()">
+          <div class="pic-overlay">
+            <a>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
           </div>
-         <input id="imageUpload" type="file"name="profile_photo" placeholder="Photo" required="" capture (change)="changeBrowse($event)">
+        </div>
+        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture (change)="changeBrowse($event)">
         <!-- <img class="img-circle example-container mat-elevation-z8" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
           width="200"> -->
       </div>
@@ -26,71 +34,80 @@
 
         <!-- Username -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Username" [(ngModel)]="profile.first_name">
+          <input matInput #input placeholder="Username" [(ngModel)]="username" name="username">
         </mat-form-field>
-        <br>
 
-        <!-- Designation -->
+        <!--Gender-->
         <mat-form-field class="input">
-          <mat-select placeholder="Designation" [(ngModel)]="profile.designation" selected="profile.designation">
-            <mat-option value="option1">SDET</mat-option>
-            <mat-option value="option2">Sr SDET</mat-option>
-            <mat-option value="option2">Lead</mat-option>
+          <mat-select placeholder="Gender" [(value)]="gender" name="gender" >
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Others">Others</mat-option>
           </mat-select>
         </mat-form-field>
-        <br>
+        <!-- Designation -->
+        <mat-form-field class="input">
+          <mat-select placeholder="Designation" [(value)]="desing" name="desing">
+            <mat-option value="SDET">SDET</mat-option>
+            <mat-option value="Sr SDET">Sr SDET</mat-option>
+            <mat-option value="Lead">Lead</mat-option>
+          </mat-select>
+        </mat-form-field>
+
 
         <!-- Experience -->
         <mat-form-field class="input1">
-          <mat-select placeholder="Years">
-            <mat-option value="option1">1</mat-option>
-            <mat-option value="option2">2</mat-option>
-            <mat-option value="option2">3</mat-option>
-            <mat-option value="option1">4</mat-option>
-            <mat-option value="option2">5</mat-option>
-            <mat-option value="option2">6</mat-option>
-            <mat-option value="option1">7</mat-option>
-            <mat-option value="option2">8</mat-option>
-            <mat-option value="option2">9</mat-option>
-            <mat-option value="option1">10</mat-option>
-            <mat-option value="option2">11</mat-option>
-            <mat-option value="option2">12</mat-option>
-            <mat-option value="option1">13</mat-option>
-            <mat-option value="option2">14</mat-option>
-            <mat-option value="option2">15</mat-option>
-            <mat-option value="option1">16</mat-option>
-            <mat-option value="option2">17</mat-option>
-            <mat-option value="option2">18</mat-option>
-            <mat-option value="option1">19</mat-option>
-            <mat-option value="option2">20</mat-option>
+          <mat-select placeholder="Exp Years" [(value)]="expyear" name="expyear">
+            <mat-option value="0">0</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+            <mat-option value="7">7</mat-option>
+            <mat-option value="8">8</mat-option>
+            <mat-option value="9">9</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="11">11</mat-option>
+            <mat-option value="12">12</mat-option>
+            <mat-option value="13">13</mat-option>
+            <mat-option value="14">14</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="16">16</mat-option>
+            <mat-option value="17">17</mat-option>
+            <mat-option value="18">18</mat-option>
+            <mat-option value="19">19</mat-option>
+            <mat-option value="20">20</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="input1">
-          <mat-select placeholder="Months">
-            <mat-option value="option1">1</mat-option>
-            <mat-option value="option2">2</mat-option>
-            <mat-option value="option2">3</mat-option>
-            <mat-option value="option1">4</mat-option>
-            <mat-option value="option2">5</mat-option>
-            <mat-option value="option2">6</mat-option>
-            <mat-option value="option1">7</mat-option>
-            <mat-option value="option2">8</mat-option>
-            <mat-option value="option2">9</mat-option>
-            <mat-option value="option1">10</mat-option>
-            <mat-option value="option2">11</mat-option>
-            <mat-option value="option2">12</mat-option>
+          <mat-select placeholder="Months" [(value)]="expmonth" name="expmonth">
+            <mat-option value="0">0</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+            <mat-option value="7">7</mat-option>
+            <mat-option value="8">8</mat-option>
+            <mat-option value="9">9</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="11">11</mat-option>
+            <mat-option value="12">12</mat-option>
           </mat-select>
         </mat-form-field>
-        <br>
+
 
         <!-- Data of Joining -->
         <mat-form-field class="input">
-          <input matInput [matDatepicker]="picker" placeholder="Date Of Joining">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput [matDatepicker]="joinedPicker" placeholder="Date Of Joining" [(ngModel)]="joiningdate" name="joiningdate">
+          <mat-datepicker-toggle matSuffix [for]="joinedPicker"></mat-datepicker-toggle>
+          <mat-datepicker #joinedPicker></mat-datepicker>
         </mat-form-field>
-        <br>
+
 
         <!-- Tools -->
         <mat-form-field class="input">
@@ -98,7 +115,17 @@
             <mat-option *ngFor="let tools of toolsList" [value]="tools">{{tools}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <br>
+
+        <!-- <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field> -->
+        <!-- <button mat-raised-button (click)="openDialog()">Add Skills</button> -->
+
 
         <!-- Tools -->
         <mat-form-field class="input">
@@ -106,13 +133,13 @@
             <mat-option *ngFor="let clients of clientsList" [value]="clients">{{clients}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <br>
+
 
         <!-- Location -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Location" [(ngModel)]="profile.location">
+          <input matInput #input placeholder="Client Location" [(ngModel)]="location" name="location">
         </mat-form-field>
-        <br>
+
 
       </div>
 
@@ -120,55 +147,59 @@
 
         <!-- DOB -->
         <mat-form-field class="input">
-          <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth" selected="profile.dob">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
+          <input matInput [matDatepicker]="dobPicker" placeholder="Date Of Birth" [(ngModel)]="dob" name="dob">
+          <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobPicker></mat-datepicker>
         </mat-form-field>
-        <br>
 
-        <!-- Currently Living In -->
-        <mat-form-field class="input">
-          <input matInput #input placeholder="Currently Living In" [(ngModel)]="profile.location">
-        </mat-form-field>
-        <br>
 
         <!-- HomeTown -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="HomeTown" [(ngModel)]="profile.location">
+          <input matInput #input placeholder="HomeTown" [(ngModel)]="hometown" name="hometown">
         </mat-form-field>
-        <br>
+
 
         <!-- Mobile -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Mobile" [(ngModel)]="profile.mobile">
+          <input matInput #input placeholder="Mobile" [(ngModel)]="mobile" name="mobile">
         </mat-form-field>
-        <br>
+
+        <!--  email -->
+        <mat-form-field class="input">
+          <input matInput #input placeholder="Email" [(ngModel)]="email" name="email">
+        </mat-form-field>
+
+
+        <!--  slack UserName -->
+        <mat-form-field class="input">
+          <input matInput #input placeholder="Slack UserName" [(ngModel)]="slack" name="slack">
+        </mat-form-field>
+
 
         <!-- Linkedin Profile Link -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Linkedin Profile Link" [(ngModel)]="profile.linked_in">
+          <input matInput #input placeholder="Linkedin Profile Link" [(ngModel)]="linkedin" name="linkedin">
         </mat-form-field>
-        <br>
+
 
         <!-- Github -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="Github Username" [(ngModel)]="profile.github">
+          <input matInput #input placeholder="Github Username" [(ngModel)]="github" name="github">
         </mat-form-field>
-        <br>
+
 
         <!-- BitBucket -->
         <mat-form-field class="input">
-          <input matInput #input placeholder="BitBucket Username" [(ngModel)]="profile.github">
+          <input matInput #input placeholder="BitBucket Username" [(ngModel)]="github" name="github">
         </mat-form-field>
         <br>
         <br>
         <br>
-       
+
       </div>
     </div>
-    <div class="row"  style="text-align:center;">
-        <button type="button" class="btn btn-info" style="display: block; margin: 0 auto;">Update Info</button>
+    <div class="row" style="text-align:center;">
+      <button type="button" class="btn btn-info" style="display: block; margin: 0 auto;" (click)="updateProfile()">Update Info</button>
     </div>
   </div>
 </div>
-

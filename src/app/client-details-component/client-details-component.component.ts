@@ -125,9 +125,11 @@ export class ClientDetailsComponentComponent implements OnInit {
     });
   }
   valuechange(name: any) {
+    debugger;
     if (name.length > 0) {
-      this.dataSource = new MatTableDataSource(this.sortedData.filter(data => (data.team.toLowerCase().indexOf(name.toLowerCase()) === 0) || data.people.toLowerCase().indexOf(name.toLowerCase()) === 0));
-      
+      this.dataSource = new MatTableDataSource(this.sortedData.filter(data => 
+        (data.team.toLowerCase().indexOf(name.toLowerCase()) === 0) ||
+        data.people.toLowerCase().indexOf(name.toLowerCase()) === 0));  
     }
     else {
       this.dataSource = new MatTableDataSource(this.sortedData);

@@ -50,5 +50,6 @@ export class UserService {
     return this.http.post(this.baseUrl + "/reset/password", data, { headers: reqHeader });
   }
 
+  
 
 }

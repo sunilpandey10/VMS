@@ -18,8 +18,7 @@ declare var $: any;
   styleUrls: ['./navbar-component.component.css']
 })
 export class NavbarComponentComponent implements OnInit {
-  public text: boolean = false;
-
+  text: any = true;
   fullImagePath: string;
   dashboard = [];
   userName: string;
@@ -36,10 +35,11 @@ export class NavbarComponentComponent implements OnInit {
     private Route: Router,
     private leaveService: LeaveService
   ) {
-  this.fullImagePath = '../../assets/Images/Untitled.png'
+    this.fullImagePath = '../../assets/Images/Untitled.png'
     this.adminService.getProfile().subscribe((data: Profiles) => {
       this.dataProfile = data.profiles[0];
-      this.name = data.profiles[0].first_name;
+      debugger;
+      this.name = data.profiles[0].username;
     });
   }
 
@@ -47,13 +47,14 @@ export class NavbarComponentComponent implements OnInit {
   ngOnInit() {
     this.userService.dashboard().subscribe((data: Dashboard) => {
       this.dashboard = data.dashboard;
+      if (this.route.url == "home/dashboard") {
+        this.text = true;
+      }
+      else {
+        this.text = false;
+      }
     });
-    if (this.Route.url == '/home/dashboard') {
-      this.text = true;
-    }
-    else {
-      this.text = false;
-    }
+
 
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');

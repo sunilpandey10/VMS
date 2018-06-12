@@ -81,6 +81,11 @@
                 <strong>Success!</strong> Your Leave is Successfully Submitted.
               </div>
             </div>
+            <div class="col" *ngIf="successUpdated">
+                <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                  <strong>Success!</strong> Your Leave is Successfully Updated.
+                </div>
+              </div>
             <div class="col" *ngIf="error">
               <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
                 <strong>{{errormessage}}</strong>
@@ -148,7 +153,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" (click)="clickUpdate()">Save</button>
+            <button type="button" class="btn btn-info" (click)="clickUpdate()">Update</button>
+          <button type="button" class="btn btn-info" (click)="clickSubmit()">Submit</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

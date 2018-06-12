@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 py-2 ">
-                <div class="card text-white bg-info h-100 mat-elevation-z8" style="cursor: pointer;"(click)="getSkillsmanage()">
+                <div class="card text-white bg-info h-100 mat-elevation-z8" style="cursor: pointer;" (click)="getSkillsmanage()">
                     <div class="card-body bg-info">
                         <div class="rotate">
                             <i class="glyphicon glyphicon-cog fa-4x"></i>
@@ -54,17 +54,17 @@
 
 <h2 class="display-4 d-sm-block">Leave Manage</h2>
 <div class="row">
-<div class="col-3">
+    <div class="col-3">
 
-</div>
-<div class="col-6">
+    </div>
+    <div class="col-6">
         <mat-form-field class=" searchBox full-width">
-          <input matInput placeholder="Search Employee based On Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
+            <input matInput placeholder="Search Employee based On Name" [(ngModel)]="searchModel" (ngModelChange)="valuechange($event)">
         </mat-form-field>
-      </div>
-      <div class="col-3">
+    </div>
+    <div class="col-3">
 
-        </div>
+    </div>
 </div>
 
 <div class="example-container mat-elevation-z8">
@@ -118,46 +118,46 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                    <div class="row">
-                            <div class="col" *ngIf="isError">
-                                <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
-                                  <strong>{{message}}</strong> 
-                                </div>
-                              </div>
+                <div class="row">
+                    <div class="col" *ngIf="isError">
+                        <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
+                            <strong>{{message}}</strong>
                         </div>
-                        <div class="row">
-                            <div class="col" *ngIf="rejectScucess">
-                                <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
-                                  <strong>Leave Rejected Sucessfully</strong> Employee will notify soon.
-                                </div>
-                              </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" *ngIf="rejectScucess">
+                        <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
+                            <strong>Leave Rejected Sucessfully</strong> Employee will notify soon.
                         </div>
+                    </div>
+                </div>
                 <div class="form-group form">
                     <div class="media">
                         <img aria-expanded="true" aria-haspopup="true" class="align-self-center mr-3 img-circle mat-elevation-z8" data-toggle="dropdown"
                             height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
                             width="200">
-                        <div class="media-body"style="padding-left: 60px;"> 
+                        <div class="media-body" style="padding-left: 60px;">
 
-                                <div class="card mat-elevation-z8 rad" style="width: 25rem;">
-                                        <div class="card-body">
-                                          <h3 class="card-title" align="center">{{name}}</h3>
-                                 
-                                          <p class="card-text">Total Annual Leave : {{totalVacation}}</p>
-                                          <p class="card-text">Annual Leave Taken : {{takenVacation}} </p>
-                                          <p class="card-text">Remaining Annual Leave :{{totalVacation - takenVacation}} </p>
-                                          <p class="card-text">Sick Leave : {{sickLeave}} </p>
-                                          <p></p>
-                                        
-                                        </div>
-                                      </div>
+                            <div class="card mat-elevation-z8 rad" style="width: 25rem;">
+                                <div class="card-body">
+                                    <h3 class="card-title" align="center">{{name}}</h3>
+
+                                    <p class="card-text">Total Annual Leave : {{totalVacation}}</p>
+                                    <p class="card-text">Annual Leave Taken : {{takenVacation}} </p>
+                                    <p class="card-text">Remaining Annual Leave :{{totalVacation - takenVacation}} </p>
+                                    <p class="card-text">Sick Leave : {{sickLeave}} </p>
+                                    <p></p>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <br>
                     <div class="mat-elevation-z8">
                         <mat-table #table [dataSource]="empdataSource" matSort>
-                            
+
                             <ng-container matColumnDef="leavetype">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type</mat-header-cell>
                                 <mat-cell *matCellDef="let leaves"> {{leaves.leave_type}} </mat-cell>
@@ -187,8 +187,9 @@
                                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                                 <mat-cell *matCellDef="let leaves">
                                     <a class="edit" (click)="getSingleEmployee(leaves.id)" *ngIf="leaves.leave_status==2">
-                                        <i class="material-icons color" data-toggle="tooltip" title="Rejected">remove_circle_outline</i></a>
-                                    <a class="delete" (click)="disableEmployee(leaves.id)" *ngIf="leaves.leave_status!=2"> 
+                                        <i class="material-icons color" data-toggle="tooltip" title="Rejected">remove_circle_outline</i>
+                                    </a>
+                                    <a class="delete" (click)="disableEmployee(leaves.id)" *ngIf="leaves.leave_status!=2">
                                         <i class="material-icons " title="Reject">delete_outline</i>
                                     </a>
                                 </mat-cell>
@@ -198,8 +199,8 @@
                         </mat-table>
                     </div>
                     <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-                        </mat-paginator>
-                    
+                    </mat-paginator>
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -209,9 +210,5 @@
             </div>
         </div>
 
-        
+
     </div>
-
-
-
-    
