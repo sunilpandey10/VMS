@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AdmindashboardService } from '../admindashboard.service';
 import { Profiles } from '../models/profiles';
-import { FancyImageUploaderOptions, UploadedFile } from 'ng2-fancy-image-uploader';
-import { getLocaleDateFormat } from '@angular/common';
-import { FileUploadModule } from 'primeng/primeng';
 import { Observable } from 'indefinite-observable';
-// import { startWith } from 'rxjs/operator/startWith';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
+import { MyTeamService } from '../my-team.service';
+import { SkillsEnum } from '../models/skillsmodal';
 
 
 declare var $: any;
@@ -20,14 +18,6 @@ declare var $: any;
 })
 
 export class UserprofileComponentComponent implements OnInit {
-//   options: FancyImageUploaderOptions = {
-//     thumbnailHeight: 150,
-//     thumbnailWidth: 150,
-//     uploadUrl: '../../assets/Images',
-//     allowedImageTypes: ['image/png', 'image/jpeg'],
-//     maxImageSize: 3
-// };
-
 
   tools = new FormControl();
   clients = new FormControl();
@@ -48,27 +38,30 @@ export class UserprofileComponentComponent implements OnInit {
   mobile: any;
   email: any;
   hometown: any;
-  imageurl:any;
-  expmonth:any;
-  gender:any;
-  slack:any;
-  datetobeinFormat:any;
-  month:any;
-  // filteredOptions:any;
- 
-  toolsList=['Appium', 'RESTAssured', 'Selenium', 'Protractor', 'JMeter', 'Postman'];
+  imageurl: any;
+  expmonth: any;
+  gender: any;
+  slack: any;
+  datetobeinFormat: any;
+  month: any;
+  skillsSet:string='';
+  // skillsSet = [];
+
+
+  toolsList = [];
 
   options = ['Appium', 'RESTAssured', 'Selenium', 'Protractor', 'JMeter', 'Postman'];
-  
+
   clientsList = ['GoJek', 'ThoughtWorks', 'Fabacus', 'BCG', 'In-House'];
 
-  constructor(private adminService: AdmindashboardService) { }
+  constructor(private adminService: AdmindashboardService,
+    private teamServices: MyTeamService) { }
   filteredOptions: Observable<string[]>;
-
+ 
   myControl: FormControl = new FormControl();
-  filtered(){
+  filtered() {
     this.filteredOptions = this.myControl.valueChanges
-      .pipe(startWith(''),map(val => this.filter(val))
+      .pipe(startWith(''), map(val => this.filter(val))
       );
   }
   filter(val: string): string[] {
@@ -81,50 +74,54 @@ export class UserprofileComponentComponent implements OnInit {
   fasterPreview(uploader) {
     if (uploader.srcElement.files && uploader.srcElement.files[0]) {
       $('#profileImage').attr('src', window.URL.createObjectURL(uploader.srcElement.files[0]));
-      console.log(window.URL.createObjectURL(uploader.srcElement.files[0]));
     }
   }
   changeBrowse(event) {
     this.fasterPreview(event);
   }
 
-  onUpload(file: UploadedFile) {
-    console.log(file.response);
-  }
   updateProfile() {
-    debugger;
-    this.adminService.updateProfile(this.username,this.desing,this.expyear,this.expmonth,this.gender,this.toolsList,this.clientsList,
-      this.location,this.location,this.mobile,
-      this.imageurl,this.linkedin,this.github,this.slack,this.getChangeDate(this.dob),this.bitbucket).subscribe(data => {
-
+    this.tools.value.forEach(element => {
+    this.skillsSet =  this.skillsSet + "{\"id\" :"+SkillsEnum[element]+"},";
+    })
+   var toolsframework= "[" + this.skillsSet.toString().substring(0,  this.skillsSet .length -1)+ "]";
+    this.adminService.updateProfile(this.username, this.desing, this.expyear, this.expmonth, this.gender, toolsframework, this.clientsList,
+      this.location, this.location, this.mobile,
+      this.imageurl, this.linkedin, this.github, this.slack, this.getChangeDate(this.dob), this.bitbucket).subscribe(data => {
+      })
+  }
+  getSkils() {
+    this.teamServices.getSkills().subscribe((data: any) => {
+      data.forEach(element => {
+        this.toolsList.push(element.name);
+      });
     })
   }
   getChangeDate(dateTobeChange) {
-    debugger;
     this.datetobeinFormat = new Date(dateTobeChange);
     this.month = (this.datetobeinFormat.getMonth() < 10 ? '0' : '') + (this.datetobeinFormat.getMonth() + 1);
-    return this.datetobeinFormat = this.month+"/"+this.datetobeinFormat.getDate() +"/"+this.datetobeinFormat.getFullYear();
+    return this.datetobeinFormat = this.datetobeinFormat.getFullYear()+ "-" + this.month + "-" + this.datetobeinFormat.getDate();
   }
   ngOnInit() {
-   this.getProfile();
-   this.filtered();
+    this.getProfile();
+    this.filtered();
+    this.getSkils();
   }
   getProfile() {
     this.adminService.getProfile().subscribe((data: Profiles) => {
       if (!data) {
         return;
-      }
-      debugger;
+      }debugger;
       this.dataProfile = data.profiles[0];
       this.username = this.dataProfile.username;
       this.email = this.dataProfile.email;
       this.dob = new Date(this.dataProfile.dob);
-      this.gender=this.dataProfile.gender;
-      this.hometown=this.dataProfile.address;
-      this.slack=this.dataProfile.slack;
+      this.gender = this.dataProfile.gender;
+      this.hometown = this.dataProfile.address;
+      this.slack = this.dataProfile.slack;
       this.desing = this.dataProfile.designation;
       this.expyear = this.dataProfile.exp_years;
-      this.expmonth=this.dataProfile.exp_months;
+      this.expmonth = this.dataProfile.exp_months;
       this.id = this.dataProfile.emp_id;
       this.joiningdate = new Date(this.dataProfile.joining_date);
       this.location = this.dataProfile.location;
@@ -132,7 +129,8 @@ export class UserprofileComponentComponent implements OnInit {
       this.bitbucket = this.dataProfile.bit_bucket;
       this.linkedin = this.dataProfile.linked_in;
       this.mobile = this.dataProfile.mobile;
-      this.imageurl = this.dataProfile.image_url;
+      this.imageurl = this.dataProfile.image_url; 
+      // this.tools = this.dataProfile.skills;
     })
   }
 

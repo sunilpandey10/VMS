@@ -17,6 +17,10 @@ export class HomeComponentComponent implements OnInit {
   totalLeave: number;
   sickLeave: any;
   data: any;
+  totalLabel:any;
+  usedLeave:any;
+  remainingLabel:any;
+
 
   public datafor: number[];
   public pieChartLabels: string[] = ['Annual Leave', 'Sick Leave'];
@@ -28,57 +32,59 @@ export class HomeComponentComponent implements OnInit {
   pageTitle: string;
 
   constructor(private myTeamService: MyTeamService) {
-    var x;
-    debugger;
-    this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
+   
+    this. getTrackLeaves();
+    this.data = {
+      labels: [this.totalLabel, this.usedLeave, this.remainingLabel],
+      datasets: [
+        {
+
+          data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1]))],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#BA55D3"
+          ],
+          hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#BA55D3"
+          ]
+        }]
+    };
+  
+    }
+  
+    getTrackLeaves(){
+      debugger;
+      var x;
+      this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
       this.anuualLeave = data.track[0].total_annual_leaves_taken;
       this.totalLeave = data.track[0].total_annual_leaves;
       this.sickLeave = data.track[0].total_sick_leaves;
       x = this.totalLeave + "," + this.anuualLeave + "," + this.sickLeave;
-      console.log(x);
-      this.datafor = x;
 
-      if (sessionStorage.getItem('val') != null) {
-        sessionStorage.removeItem('val');
-      }
       sessionStorage.setItem('val', x);
     });
-
-    if (sessionStorage.getItem('val') != null) {
+      // this.trackLeave[0]='';
+      // this.trackLeave[1]='';
       this.trackLeave = sessionStorage.getItem('val').split(",");
+      sessionStorage.removeItem('val');
 
-      var totalLabel = 'Total ' + this.trackLeave[0];
-      var usedLeave = 'Used ' + this.trackLeave[1];
+      this.totalLabel = 'Total ' + this.trackLeave[0];
+      this.usedLeave = 'Used ' + this.trackLeave[1];
       var sub = (Number(this.trackLeave[0]) - Number(this.trackLeave[1]));
-      var remainingLabel = 'Remaining ' + sub;
-  
-      this.data = {
-        labels: [totalLabel, usedLeave, remainingLabel],
-        datasets: [
-          {
+      this.remainingLabel = 'Remaining ' + sub;
 
-            data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1]))],
-            backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#BA55D3"
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#BA55D3"
-            ]
-          }]
-      };
     }
-  }
 
 
   ngOnInit() {
 
     this.pageTitle = "My Dashboard";
+   // this.getTrackLeaves();
 
   }
   getResponse(): any {

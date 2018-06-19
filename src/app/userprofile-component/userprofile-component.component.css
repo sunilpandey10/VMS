@@ -74,4 +74,31 @@ img:hover {
 }
 
 
-  
+
+i.rollover {
+	opacity: 1;
+	-o-transition-duration: 1s;
+	transition-duration: 1s;
+	transition: -webkit-transform 1s;
+	cursor: pointer;
+	height: 346px;
+	width: 347px;
+	position: absolute;
+	z-index: 10;
+	opacity: 0;
+}
+i.rollover:hover {
+	opacity: .7;
+	transition-duration: 1s;
+	-moz-transition-duration: 1s;
+	transition: -webkit-transform 1s;
+	-webkit-box-shadow: 0px 0px 4px #000;
+	-moz-box-shadow: 0px 0px 4px #000;
+	box-shadow: 0px 0px 4px #000;
+}
+
+.imgCenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

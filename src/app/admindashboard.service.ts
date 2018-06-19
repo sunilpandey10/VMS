@@ -24,7 +24,8 @@ export class AdmindashboardService {
     return this.httpClient.get<Profiles>(this.baseUrl+"/profile",{ headers: reqHeader });
   } 
   updateProfile(username,designation,exp_years,exp_months,gender,skills,client,location,address,mobile,image_url,linked_in,github,slack,dob,bigbucket){
-    var data = '{ "username":"' + username + '","designation":"' + designation + '","exp_years":"' + exp_years + '","exp_months":"' + exp_months + '","gender":"' + gender + '","skills":"' + skills + '","client":"' + client + '","location":"' + location + '","address":"' + address + '","mobile":"' + mobile + '","image_url":"' + image_url + '","linked_in":"' + linked_in + '","github":"' + github + '","slack":"' + slack + '","dob":"' + dob + '","bit_bucket":"' + bigbucket + '"}';
+    debugger;
+    var data = '{ "username":"' + username + '","designation":"' + designation + '","exp_years":"' + exp_years + '","exp_months":"' + exp_months + '","gender":"' + gender + '","skills":' + skills + ',"client":"' + client + '","location":"' + location + '","address":"' + address + '","mobile":"' + mobile + '","image_url":"' + image_url + '","linked_in":"' + linked_in + '","github":"' + github + '","slack":"' + slack + '","dob":"' + dob + '","bit_bucket":"' + bigbucket + '"}';
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.put(this.baseUrl + "/profile" , data, { headers: reqHeader });
   }

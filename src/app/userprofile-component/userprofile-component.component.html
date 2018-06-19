@@ -2,9 +2,7 @@
   <div class="col">
     <h3>My Profile</h3>
   </div>
-  <!-- <div class="col"><button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button></div> -->
 </div>
-<!-- <button type="button" data-toggle="modal" data-target="#pwdChgModal" class="btn btn-info" style="float: right;">Change Password</button> -->
 <br>
 <br>
 
@@ -12,25 +10,19 @@
   <div class="panel-body">
     <div class="row">
       <!-- Upload Image -->
-      <div class="col-3">
+      <div class="col-sm-12 col-lg-3">
         <br>
-        <!-- <fancy-image-uploader [options]="options" (onUpload)="onUpload($event)"></fancy-image-uploader> -->
-        <div id="profile-container">
-          <img id="profileImage" class="mat-elevation-z8" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
-            (click)="openBrowse()">
-          <div class="pic-overlay">
-            <a>
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture (change)="changeBrowse($event)">
-        <!-- <img class="img-circle example-container mat-elevation-z8" height="200" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
-          width="200"> -->
+        <a class="image">
+          <img id="profileImage" class="img-circle mat-elevation-z8 imgCenter" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+            (click)="openBrowse()"  height="160" width="160">
+        </a>
+        <!-- <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture (change)="changeBrowse($event)"> -->
+        <!-- <img class="img-circle example-container mat-elevation-z8" height="160" src="//www.gravatar.com/avatar/c229601ebaf31dc8f558c5e673803f8a/?default=&amp;s=120"
+          width="160" (click)="openBrowse()"> -->
       </div>
 
       <!-- Update Info -->
-      <div class="col-4">
+      <div class="col-sm-12 col-lg-4">
 
         <!-- Username -->
         <mat-form-field class="input">
@@ -39,7 +31,7 @@
 
         <!--Gender-->
         <mat-form-field class="input">
-          <mat-select placeholder="Gender" [(value)]="gender" name="gender" >
+          <mat-select placeholder="Gender" [(value)]="gender" name="gender">
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Female">Female</mat-option>
             <mat-option value="Others">Others</mat-option>
@@ -108,24 +100,12 @@
           <mat-datepicker #joinedPicker></mat-datepicker>
         </mat-form-field>
 
-
         <!-- Tools -->
         <mat-form-field class="input">
           <mat-select placeholder="Tools" [formControl]="tools" multiple>
             <mat-option *ngFor="let tools of toolsList" [value]="tools">{{tools}}</mat-option>
           </mat-select>
         </mat-form-field>
-
-        <!-- <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{ option }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field> -->
-        <!-- <button mat-raised-button (click)="openDialog()">Add Skills</button> -->
-
 
         <!-- Tools -->
         <mat-form-field class="input">
@@ -143,7 +123,7 @@
 
       </div>
 
-      <div class="col-4">
+      <div class="col-sm-12 col-lg-4">
 
         <!-- DOB -->
         <mat-form-field class="input">

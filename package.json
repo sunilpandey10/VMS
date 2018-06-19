@@ -55,6 +55,7 @@
     "primeicons": "^1.0.0-beta.6",
     "primeng": "^6.0.0-alpha.1",
     "rxjs": "^5.5.10",
+    "stringbuilder": "0.0.11",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

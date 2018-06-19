@@ -33,4 +33,9 @@ export class MyTeamService {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get(this.baseUrl + "/auth/count/dashboard", { headers: reqHeader });
   }
+
+  getSkills(){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.baseUrl + '/skills', { headers: reqHeader });
+  }
 }
