@@ -1,5 +1,5 @@
 <h3>My Leaves</h3>
-<div class="example-container mat-elevation-z8">
+<div class="example-container mat-elevation-z8 d-none d-md-block">
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="leave_type">
@@ -160,99 +160,21 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!--New popup-->
-
-<!-- 
-  <div class="modal fade" id="leaveapplyModal" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">
-            Submit Leave
-          </h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <!--Mobile View-->
+<div class="row example-container d-lg-none d-md-none" >
+<div class="col-sm-12 " style="border-radius: 7px;" *ngFor="let leaves of mobileDataSource">
+    <div class="card-body mat-elevation-z8 newStyle">
+           <h5 class="card-title">   
+               <strong style="text-align: center">{{leaves.leave_type}} Leave</strong>
+            </h5>
+        <p class="card-text" >From Date : {{leaves.from_date | date}}  </p>
+        <p class="card-text">To Date : {{leaves.to_date | date}}  </p>
+        <p class="card-text">Applied Days : {{leaves.num_of_days}} </p>
+        <div style="display: block">
         </div>
-        <div class="modal-body">
-          <div class="form-group form">
-            <div class="row">
-              <div class="col" *ngIf="success">
-                <div class="alert alert-success myAlert-top" style="padding-left: 34px !important;">
-                  <strong>Success!</strong> Your Leave is Successfully Submitted.
-                </div>
-              </div>
-              <div class="col" *ngIf="error">
-                <div class="alert alert-danger myAlert-top" style="padding-left: 34px !important;">
-                  <strong>{{errormessage}}</strong>
-                </div>
-              </div>
-            </div>
-              <div class="row">
-                <div class="col">
-                  <mat-form-field class="full-width">
-                    <mat-select placeholder="Leave Type" [(ngModel)]="leave">
-                      <mat-option *ngFor="let leaves of leavesTypeDatasource" [value]="leaves.leave_type">
-                        {{leaves.leave_type}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <mat-form-field class="full-width">
-                    <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
-                  </mat-form-field>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col">
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker1" placeholder="Start Date" [(ngModel)]="from_date">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker2" placeholder="End date" [(ngModel)]="to_date">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <mat-form-field>
-                      <mat-select placeholder="Select No Of Days" [(ngModel)]="selected">
-                        <mat-option value=".5">.5 </mat-option>
-                        <mat-option value="1">1 </mat-option>
-                        <mat-option value="2">2 </mat-option>
-                        <mat-option value="3">3 </mat-option>
-                        <mat-option value="4">4 </mat-option>
-                        <mat-option value="5">5 </mat-option>
-                        <mat-option value="6">6</mat-option>
-                        <mat-option value="7">7 </mat-option>
-                        <mat-option value="8">8 </mat-option>  
-                        <mat-option value="9">9 </mat-option>
-                        <mat-option value="10">10 </mat-option>
-                        <mat-option value="11">11</mat-option>
-                        <mat-option value="12">12</mat-option>
-                        <mat-option value="13">13</mat-option>
-                        <mat-option value="14">14</mat-option>
-                        <mat-option value="15">15</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-              </div>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" (click)="clickUpdate()">Save</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
     </div>
-  
-     -->
+    <br>
+</div>
+</div>

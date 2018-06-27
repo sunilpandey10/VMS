@@ -25,6 +25,7 @@ export class NavbarComponentComponent implements OnInit {
   dataProfile: any;
   name: string;
   timerSubscription: any;
+  enableNavbarButton: boolean;
 
   @ViewChild(UserprofileComponentComponent) uname;
   constructor(private route: Router,
@@ -45,16 +46,16 @@ export class NavbarComponentComponent implements OnInit {
 
 
   ngOnInit() {
+    debugger;
     this.userService.dashboard().subscribe((data: Dashboard) => {
       this.dashboard = data.dashboard;
-      debugger;
-      console.log(this.route.url );
-      if (this.route.url == "home/dashboard") {
-        this.text = true;
+      if (this.dashboard.find(x => x.nav_bar == 2)) {
+        this.enableNavbarButton = true
       }
       else {
-        this.text = false;
+        this.enableNavbarButton = false
       }
+
     });
 
 

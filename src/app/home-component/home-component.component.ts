@@ -54,6 +54,7 @@ export class HomeComponentComponent implements OnInit {
           ]
         }]
     };
+    
   
     }
   
@@ -68,11 +69,10 @@ export class HomeComponentComponent implements OnInit {
 
       sessionStorage.setItem('val', x);
     });
-      // this.trackLeave[0]='';
-      // this.trackLeave[1]='';
+      if(sessionStorage.getItem('val')!=null){
       this.trackLeave = sessionStorage.getItem('val').split(",");
       sessionStorage.removeItem('val');
-
+      }
       this.totalLabel = 'Total ' + this.trackLeave[0];
       this.usedLeave = 'Used ' + this.trackLeave[1];
       var sub = (Number(this.trackLeave[0]) - Number(this.trackLeave[1]));
@@ -84,7 +84,6 @@ export class HomeComponentComponent implements OnInit {
   ngOnInit() {
 
     this.pageTitle = "My Dashboard";
-   // this.getTrackLeaves();
 
   }
   getResponse(): any {

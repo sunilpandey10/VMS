@@ -1,6 +1,6 @@
 <p-confirmDialog></p-confirmDialog>
 <div class="wrapper w-100">
-    <nav id="sidebar" >
+    <nav id="sidebar">
         <div class="sidebar-header">
             <img style="float:left" style="vertical-align: middle;" [src]="fullImagePath" class="img-circle" width="45px" height="45px">
             <span style="vertical-align: middle;">
@@ -9,22 +9,22 @@
             <strong>TV</strong>
         </div>
 
-        <ul class="list-unstyled components" >
+        <ul class="list-unstyled components">
             <li class="active" *ngFor="let navbar of dashboard">
-                <a routerLink={{navbar.roter_link}} routerLinkActive="active"  *ngIf="navbar.nav_bar==1">
+                <a routerLink={{navbar.roter_link}} routerLinkActive="active" *ngIf="navbar.nav_bar==1">
                     <i class="{{navbar.class}}"></i>
                     {{navbar.text}}
                 </a>
             </li>
 
-            <li>
+            <li *ngIf="enableNavbarButton">
                 <a class="hidden-lg" data-toggle="modal" data-target="#applyleaveModal">
                     <i class="glyphicon glyphicon-plus"></i>
                     Apply Leave
                 </a>
             </li>
             <br>
-            <li>
+            <li *ngIf="enableNavbarButton">
                 <a class="hidden-lg" data-toggle="modal" data-target="#pwdModal">
                     <i class="glyphicon glyphicon-usd"></i>
                     Expense Form
@@ -42,18 +42,20 @@
                             <i class="glyphicon glyphicon-align-justify"></i>
                         </button>
                     </div>
-                    <div class="navbar-header visible-lg" >
+                    <div class="navbar-header visible-lg row">
+                        <div class="col-lg-2" style="display:inline">
                         <button type="button" id="sidebarCollapselg" style="text-shadow:black 1px 1px 1px;" class="btn btn-info navbar-btn">
                             <i class="glyphicon glyphicon-align-justify"></i>
                         </button>
-                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#applyleaveModal" style="text-shadow:black 1px 1px 1px;"
-                          >
+                        </div>
+                        <div class="col" style="display:inline;padding-left: 4px;" *ngIf="enableNavbarButton">
+                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#applyleaveModal" style="text-shadow:black 1px 1px 1px;" >
                             <i class="glyphicon glyphicon-plus"></i> Apply Leaves
                         </button>
-                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" style="text-shadow: black 1px 1px 1px;" data-target="#pwdModal"
-                        >
+                        <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" style="text-shadow: black 1px 1px 1px;" data-target="#pwdModal">
                             <i class="glyphicon glyphicon-usd"></i> Expense Form
                         </button>
+                        </div>
                     </div>
 
                     <div class="dropdown visible-lg">
@@ -64,12 +66,12 @@
                             height="60" width="60" />
                         <div class="dropdown-container">
                             <ul class="dropdown-menu">
-                                <li >
-                                    <a data-target="#pwdChgModal" data-toggle="modal" >Change Password
+                                <li>
+                                    <a data-target="#pwdChgModal" data-toggle="modal">Change Password
                                         <span class="glyphicon glyphicon-lock"></span>
                                     </a>
                                 </li>
-                                <li>
+                                <li *ngIf="enableNavbarButton">
                                     <a routerLink="/home/profile" routerLinkActive="active">Profile
                                         <span class="glyphicon glyphicon-user"></span>
                                     </a>

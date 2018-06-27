@@ -41,3 +41,9 @@ span > i.color{
   .element-row.expanded {
     border-bottom-color: transparent;
   }
+
+  .newStyle{
+    border-top-style: solid;
+    border-top-color:green;
+    border-radius: 7px;
+  }

@@ -43,6 +43,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leaveType: any;
   flag: any;
   msgs: any;
+  mobileDataSource:any;
   successUpdated:any;
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
@@ -91,6 +92,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
         return;
       }
       this.leavesTypeDatasource = data.leave_types;
+
     });
   }
   getData(id) {
@@ -169,7 +171,6 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     }, 1000);
   }
   clickUpdate(){
-    debugger;
     this.status = 0;
     this.flag='';
     this.error=false;
@@ -206,11 +207,13 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
       if (!results) {
         return;
       }
+      this.mobileDataSource=results['leaves'];
+      console.log(this.mobileDataSource);
+    
       this.dataSource = new MatTableDataSource(results.leaves);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
   }
 
   clickSave() {
