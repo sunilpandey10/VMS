@@ -59,14 +59,12 @@ export class HomeComponentComponent implements OnInit {
     }
   
     getTrackLeaves(){
-      debugger;
       var x;
       this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
       this.anuualLeave = data.track[0].total_annual_leaves_taken;
       this.totalLeave = data.track[0].total_annual_leaves;
       this.sickLeave = data.track[0].total_sick_leaves;
       x = this.totalLeave + "," + this.anuualLeave + "," + this.sickLeave;
-
       sessionStorage.setItem('val', x);
     });
       if(sessionStorage.getItem('val')!=null){

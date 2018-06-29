@@ -10,7 +10,12 @@ a.delete {
 span > i.green{
     color: green;
 }
-
+a > i.green{
+color: green;
+}
+a > i.color{
+  color: red;
+}
 span > i.color{
     color: red;
 }
