@@ -54,7 +54,7 @@ export class LoginComponentComponent implements OnInit  {
         this.cookieService.delete('_query1');
         this.cookieService.delete('_query2');
       }
-      debugger;
+
       this.isError = false;
       var items = data.auth_token;
       localStorage.setItem('Tokens', items);
@@ -67,7 +67,7 @@ export class LoginComponentComponent implements OnInit  {
 
     },
       (err: any) => {
-        debugger;
+  
         this.isError = true;
         if(!err.error.message){
           this.message=err.message;

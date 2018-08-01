@@ -52,6 +52,7 @@
     "ng2-fancy-image-uploader": "^2.0.1",
     "ng2-opd-popup": "^1.1.21",
     "ngx-cookie-service": "^1.0.10",
+    "ngx-slack": "^1.0.3",
     "primeicons": "^1.0.0-beta.6",
     "primeng": "^6.0.0-alpha.1",
     "rxjs": "^5.5.10",

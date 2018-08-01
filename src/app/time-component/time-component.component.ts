@@ -33,7 +33,7 @@ export class TimeComponentComponent implements OnInit {
     var mondayOfWeek = new Date(current.getFullYear(), current.getMonth(), current.getDate() - current.getDay() + 1);
     var sundayOfWeek = new Date(current.getFullYear(), current.getMonth(), current.getDate() - current.getDay() + 7);
     for (var i = 1; i <= 7; i++) {
-      var days = mondayOfWeek.getDate() + i;
+      var days = mondayOfWeek.getDate() ;
       this.getDAteMondaytoFriday.push(days + '-' + month[current.getMonth()]);
     }
   }

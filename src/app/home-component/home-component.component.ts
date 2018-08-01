@@ -39,13 +39,14 @@ export class HomeComponentComponent implements OnInit {
       datasets: [
         {
 
-          data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1]))],
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#BA55D3"
-          ],
+          // data: [Number(this.trackLeave[0]), Number(this.trackLeave[1]), (Number(this.trackLeave[0]) - Number(this.trackLeave[1]))],
+          // backgroundColor: [
+          //   "#FF6384",
+          //   "#36A2EB",
+          //   "#FFCE56",
+          //   "#BA55D3"
+          // ],
+          data:[],
           hoverBackgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -59,22 +60,23 @@ export class HomeComponentComponent implements OnInit {
     }
   
     getTrackLeaves(){
-      var x;
-      this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
-      this.anuualLeave = data.track[0].total_annual_leaves_taken;
-      this.totalLeave = data.track[0].total_annual_leaves;
-      this.sickLeave = data.track[0].total_sick_leaves;
-      x = this.totalLeave + "," + this.anuualLeave + "," + this.sickLeave;
-      sessionStorage.setItem('val', x);
-    });
-      if(sessionStorage.getItem('val')!=null){
-      this.trackLeave = sessionStorage.getItem('val').split(",");
-      sessionStorage.removeItem('val');
-      }
-      this.totalLabel = 'Total ' + this.trackLeave[0];
-      this.usedLeave = 'Used ' + this.trackLeave[1];
-      var sub = (Number(this.trackLeave[0]) - Number(this.trackLeave[1]));
-      this.remainingLabel = 'Remaining ' + sub;
+    //   var x='';
+      
+    //   this.myTeamService.trackUserLeave().subscribe((data: LeaveTrack) => {
+    //   this.anuualLeave = data.track[0].total_annual_leaves_taken;
+    //   this.totalLeave = data.track[0].total_annual_leaves;
+    //   this.sickLeave = data.track[0].total_sick_leaves;
+    //   x = this.totalLeave + "," + this.anuualLeave + "," + this.sickLeave;
+    //   sessionStorage.setItem('val', x);
+    // });
+    //   if(sessionStorage.getItem('val')!=null){
+    //   this.trackLeave = sessionStorage.getItem('val').split(",");
+    //   sessionStorage.removeItem('val');
+    //   }
+    //   this.totalLabel = 'Total ' + this.trackLeave[0];
+    //   this.usedLeave = 'Used ' + this.trackLeave[1];
+    //   var sub = (Number(this.trackLeave[0]) - Number(this.trackLeave[1]));
+    //   this.remainingLabel = 'Remaining ' + sub;
 
     }
 

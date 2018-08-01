@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule,MatAutocompleteModule, MatPaginatorModule,MatProgressSpinnerModule,MatToolbarModule,MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, MatTabsModule } from '@angular/material';
-import {AuthGuard} from './Auth/auth.guard';
+import { MatInputModule, MatAutocompleteModule, MatPaginatorModule, MatProgressSpinnerModule, MatToolbarModule, MatTableModule, MatSortModule, MatButtonModule, MatNativeDateModule, MatDatepickerModule, MatIconModule, MatCheckboxModule, MatTabsModule } from '@angular/material';
+import { AuthGuard } from './Auth/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
@@ -55,19 +55,20 @@ import { EmployeeDetailsLeaveComponent } from './employee-details-leave/employee
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BookmanageComponent } from './bookmanage/bookmanage.component';
 import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
-import {ConfirmDialogModule,ConfirmationService, GrowlModule } from 'primeng/primeng';
-import {ClientdataService} from './clientdata.service';
+import { ConfirmDialogModule, ConfirmationService, GrowlModule } from 'primeng/primeng';
+import { ClientdataService } from './clientdata.service';
 import { BookcomponentComponent } from './bookcomponent/bookcomponent.component';
 import { ManageReferencesComponentComponent } from './manage-references-component/manage-references-component.component';
-
+import { SlackServiceService } from './slack-service.service';
+import { CalenderServiceService } from './user.calender-service.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
-  { path: 'login', component: LoginComponentComponent},
+  { path: 'login', component: LoginComponentComponent },
 
   {
-    path: 'home', component: NavbarComponentComponent,canActivate:[AuthGuard], children: [
+    path: 'home', component: NavbarComponentComponent, canActivate: [AuthGuard], children: [
       { path: 'dashboard', component: HomeComponentComponent },
       { path: 'calendar', component: CalendarComponentComponent },
       { path: 'report', component: ReportComponentComponent },
@@ -78,11 +79,12 @@ const appRoutes: Routes = [
       { path: 'setting', component: ManageReferencesComponentComponent },
       { path: 'profile', component: UserprofileComponentComponent },
 
-      {path:'admindashboard', component:AdmindashboardcomponentComponent},
-      
-      { path: 'team', component: TeamdirectoryComponentComponent }, 
- 
-]},
+      { path: 'admindashboard', component: AdmindashboardcomponentComponent },
+
+      { path: 'team', component: TeamdirectoryComponentComponent },
+
+    ]
+  },
   { path: 'changepassword', component: ChangepasswordcomponentComponent },
   { path: '**', component: PagenotFoundcomponentComponent }
 
@@ -125,7 +127,7 @@ const appRoutes: Routes = [
     BookmanageComponent,
     BookcomponentComponent,
     ManageReferencesComponentComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -157,15 +159,15 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgbModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes,{useHash: true}),
-    ],
-  providers: [AuthGuard,AlertServiceService,ConfirmationService,LoginServiceService,CookieService,UserService,MyTeamService,LeaveService,AdmindashboardService,ClientdataService
-  ,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: httpInterceptor,
-    multi: true
-  }
-],
+    RouterModule.forRoot(appRoutes, { useHash: true }),
+  ],
+  providers: [AuthGuard, AlertServiceService, SlackServiceService, ConfirmationService, LoginServiceService, CookieService, CalenderServiceService, UserService, MyTeamService, LeaveService, AdmindashboardService, ClientdataService
+    , {
+      provide: HTTP_INTERCEPTORS,
+      useClass: httpInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponentComponent]
 })
 export class AppModule { }

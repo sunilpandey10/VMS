@@ -141,7 +141,6 @@ export class AdmindashboardcomponentComponent implements OnInit {
 
   }
   getEmployeeLeaves(id) {
-    debugger;
     this.adminService.UserbyId(id).subscribe((data: any) => {
       this.empdataSource = new MatTableDataSource(data.leaves);
       this.empdataSource.paginator = this.paginator;

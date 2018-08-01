@@ -31,7 +31,6 @@ export class ClientdataService {
   }
 
   addClient(addclient,addteam,adddomain,addpeople,addlocation){
-    debugger;
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     var data = '{ "client" :  "' + addclient + '", "team" : "' + addteam + '", "domain" :  "' + adddomain + '", "people" : "' + addpeople + '", "location" : "' + addlocation + '"}';
     return this.http.post(this.baseUrl + "/clients", data, { headers: reqHeader });

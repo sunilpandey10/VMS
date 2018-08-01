@@ -5,7 +5,8 @@ import{LeaveTypes} from '../models/myLeavesType'
 import { MatSelect } from '@angular/material';
 import {Leaves} from '../models/leaveEnum'
 import {FormControl} from '@angular/forms';
-import { GetType } from '../models/type'
+import { GetType } from '../models/type';
+
 
 
 

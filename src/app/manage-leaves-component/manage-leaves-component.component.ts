@@ -103,7 +103,6 @@ export class ManageLeavesComponentComponent implements OnInit {
     }));
   }
   getTypeUpdate(id) {
-    debugger;
     this.id = id;
     this.getSingleRecord = this.dataSource.filter(x => x.id == id);
     this.updateleavetype = this.getSingleRecord[0].leave_type;
@@ -114,7 +113,6 @@ export class ManageLeavesComponentComponent implements OnInit {
   }
 
   updateLeaveType() {
-    debugger;
     this.isSuccess=false;
     this.isError=false;
     this.leaveService.updaleavesTypes(this.id, this.updateleavetype, this.updatedescription, this.updatenoofDays, this.updatevalidity, this.updatecarryforward).

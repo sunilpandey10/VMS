@@ -111,7 +111,7 @@ export class UserprofileComponentComponent implements OnInit {
     this.adminService.getProfile().subscribe((data: Profiles) => {
       if (!data) {
         return;
-      }debugger;
+      }
       this.dataProfile = data.profiles[0];
       this.username = this.dataProfile.username;
       this.email = this.dataProfile.email;

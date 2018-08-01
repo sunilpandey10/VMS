@@ -39,7 +39,7 @@ export class LeaveService {
   }
 
   updaleavesTypes(id,LeaveTypes,description,noOfdays,validity,carryforward) {
-    debugger;
+
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
     var data = '{ "leaveType" :  "' + LeaveTypes + '", "description" : "' + description + '", "num_of_days" :  ' + noOfdays + ', "validity" : "' + validity + '" , "carry_forward" : "' + carryforward + '" }';
     return this.http.put(this.baseUrl + "/leaveTypes/"+id, data, { headers: reqHeader });

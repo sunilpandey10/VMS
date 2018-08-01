@@ -39,14 +39,11 @@ export class NavbarComponentComponent implements OnInit {
     this.fullImagePath = '../../assets/Images/Untitled.png'
     this.adminService.getProfile().subscribe((data: Profiles) => {
       this.dataProfile = data.profiles[0];
-      debugger;
       this.name = data.profiles[0].username;
     });
   }
 
-
   ngOnInit() {
-    debugger;
     this.userService.dashboard().subscribe((data: Dashboard) => {
       this.dashboard = data.dashboard;
       if (this.dashboard.find(x => x.nav_bar == 2)) {
@@ -73,7 +70,6 @@ export class NavbarComponentComponent implements OnInit {
   logOut() {
     localStorage.removeItem('Tokens');
     this.route.navigate(['/login']);
-
   }
   getLeaves() {
     this.leaveService.getLeaves().subscribe((results: any) => {

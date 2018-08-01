@@ -10,7 +10,9 @@ import { debug } from 'util';
 import { Leaves } from '../models/leaveEnum'
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
-
+import {NgxSlackModule} from 'ngx-slack';
+import {SlackServiceService} from '../slack-service.service';
+import { AdmindashboardService } from '../admindashboard.service';
 
 declare var bootbox: any
 @Component({
@@ -43,8 +45,13 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   leaveType: any;
   flag: any;
   msgs: any;
+  dataProfile:any;
   mobileDataSource:any;
   successUpdated:any;
+  messagetoSlack:any;
+  empid:any;
+  email:any;
+  name:any;
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
 
@@ -60,14 +67,43 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     const day = d.getDay();
     return day !== 0 && day !== 6;
   }
-  constructor(private leaveService: LeaveService, private confirmationService: ConfirmationService) {
+  constructor(private leaveService: LeaveService, private confirmationService: ConfirmationService,
+    private slackService:SlackServiceService,
+    private adminService: AdmindashboardService) {
     this.startDate = new FormControl('', [Validators.required]);
     this.endDate = new FormControl('', [Validators.required]);
     this.desc = new FormControl('', [Validators.required]);
     this.selected = new FormControl('', [Validators.required]);
     this.desc = '';
   }
+getProfileDetals(){
+  this.adminService.getProfile().subscribe(data=>{
+    if(!data){
+      return;
+    }
+    this.dataProfile = data.profiles[0];
+    this.email = this.dataProfile.email;
+    this.empid= this.dataProfile.emp_id;
+    this.name = this.dataProfile.username;
+    console.log(this.dataProfile);
+  })
 
+}  
+
+sendMessagetoSlack(){
+var text=`@here ${this.name} has raised a ${this.leave} leave request please find below details. 
+\nEmp Name: ${this.name}
+\nEmp Id: ${this.empid}
+\nFrom: ${new Date(this.from_date).toDateString()}
+\nTo: ${new Date(this.to_date).toDateString()}
+\nNoOfDays: ${this.selected}
+\nDescription: ${this.description}\n`;
+
+    var payLoads=`payload={"text": "${text}"}`
+    this.slackService.postDateSlack(payLoads).subscribe(data=>{
+        console.log('message posted');
+    });
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
@@ -85,6 +121,7 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
   }
 
   ngOnInit() {
+    this.getProfileDetals();
     this.date = new FormControl();
     this.getLeaves();
     this.leaveService.getTypeLeaves().subscribe((data: GetType) => {
@@ -110,6 +147,8 @@ export class MyleavesComponentsComponent implements OnInit, saveDataSource {
     this.leavetype = toInteger(Leaves[this.leave]);
     this.leaveService.updateapplyleaves(this.leavetype, this.description, this.selected, this.getChangeDate(this.from_date), this.getChangeDate(this.to_date), this.status, this.id).subscribe(data => {
       this.success = true;
+      //changes
+      this.sendMessagetoSlack();
       this.setTimeOutF('#saveLeaveModal .close');
       this.getLeaves();
 
